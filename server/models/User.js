@@ -51,6 +51,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+eventSchema.virtual('pastDate').get(function () {
+  return new Date();
+});
+
 const User = model('User', userSchema);
 
 module.exports = User;
