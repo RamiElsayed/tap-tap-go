@@ -16,6 +16,7 @@ const eventSchema = new Schema({
   date: {
     type: Date,
     required: true,
+    default: Date.now,
   },
   price: {
     type: int,
