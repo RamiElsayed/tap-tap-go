@@ -52,7 +52,8 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 eventSchema.virtual('pastDate').get(function () {
-  return new Date();
+  // TODO: need to figure out how to do past/upcoming virtuals
+  // if (this.date < formatDate(new Date())) return this.date;
 });
 
 const User = model('User', userSchema);
