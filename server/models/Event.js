@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { formatDate } = require('../utils');
 
 const eventSchema = new Schema({
   eventName: {
@@ -16,6 +17,7 @@ const eventSchema = new Schema({
   date: {
     type: Date,
     required: true,
+    get: formatDate,
   },
   price: {
     type: int,
