@@ -1,0 +1,37 @@
+{
+  "name": "tap-tap-go",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "seeds": "node seeds/index.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamiElsayed/tap-tap-go.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RamiElsayed/tap-tap-go/issues"
+  },
+  "homepage": "https://github.com/RamiElsayed/tap-tap-go#readme",
+  "dependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "apollo-server": "^3.10.2",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "date-fns": "^2.29.2",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "graphql": "^16.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
