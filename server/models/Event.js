@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const { formatDate } = require('../utils');
+const { Schema, model } = require("mongoose");
+const { formatDate } = require("../utils");
 
 const eventSchema = new Schema({
   eventName: {
@@ -20,7 +20,7 @@ const eventSchema = new Schema({
     get: formatDate,
   },
   price: {
-    type: int,
+    type: Number,
     required: true,
   },
   ageGroup: {
@@ -36,19 +36,19 @@ const eventSchema = new Schema({
   reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   ],
   attendees: {
-    type: int,
+    type: Number,
     required: true,
   },
   maxAttendees: {
-    type: int,
+    type: Number,
     required: true,
   },
 });
 
-const Event = model('Event', eventSchema);
+const Event = model("Event", eventSchema);
 
 module.exports = Event;
