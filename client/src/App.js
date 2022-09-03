@@ -3,6 +3,8 @@ import "./App.css";
 import EventCard from "./components/EventCard";
 
 function App() {
+  const title = "test title";
+  const description = "test description";
   return (
     <div className="App">
       <header className="App-header">
@@ -19,7 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <EventCard />
+      <EventCard title={title} description={description} />
     </div>
   );
 }
