@@ -4,6 +4,8 @@ import RecentlySeen from "./components/RecentlySeen/index.js";
 import EventCard from "./components/Card/EventCard";
 import "./App.css";
 
+import Profile from "./Pages/Profile";
+import NavBar from "./components/navbar/index";
 function App() {
   const title = "Salsa with Fabian Sarango";
   const price = "From £15 per person";
