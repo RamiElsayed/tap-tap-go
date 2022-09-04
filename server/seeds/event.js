@@ -1,26 +1,43 @@
-const generateEvents = (numberOfEvents, tags) => {
-  const eventsArray = new Array(numberOfEvents).fill('');
+const { Event, User } = require('../models');
+const { faker } = require('@faker-js/faker');
 
-  return eventsArray.map(() => {
-    const ageGroup = ['children', 'Teenagers', 'Adults', 'Seniors'];
-    const randomAgeGroup =
-      ageGroup[Math.floor(Math.random() * ageGroup.length)];
-    const tags = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
-    const randomTag = tags[Math.floor(Math.random() * tags.length)];
-    return {
-      eventName: faker.lorem.lines(1),
-      location: faker.address.cityName(),
-      description: faker.lorem.paragraph(3),
-      date: formatDate(faker.date.future()),
-      price: faker.commerce.price(),
-      ageGroup: randomAgeGroup,
-      images: faker.image.abstract(200, 300),
-      tags: randomTag,
-      reviews: faker.datatype.array(),
-      attendees: faker.datatype.number(100),
-      maxAttendees: faker.datatype.number(100),
+const generateEvents = async () => {
+  const users = await User.find({});
+
+  const ageGroup = ['children', 'Teenagers', 'Adults', 'Seniors'];
+  const randomAgeGroup = ageGroup[Math.floor(Math.random() * ageGroup.length)];
+  const tags = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
+  const randomTag = tags[Math.floor(Math.random() * tags.length)];
+
+  for (let i = 0; i < users.length; i++) {
+    const eventName = faker.lorem.lines(1);
+    const location = faker.address.cityName();
+    const description = faker.lorem.paragraph(3);
+    const date = formatDate(faker.date.future());
+    const price = faker.commerce.price();
+    const ageGroup = randomAgeGroup;
+    const images = faker.image.abstract(300, 200);
+    const tags = randomTag;
+    const reviews = faker.datatype.array();
+    const attendees = faker.datatype.number(100);
+    const maxAttendees = faker.datatype.number(100);
+
+    const event = {
+      eventName,
+      location,
+      description,
+      date,
+      price,
+      ageGroup,
+      images,
+      tags,
+      reviews,
+      attendees,
+      maxAttendees,
     };
-  });
+
+    const createdEvent = await Event.create({});
+  }
 };
 
 const seedEvents = async () => {

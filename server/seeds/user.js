@@ -6,10 +6,11 @@ const generateUsers = () => {
   for (let i = 0; i < 10; i++) {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
+    const username = faker.internet.userName(firstName, lastName);
     const number = faker.phone.number('####-###-####');
     const email = faker.internet.email(firstName, lastName);
     const password = faker.internet.password(5);
-    usersArr.push({ username, email });
+    usersArr.push({ firstName, lastName, username, number, email, password });
   }
   return usersArr;
 };
