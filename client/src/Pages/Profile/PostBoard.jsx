@@ -7,10 +7,10 @@ function PostBoard() {
   let isPostBoardEmpty = Boolean(isEmpty);
 
   let renderPostBoard = (
-    <Card sx={{ width: "60%" }}>
+    <Card sx={{ width: { xs: "100%", md: "60%" } }}>
       <CardContent
         sx={{
-          width: { xs: "100%", md: "60%" },
+          width: { xs: "99%", md: "60%" },
           marginX: "auto",
           paddingY: "2rem",
         }}
@@ -21,10 +21,16 @@ function PostBoard() {
           textAlign="center"
           sx={{ fontWeight: "600" }}
           gutterBottom
+          paddingX="1rem"
         >
           FIll out your board with your exp!
         </Typography>
-        <Typography variant="body2" component="p" textAlign="center">
+        <Typography
+          variant="body2"
+          component="p"
+          textAlign="center"
+          paddingX="1rem"
+        >
           Add photos and info to your profile so people can find you easily and
           get to know you better!
         </Typography>
