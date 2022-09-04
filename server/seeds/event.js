@@ -5,10 +5,8 @@ const { formatDate } = require('../utils/index');
 const generateEvents = async () => {
   const users = await User.find({});
 
-  const ageGroup = ['Children', 'Teenagers', 'Adults', 'Seniors'];
-  const randomAgeGroup = ageGroup[Math.floor(Math.random() * ageGroup.length)];
-  const tags = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
-  const randomTag = tags[Math.floor(Math.random() * tags.length)];
+  const ageGroupArr = ['Children', 'Teenagers', 'Adults', 'Seniors'];
+  const tagsArr = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
 
   for (let i = 0; i < users.length; i++) {
     const { username } = users[i];
@@ -17,6 +15,10 @@ const generateEvents = async () => {
     const numberOfEvents = Math.floor(Math.random() * 3);
 
     for (let j = 0; j < numberOfEvents; j++) {
+      const randomAgeGroup =
+        ageGroupArr[Math.floor(Math.random() * ageGroupArr.length)];
+      const randomTag = tagsArr[Math.floor(Math.random() * tagsArr.length)];
+
       const eventName = faker.lorem.lines(1);
       const location = faker.address.cityName();
       const description = faker.lorem.paragraph(3);
@@ -55,7 +57,7 @@ const generateEvents = async () => {
 
 const seedEvents = async () => {
   try {
-    const events = generateEvents();
+    const events = await generateEvents();
     console.log('Successfully seeded events data.');
   } catch (err) {
     console.log(`Failed to seed events data || ${err.message}`);
