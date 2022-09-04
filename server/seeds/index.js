@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
-const { faker } = require('@faker-js/faker');
-const connectToDatabase = require('../config/connection');
-const { User, Event, Rating, Review } = require('../models/index');
+const mongoose = require("mongoose");
+const { faker } = require("@faker-js/faker");
+const connectToDatabase = require("../config/connection");
+const { User, Event, Rating, Review } = require("../models/index");
+const seedUsers = require("./user");
+const generateEvents = require("./event");
 
 const init = async () => {
   try {
     await connectToDatabase();
 
-    console.log('[INFO]: Database connection successful');
+    console.log("[INFO]: Database connection successful");
 
     await User.deleteMany({});
     await Event.deleteMany({});
@@ -15,6 +17,7 @@ const init = async () => {
     await Review.deleteMany({});
 
     await seedUsers();
+    await generateEvents();
 
     process.exit(0);
   } catch (error) {
