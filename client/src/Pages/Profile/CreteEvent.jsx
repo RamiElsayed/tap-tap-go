@@ -1,4 +1,4 @@
-import { Card, CardContent, Paper, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
 function PostingBoard() {

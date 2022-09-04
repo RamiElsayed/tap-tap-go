@@ -1,8 +1,6 @@
-import { Grid, ListItem } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import Options from "./Options";
 import Banner from "./Banner";
 import Description from "./Description";
 import PostingBoard from "./PostingBoard";

@@ -1,20 +1,11 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Chip,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { Container, height } from "@mui/system";
+import { Box, Card, CardContent, Chip, Stack, Typography } from "@mui/material";
+
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import avatarImg from "../../_mock/avatarImg.jpg";
-import { styled, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import Options from "./Options";
 import { createTheme } from "@mui/material/styles";
-import Person3Icon from "@mui/icons-material/Person3";
 
 const theme = createTheme();
 
