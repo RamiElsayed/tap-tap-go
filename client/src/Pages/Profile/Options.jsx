@@ -1,4 +1,4 @@
-import { Paper, Stack } from "@mui/material";
+import { Card, CardContent, Paper, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
@@ -9,22 +9,24 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  color: theme.palette.error.dark,
+  fontWeight: 500,
 }));
 
 function Options() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Paper elevation={1}>
-      <Stack direction="row" spacing={3}>
-        <Item>One</Item>
-        <Item>Two</Item>
-        <Item>Three</Item>
-        <Item>Four</Item>
-        <Item>Five</Item>
+    <Card elevation={1}>
+      <Stack direction="row" spacing={5}>
+        <Item>Activities</Item>
+        <Item>Tickets</Item>
+        <Item>Bookmarks</Item>
+        <Item>Own events</Item>
+        <Item>Reviews</Item>
+        <Item>Manage</Item>
       </Stack>
-    </Paper>
+    </Card>
   );
 }
 
