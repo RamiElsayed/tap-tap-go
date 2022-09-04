@@ -3,7 +3,7 @@ import { Stack } from "@mui/system";
 
 function Description() {
   return (
-    <Card>
+    <Card sx={{ marginBottom: "1rem" }}>
       <CardContent>
         <Stack>
           <Typography variant="h6">Intro</Typography>
