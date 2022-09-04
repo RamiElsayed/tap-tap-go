@@ -47,15 +47,15 @@ function Banner() {
             </Typography>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Stack marginRight="2rem">
-                <Typography variant="h6">Contributions</Typography>
+                <Typography variant="h6">Attended</Typography>
                 <Typography variant="h5">0</Typography>
               </Stack>
               <Stack marginRight="2rem">
-                <Typography variant="h6">Followers</Typography>
+                <Typography variant="h6">Upcoming</Typography>
                 <Typography variant="h5">0</Typography>
               </Stack>
               <Stack marginRight="2rem">
-                <Typography variant="h6">Following</Typography>
+                <Typography variant="h6">Your events</Typography>
                 <Typography variant="h5">0</Typography>
               </Stack>
             </Box>
