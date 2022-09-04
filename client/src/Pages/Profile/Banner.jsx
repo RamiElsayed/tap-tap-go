@@ -23,7 +23,7 @@ theme.typography.h6 = {
   },
   [theme.breakpoints.up("md")]: {
     fontSize: "2rem",
-    fontWeight: "500",
+    fontWeight: "400",
   },
 };
 
@@ -32,7 +32,7 @@ function Banner() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card sx={{ boxShadow: { xs: "none", md: "initial" } }}>
+      <Card>
         <CardContent sx={{ display: "flex" }}>
           <Avatar
             sx={{ width: "150px", height: "auto", marginRight: "3rem" }}
