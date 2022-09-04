@@ -10,43 +10,53 @@ const generateEvents = async () => {
   const randomTag = tags[Math.floor(Math.random() * tags.length)];
 
   for (let i = 0; i < users.length; i++) {
-    const eventName = faker.lorem.lines(1);
-    const location = faker.address.cityName();
-    const description = faker.lorem.paragraph(3);
-    const date = formatDate(faker.date.future());
-    const price = faker.commerce.price();
-    const ageGroup = randomAgeGroup;
-    const images = faker.image.abstract(300, 200);
-    const tags = randomTag;
-    const reviews = faker.datatype.array();
-    const attendees = faker.datatype.number(100);
-    const maxAttendees = faker.datatype.number(100);
+    const { username } = users[i];
+    const { _id: userId } = users[i];
 
-    const event = {
-      eventName,
-      location,
-      description,
-      date,
-      price,
-      ageGroup,
-      images,
-      tags,
-      reviews,
-      attendees,
-      maxAttendees,
-    };
+    const numberOfEvents = Math.floor(Math.random() * 3);
 
-    const createdEvent = await Event.create({});
+    for (let j = 0; j < numberOfEvents; j++) {
+      const eventName = faker.lorem.lines(1);
+      const location = faker.address.cityName();
+      const description = faker.lorem.paragraph(3);
+      const date = formatDate(faker.date.future());
+      const price = faker.commerce.price();
+      const ageGroup = randomAgeGroup;
+      const images = faker.image.abstract(300, 200);
+      const tags = randomTag;
+      const reviews = faker.datatype.array();
+      const attendees = faker.datatype.number(100);
+      const maxAttendees = faker.datatype.number(100);
+
+      const event = {
+        username,
+        eventName,
+        location,
+        description,
+        date,
+        price,
+        ageGroup,
+        images,
+        tags,
+        reviews,
+        attendees,
+        maxAttendees,
+      };
+
+      const createdEvent = await Event.create(event);
+      const { _id: eventId } = createdEvent;
+      await User.findByIdAndUpdate(userId, {
+        $push: {
+          events: eventId,
+        },
+      });
+    }
   }
 };
 
 const seedEvents = async () => {
   try {
-    const users = generateUsers();
-    const userPromises = users.map((user) => User.create(user));
-
-    await Promise.all(userPromises);
-
+    const events = generateEvents();
     console.log('Successfully seeded events data.');
   } catch (err) {
     console.log(`Failed to seed events data || ${err.message}`);
