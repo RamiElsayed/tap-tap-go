@@ -20,9 +20,9 @@ const seedReviews = async () => {
 
     await Promise.all(userPromises);
 
-    console.log('Successfully seeded users data.');
+    console.log('Successfully seeded reviews data.');
   } catch (err) {
-    console.log(`Failed to seed users data || ${err.message}`);
+    console.log(`Failed to seed reviews data || ${err.message}`);
   }
 };
 

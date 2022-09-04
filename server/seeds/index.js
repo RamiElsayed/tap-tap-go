@@ -23,7 +23,7 @@ const init = async () => {
 
     process.exit(0);
   } catch (error) {
-    console.log(`[ERROR]: Failed to get all data | ${error.message}`);
+    console.log(`[ERROR]: Failed to seed all data | ${error.message}`);
   }
 };
 

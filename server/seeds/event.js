@@ -30,9 +30,9 @@ const seedEvents = async () => {
 
     await Promise.all(userPromises);
 
-    console.log('Successfully seeded users data.');
+    console.log('Successfully seeded events data.');
   } catch (err) {
-    console.log(`Failed to seed users data || ${err.message}`);
+    console.log(`Failed to seed events data || ${err.message}`);
   }
 };
 
