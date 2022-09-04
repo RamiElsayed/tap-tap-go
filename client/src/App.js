@@ -1,14 +1,10 @@
-import PrimarySearchAppBar from "./components/navbar/index.js";
-import Hero from "./components/Hero/index.js";
-import RecentlySeen from "./components/RecentlySeen/index.js";
-import "./App.css";
-
+import Profile from "./Pages/Profile";
+import NavBar from "./components/navbar/index";
 function App() {
   return (
     <>
-      <PrimarySearchAppBar></PrimarySearchAppBar>
-      <Hero></Hero>
-      <RecentlySeen></RecentlySeen>
+      <NavBar></NavBar>
+      <Profile></Profile>
     </>
   );
 }

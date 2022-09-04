@@ -9,7 +9,6 @@ import Stack from "@mui/material/Stack";
 import RenderMobileMenu from "./sub-components/RenderMobileMenu";
 import RenderMenu from "./sub-components/RenderMenu";
 import AvatarMenu from "./sub-components/AvatarMenu";
-import { Typography } from "@mui/material";
 
 const settings = ["Account", "Dashboard", "Logout"];
 
