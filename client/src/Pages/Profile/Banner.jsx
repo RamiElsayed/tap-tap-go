@@ -2,6 +2,7 @@ import {
   Box,
   Card,
   CardContent,
+  Chip,
   Paper,
   Stack,
   Typography,
@@ -13,6 +14,7 @@ import avatarImg from "../../_mock/avatarImg.jpg";
 import { styled, ThemeProvider } from "@mui/material/styles";
 import Options from "./Options";
 import { createTheme } from "@mui/material/styles";
+import Person3Icon from "@mui/icons-material/Person3";
 
 const theme = createTheme();
 
@@ -30,9 +32,18 @@ theme.typography.h6 = {
 function Banner() {
   const [open, setOpen] = useState(false);
 
+  const handleClick = () => {
+    console.info("You clicked the Chip.");
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Card>
+      <Card sx={{ position: "relative" }}>
+        <Chip
+          label="Update Details"
+          onClick={handleClick}
+          sx={{ position: "absolute", right: 0, margin: "1rem" }}
+        />
         <CardContent sx={{ display: "flex" }}>
           <Avatar
             sx={{ width: "150px", height: "auto", marginRight: "3rem" }}
