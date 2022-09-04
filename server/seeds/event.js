@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 const generateEvents = async () => {
   const users = await User.find({});
 
-  const ageGroup = ['children', 'Teenagers', 'Adults', 'Seniors'];
+  const ageGroup = ['Children', 'Teenagers', 'Adults', 'Seniors'];
   const randomAgeGroup = ageGroup[Math.floor(Math.random() * ageGroup.length)];
   const tags = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
   const randomTag = tags[Math.floor(Math.random() * tags.length)];
@@ -22,7 +22,7 @@ const generateEvents = async () => {
       const date = formatDate(faker.date.future());
       const price = faker.commerce.price();
       const ageGroup = randomAgeGroup;
-      const images = faker.image.abstract(300, 200);
+      const images = faker.image.city(300, 200);
       const tags = randomTag;
       const reviews = faker.datatype.array();
       const attendees = faker.datatype.number(100);
