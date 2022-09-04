@@ -1,5 +1,6 @@
 const { Event, User } = require('../models');
 const { faker } = require('@faker-js/faker');
+const { formatDate } = require('../utils/index');
 
 const generateEvents = async () => {
   const users = await User.find({});
