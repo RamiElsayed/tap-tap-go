@@ -1,11 +1,11 @@
 const generateEvents = (numberOfEvents, tags) => {
-  const eventsArray = new Array(numberOfEvents).fill("");
+  const eventsArray = new Array(numberOfEvents).fill('');
 
   return eventsArray.map(() => {
-    const ageGroup = ["children", "Teenagers", "Adults", "Seniors"];
+    const ageGroup = ['children', 'Teenagers', 'Adults', 'Seniors'];
     const randomAgeGroup =
       ageGroup[Math.floor(Math.random() * ageGroup.length)];
-    const tags = ["Latino", "Break Dance", "Ballet", "Tap Dance"];
+    const tags = ['Latino', 'Break Dance', 'Ballet', 'Tap Dance'];
     const randomTag = tags[Math.floor(Math.random() * tags.length)];
     return {
       eventName: faker.lorem.lines(1),
@@ -23,4 +23,17 @@ const generateEvents = (numberOfEvents, tags) => {
   });
 };
 
-module.exports = generateEvents;
+const seedEvents = async () => {
+  try {
+    const users = generateUsers();
+    const userPromises = users.map((user) => User.create(user));
+
+    await Promise.all(userPromises);
+
+    console.log('Successfully seeded users data.');
+  } catch (err) {
+    console.log(`Failed to seed users data || ${err.message}`);
+  }
+};
+
+module.exports = seedEvents;
