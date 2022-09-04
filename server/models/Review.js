@@ -16,14 +16,6 @@ const reviewSchema = new Schema({
   rating: {
     type: Number,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  eventId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Event',
-  },
 });
 
 const Review = model('Review', reviewSchema);

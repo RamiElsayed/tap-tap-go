@@ -25,7 +25,6 @@ const generateEvents = async () => {
       const ageGroup = randomAgeGroup;
       const images = faker.image.city(300, 200);
       const tags = randomTag;
-      const reviews = faker.datatype.array();
       const attendees = faker.datatype.number(100);
       const maxAttendees = faker.datatype.number(100);
 
@@ -39,7 +38,6 @@ const generateEvents = async () => {
         ageGroup,
         images,
         tags,
-        reviews,
         attendees,
         maxAttendees,
       };
