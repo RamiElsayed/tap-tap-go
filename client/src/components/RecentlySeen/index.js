@@ -1,13 +1,6 @@
-import {
-  Box,
-  Container,
-  Grid,
-  ListItem,
-  Paper,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Add later
+import { Container, Grid, ListItem, Paper, Typography } from "@mui/material";
+import React from "react";
+// import { Link } from "react-router-dom";
 
 const RecentlySeen = () => {
   return (
