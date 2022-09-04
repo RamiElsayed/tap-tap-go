@@ -4,25 +4,30 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import Options from "./Options";
 import Banner from "./Banner";
+import Description from "./Description";
+import PostingBoard from "./PostingBoard";
+import PostBoard from "./PostBoard";
+import CreteEvent from "./CreteEvent";
 
 function Profile() {
   const [open, setOpen] = useState(false);
 
   return (
     <Container maxWidth="xl">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} marginTop="2rem">
         <Grid item xs={12}>
           <Banner></Banner>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Options></Options>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} md={3}>
-          <ListItem>Profile</ListItem>
-          <ListItem>Sidebar with info</ListItem>
+          <Description></Description>
+          <PostingBoard></PostingBoard>
+          <CreteEvent></CreteEvent>
         </Grid>
         <Grid item xs={12} md={9}>
-          Posts
+          <PostBoard></PostBoard>
         </Grid>
       </Grid>
     </Container>
