@@ -1,6 +1,7 @@
-import logo from "./logo.svg";
+import PrimarySearchAppBar from "./components/navbar/index.js";
+import Hero from "./components/Hero/index.js";
+import RecentlySeen from "./components/RecentlySeen/index.js";
 import "./App.css";
-import EventCard from "./components/EventCard";
 
 function App() {
   const title = "Salsa with Fabian Sarango";
@@ -9,28 +10,11 @@ function App() {
   const nRatings = 254;
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <EventCard
-        title={title}
-        price={price}
-        value={value}
-        nRatings={nRatings}
-      />
-    </div>
+    <>
+      <PrimarySearchAppBar></PrimarySearchAppBar>
+      <Hero></Hero>
+      <RecentlySeen></RecentlySeen>
+    </>
   );
 }
 

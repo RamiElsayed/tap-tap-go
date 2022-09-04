@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { faker } = require("@faker-js/faker");
 const connectToDatabase = require("../config/connection");
 const { User, Event, Rating, Review } = require("../models/index");
+const seedUsers = require("./user");
+const generateEvents = require("./event");
 
 const init = async () => {
   try {
@@ -13,11 +15,14 @@ const init = async () => {
     await Event.deleteMany({});
     await Rating.deleteMany({});
     await Review.deleteMany({});
+
+    await seedUsers();
+    await generateEvents();
+
+    process.exit(0);
   } catch (error) {
     console.log(`[ERROR]: Failed to get all data | ${error.message}`);
   }
-
-  process.exit(0);
 };
 
 init();
