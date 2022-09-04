@@ -7,11 +7,7 @@ const generateUsers = () => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const username = faker.internet.userName(firstName, lastName);
-<<<<<<< HEAD
     const number = +faker.phone.number("###########");
-=======
-    const number = +faker.phone.number('###########');
->>>>>>> main
     const email = faker.internet.email(firstName, lastName);
     const password = faker.internet.password(5);
     usersArr.push({ firstName, lastName, username, number, email, password });
