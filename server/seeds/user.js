@@ -16,7 +16,7 @@ const generateUsers = () => {
 
 const seedUsers = async () => {
   try {
-    const users = generateDummyUsers();
+    const users = generateUsers();
     const userPromises = users.map((user) => User.create(user));
 
     await Promise.all(userPromises);

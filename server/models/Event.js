@@ -33,10 +33,16 @@ const eventSchema = new Schema({
       required: true,
     },
   ],
+  tags: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Review",
     },
   ],
   attendees: {

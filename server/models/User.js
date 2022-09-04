@@ -29,6 +29,12 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
+    events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Events",
+      },
+    ],
   },
   {
     toJSON: {
