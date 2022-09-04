@@ -1,6 +1,7 @@
 import PrimarySearchAppBar from "./components/navbar/index.js";
 import Hero from "./components/Hero/index.js";
 import RecentlySeen from "./components/RecentlySeen/index.js";
+import EventCard from "./components/Card/EventCard";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,12 @@ function App() {
       <PrimarySearchAppBar></PrimarySearchAppBar>
       <Hero></Hero>
       <RecentlySeen></RecentlySeen>
+      <EventCard
+        title={title}
+        price={price}
+        value={value}
+        nRatings={nRatings}
+      ></EventCard>
     </>
   );
 }
