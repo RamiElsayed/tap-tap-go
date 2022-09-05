@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import EventCard from "./EventCard.js";
 
@@ -18,7 +18,22 @@ function Cards() {
       className="section__block-4"
     >
       <Grid item xs={11} sm={10} md={4} lg={2}>
-        <Paper sx={{ height: "100%", backgroundColor: "navy" }}> </Paper>
+        <Box
+          sx={{ height: "100%" }}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          {" "}
+          <Typography
+            variant="h3"
+            fontWeight="500"
+            gutterBottom
+            textAlign="center"
+          >
+            Interested in Latin dances??
+          </Typography>{" "}
+        </Box>
       </Grid>
       <Grid item xs={11} sm={10} md={4} lg={2}>
         <EventCard cardData={cardData}></EventCard>

@@ -13,17 +13,10 @@ export default function Landing() {
         <PrimarySearchAppBar></PrimarySearchAppBar>
         <Hero></Hero>
         <RecentlySeen></RecentlySeen>
-        <Typography variant="h5" fontWeight="600" gutterBottom>
-          Interested in Latin dances??
-        </Typography>
-        <Cards />
       </Container>
+      <TopSellers />
 
-      <TopSellers></TopSellers>
       <Container maxWidth="xl">
-        <Typography variant="h5" fontWeight="600" gutterBottom>
-          Interested in Latin dances??
-        </Typography>
         <Cards />
       </Container>
     </>
