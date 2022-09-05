@@ -1,8 +1,7 @@
-import { Box, Container, Grid } from "@mui/material";
-import React, { useState } from "react";
+import { Grid } from "@mui/material";
+import React from "react";
 import QuiltedImageList from "./sub-components/ImagesColumn";
 import Search from "./sub-components/Search";
-import { Typography } from "@mui/material";
 
 const Hero = () => {
   return (

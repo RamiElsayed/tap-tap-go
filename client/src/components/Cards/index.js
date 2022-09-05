@@ -1,5 +1,4 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box, Grid, Typography } from "@mui/material";
 import EventCard from "./EventCard.js";
 
 function Cards() {

@@ -1,6 +1,6 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Box, Stack } from "@mui/system";
+import { Box } from "@mui/system";
 
 function TopSellers() {
   return (
