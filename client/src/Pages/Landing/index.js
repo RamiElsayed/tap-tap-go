@@ -17,7 +17,10 @@ export default function Landing() {
           Interested in Latin dances??
         </Typography>
         <Cards />
-        <TopSellers></TopSellers>
+      </Container>
+
+      <TopSellers></TopSellers>
+      <Container maxWidth="xl">
         <Typography variant="h5" fontWeight="600" gutterBottom>
           Interested in Latin dances??
         </Typography>
