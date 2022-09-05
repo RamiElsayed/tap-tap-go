@@ -9,22 +9,22 @@ import { CardActionArea } from "@mui/material";
 
 export default function EventCard(props) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: "100%" }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="250"
+          height="170"
           image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={props.alt}
+          alt={props.cardData.alt}
         />
         <CardContent>
           <Typography
             gutterBottom
-            variant="h6"
+            variant="body2"
             component="div"
             textAlign="left"
           >
-            {props.title}
+            {props.cardData.title}
           </Typography>
           <Box
             sx={{
@@ -33,10 +33,13 @@ export default function EventCard(props) {
               justifyContent: "left",
             }}
           >
-            <Rating name="read-only" value={props.value} readOnly />
-            <Typography variant="caption" display="inline" gutterBottom>
-              {props.nRatings}
-            </Typography>
+            <Rating
+              size="small"
+              name="read-only"
+              value={props.cardData.value}
+              readOnly
+            />
+            <Typography variant="caption">{props.cardData.nRatings}</Typography>
           </Box>
           <Typography
             variant="body2"
@@ -44,7 +47,7 @@ export default function EventCard(props) {
             textAlign="left"
             mt={2}
           >
-            {props.price}
+            {props.cardData.price}
           </Typography>
         </CardContent>
       </CardActionArea>
