@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 const connectToDatabase = require('../config/connection');
-const { User, Event, Rating, Review } = require('../models/index');
+const { User, Event, Review } = require('../models/index');
 const seedUsers = require('./user');
 const seedEvents = require('./event');
 const seedReviews = require('./review');
@@ -14,7 +14,6 @@ const init = async () => {
 
     await User.deleteMany({});
     await Event.deleteMany({});
-    await Rating.deleteMany({});
     await Review.deleteMany({});
 
     await seedUsers();
