@@ -4,6 +4,7 @@ import RecentlySeen from "../../components/RecentlySeen/index.js";
 import Cards from "../../components/Cards/index";
 import TopSellers from "../../components/TopSellers/index.js";
 import { Container } from "@mui/system";
+import Footer from "../../components/Footer/index.jsx";
 
 export default function Landing() {
   return (
@@ -18,6 +19,7 @@ export default function Landing() {
       <Container maxWidth="xl">
         <Cards />
       </Container>
+      <Footer />
     </>
   );
 }
