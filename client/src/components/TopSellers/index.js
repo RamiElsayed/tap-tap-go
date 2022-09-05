@@ -8,7 +8,7 @@ function TopSellers() {
       container
       sx={{
         width: "100%",
-        height: "200px",
+        height: "250px",
         backgroundColor: "#aa182b",
       }}
       className="section__block-4"
@@ -36,7 +36,7 @@ function TopSellers() {
       </Grid>
       <Grid item xs={12} md={5}>
         <img
-          style={{ objectFit: "cover", height: "200px", width: "100%" }}
+          style={{ objectFit: "cover", height: "250px", width: "100%" }}
           src="https://images.alphacoders.com/461/461042.jpg"
         />
       </Grid>
