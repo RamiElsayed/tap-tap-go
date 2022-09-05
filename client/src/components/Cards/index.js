@@ -10,25 +10,32 @@ function Cards() {
     nRatings: 254,
   };
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={3} width="100%" justifyContent="center">
-        <Grid item xs={11} sm={10} md={4} lg={2}>
-          <Paper sx={{ height: "100%", backgroundColor: "navy" }}> </Paper>
-        </Grid>
-        <Grid item xs={11} sm={10} md={4} lg={2}>
-          <EventCard cardData={cardData}></EventCard>
-        </Grid>
-        <Grid item xs={11} sm={10} md={4} lg={2}>
-          <EventCard cardData={cardData}></EventCard>
-        </Grid>
-        <Grid item xs={11} sm={10} md={4} lg={2}>
-          <EventCard cardData={cardData}></EventCard>
-        </Grid>
-        <Grid item xs={11} sm={10} md={4} lg={2}>
-          <EventCard cardData={cardData}></EventCard>
-        </Grid>
+    <Grid
+      container
+      spacing={3}
+      width="100%"
+      justifyContent="center"
+      className="section__block-4"
+    >
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <Paper sx={{ height: "100%", backgroundColor: "navy" }}> </Paper>
       </Grid>
-    </Container>
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <EventCard cardData={cardData}></EventCard>
+      </Grid>
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <EventCard cardData={cardData}></EventCard>
+      </Grid>
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <EventCard cardData={cardData}></EventCard>
+      </Grid>
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <EventCard cardData={cardData}></EventCard>
+      </Grid>
+      <Grid item xs={11} sm={10} md={4} lg={2}>
+        <EventCard cardData={cardData}></EventCard>
+      </Grid>
+    </Grid>
   );
 }
 
