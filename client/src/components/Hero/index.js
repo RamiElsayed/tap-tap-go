@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 
 const Hero = () => {
   return (
-    <Grid container spacing={2} className="section__block-2">
+    <Grid container spacing={2} className="section__block-5">
       <Grid
         item
         justifyContent="center"
