@@ -9,7 +9,7 @@ function TopSellers() {
       sx={{
         width: "100%",
         height: "200px",
-        backgroundColor: "#FFFFE3",
+        backgroundColor: "#aa182b",
       }}
       className="section__block-4"
     >
@@ -25,7 +25,11 @@ function TopSellers() {
           <Typography variant="h6" textAlign="center">
             Want to try our best sellers?
           </Typography>
-          <Button sx={{ width: "300px", marginX: "auto" }} variant="contained">
+          <Button
+            sx={{ width: "300px", marginX: "auto" }}
+            color="inherit"
+            variant="contained"
+          >
             Let's explore
           </Button>
         </Box>
