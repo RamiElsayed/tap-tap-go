@@ -18,6 +18,9 @@ export default function Landing() {
         </Typography>
         <Cards />
         <TopSellers></TopSellers>
+        <Typography variant="h5" fontWeight="600" gutterBottom>
+          Interested in Latin dances??
+        </Typography>
         <Cards />
       </Container>
     </>
