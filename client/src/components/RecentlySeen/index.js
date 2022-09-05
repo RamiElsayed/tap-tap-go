@@ -1,47 +1,88 @@
-import { Container, Grid, ListItem, Paper, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import { Link } from "react-router-dom";
 
 const RecentlySeen = () => {
   return (
-    <Container maxWidth="xl">
-      <Paper elevation={3}>
-        <Grid container spacing={2} marginX="2rem" alignItems="center">
-          <Grid item sm={2}>
-            <Typography variant="h5" gutterBottom>
-              Check again
-            </Typography>
-          </Grid>
-          <Grid item sm={10} display="flex" flexDirection="row">
-            <ListItem>
-              <Typography variant="h6" gutterBottom>
-                Birmingham
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="h6" gutterBottom>
-                London
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="h6" gutterBottom>
-                Bristol
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="h6" gutterBottom>
-                Cardiff
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="h6" gutterBottom>
-                Wolves
-              </Typography>
-            </ListItem>
-          </Grid>
+    <Grid
+      container
+      spacing={2}
+      marginX="2rem"
+      alignItems="center"
+      marginX="auto"
+      className="section__block-5"
+    >
+      <Grid item sm={12}>
+        <Typography variant="h5" fontWeight="600" gutterBottom>
+          Recent searches
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        sm={10}
+        container
+        columnSpacing={1}
+        rowSpacing={1}
+        display="flex"
+        flexDirection="row"
+      >
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">Birmingham</Typography>
+          </Button>
         </Grid>
-      </Paper>
-    </Container>
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">London</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">Derby</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">Brighton</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">Manchester</Typography>
+          </Button>
+        </Grid>
+        <Grid item xs={5} md={"auto"}>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", borderColor: "black" }}
+          >
+            <LocationOnIcon />
+            <Typography variant="h6">Leeds</Typography>
+          </Button>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 export default RecentlySeen;
