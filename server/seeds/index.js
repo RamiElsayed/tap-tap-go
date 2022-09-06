@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 const connectToDatabase = require('../config/connection');
-const { User, Event, Review } = require('../models/index');
+const { User, Event, Review, Tag } = require('../models/index');
 const seedUsers = require('./user');
 const seedEvents = require('./event');
 const seedReviews = require('./review');
+const seedTags = require('./tag');
 
 const init = async () => {
   try {
@@ -15,10 +16,12 @@ const init = async () => {
     await User.deleteMany({});
     await Event.deleteMany({});
     await Review.deleteMany({});
+    await Tag.deleteMany({});
 
     await seedUsers();
     await seedEvents();
     await seedReviews();
+    await seedTags();
 
     process.exit(0);
   } catch (error) {
