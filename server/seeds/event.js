@@ -1,5 +1,5 @@
 const { Event, User } = require('../models');
-const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/en_GB');
 const { formatDate } = require('../utils/index');
 const Tag = require('../models/Tag');
 

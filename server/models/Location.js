@@ -1,61 +1,36 @@
 const { Schema, model } = require('mongoose');
 
 const locationSchema = new Schema({
-  username: {
+  buildingNumber: {
     type: String,
     required: true,
   },
-  eventName: {
+  streetName: {
     type: String,
     required: true,
   },
-  location: {
+  cityName: {
     type: String,
     required: true,
   },
-  description: {
+  county: {
     type: String,
     required: true,
   },
-  date: {
+  latitude: {
+    type: String,
+    required: true,
+  },
+  longitude: {
     type: Date,
     required: true,
     get: formatDate,
   },
-  price: {
+  state: {
     type: Number,
     required: true,
   },
-  ageGroup: {
-    type: String,
-    required: true,
-  },
-  images: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
-  tags: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Tag',
-    },
-  ],
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Review',
-    },
-  ],
-  attendees: {
-    type: Number,
-    required: true,
-  },
-  maxAttendees: {
-    type: Number,
-    required: true,
-  },
+  postCode: { type: String, required: true },
 });
 
 const Location = model('Location', locationSchema);

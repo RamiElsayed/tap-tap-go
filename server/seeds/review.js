@@ -1,5 +1,5 @@
 const { Review, Event, User } = require('../models');
-const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/en_GB');
 
 const generateReviews = async () => {
   const users = await User.find({});

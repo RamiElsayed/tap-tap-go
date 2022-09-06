@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/en_GB');
 const connectToDatabase = require('../config/connection');
 const { User, Event, Review, Tag } = require('../models/index');
 const seedUsers = require('./user');
