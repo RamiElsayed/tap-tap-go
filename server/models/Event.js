@@ -14,7 +14,6 @@ const eventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Location',
   },
-  },
   description: {
     type: String,
     required: true,
