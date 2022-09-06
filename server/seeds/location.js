@@ -8,7 +8,7 @@ const generateLocations = async () => {
     const { _id: eventId } = events[i];
 
     const buildingNumber = faker.address.buildingNumber();
-    const streetName = faker.address.streetName();
+    const streetName = faker.address.street();
     const cityName = faker.address.city();
     const county = faker.address.county();
     const latitude = faker.address.latitude(50.10319, 60.15456, 5);
