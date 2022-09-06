@@ -11,7 +11,7 @@ const typeDefs = gql`
     events: [Event]!
   }
   type Event {
-    _id: ID!
+    _id: ID
     username: String!
     eventName: String!
     location: String!
@@ -27,8 +27,9 @@ const typeDefs = gql`
   }
   type Query {
     users: [User]
-    evetnts: [Event]
+    events: [Event]
     event(eventId: ID!): Event
+    user(userId: ID!): User
   }
 `;
 
