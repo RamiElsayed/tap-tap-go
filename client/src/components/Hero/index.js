@@ -2,10 +2,11 @@ import { Grid } from "@mui/material";
 import React from "react";
 import QuiltedImageList from "./sub-components/ImagesColumn";
 import Search from "./sub-components/Search";
-import CategoryPicker from "./sub-components/CategoryPicker";
+
 import BasicDatePicker from "./sub-components/DatePicker";
 import { Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { top100Films } from "./sub-components/fakeData";
 
 let theme = createTheme({
   // ...
@@ -40,12 +41,20 @@ const Hero = () => {
           <Typography variant="h1" gutterBottom textAlign="center">
             Hobbies everywhere!
           </Typography>
-          <Grid container>
+          <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={12}>
-              <Search></Search>
+              <Search
+                category={top100Films}
+                inputLabel="Search by city"
+                position="auto"
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-              <CategoryPicker></CategoryPicker>
+              <Search
+                category={top100Films}
+                inputLabel="Select a category"
+                position="0 0 0 auto "
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <BasicDatePicker />
