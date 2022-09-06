@@ -28,7 +28,10 @@ const locationSchema = new Schema({
     type: String,
     required: true,
   },
-  postCode: { type: String, required: true },
+  postcode: {
+    type: String,
+    required: true,
+  },
   eventId: {
     type: Schema.Types.ObjectId,
     ref: 'Event',

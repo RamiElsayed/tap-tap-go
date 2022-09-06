@@ -28,7 +28,7 @@ const generateLocations = async () => {
       eventId,
     };
 
-    const createdLocation = await Location.create(Location);
+    const createdLocation = await Location.create(location);
 
     const { _id: locationId } = createdLocation;
 
