@@ -1,5 +1,5 @@
 const { Event, User } = require('../models');
-const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/en_GB');
 const { formatDate } = require('../utils/index');
 const Tag = require('../models/Tag');
 
@@ -17,31 +17,29 @@ const generateEvents = async () => {
       const randomAgeGroup =
         ageGroupArr[Math.floor(Math.random() * ageGroupArr.length)];
 
-      const eventName = faker.lorem.lines(1);
-      const location = faker.address.cityName();
+      const eventName = faker.lorem.words(3);
       const description = faker.lorem.paragraph(3);
       const date = formatDate(faker.date.future());
       const price = faker.commerce.price();
       const ageGroup = randomAgeGroup;
-      const images = faker.image.city(300, 200);
       const attendees = faker.datatype.number(100);
       const maxAttendees = faker.datatype.number(100);
 
       const event = {
         username,
         eventName,
-        location,
         description,
         date,
         price,
         ageGroup,
-        images,
         attendees,
         maxAttendees,
       };
 
       const createdEvent = await Event.create(event);
+
       const { _id: eventId } = createdEvent;
+
       await User.findByIdAndUpdate(userId, {
         $push: {
           events: eventId,
