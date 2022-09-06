@@ -1,8 +1,9 @@
-const User = require("../models/User");
+const { User } = require("../models");
 
 const user = async (_, { userId }) => {
-  const user = await User.findById(userId);
-  return user;
+  const userFromDatabase = await User.findById({ userId });
+  console.log(user);
+  return userFromDatabase;
 };
 
 module.exports = user;
