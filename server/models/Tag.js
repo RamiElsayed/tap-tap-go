@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const tagSchema = new Schema({
   tagName: {
@@ -8,11 +8,11 @@ const tagSchema = new Schema({
   events: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Event",
+      ref: 'Event',
     },
   ],
 });
 
-const Tag = model("Tag", tagSchema);
+const Tag = model('Tag', tagSchema);
 
 module.exports = Tag;

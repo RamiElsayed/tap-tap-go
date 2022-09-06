@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 
 const generateTags = async () => {
   const events = await Event.find({});
-  const danceTypes = [
+  const typesOfDance = [
     'Ballet',
     'Hip Hop',
     'Tap Dance',
@@ -16,17 +16,19 @@ const generateTags = async () => {
     'Swing',
   ];
 
+  const tagPromises = typesOfDance.map((type) => Tag.create({ tagName: type }));
+  await Promise.all(tagPromises);
+
   for (let i = 0; i < events.length; i++) {
     const { _id: eventId } = events[i];
 
     const numberOfTags = Math.floor(Math.random() * 5);
+    const tags = await Tag.find({});
 
     for (let j = 0; j < numberOfTags; j++) {
-      const tagName = danceTypes[Math.floor(Math.random() * danceTypes.length)];
+      const randomTag = tags[Math.floor(Math.random() * tags.length)];
 
-      const createdTag = await Tag.create({ tagName });
-
-      const { _id: tagId } = createdTag;
+      const { _id: tagId } = randomTag;
 
       await Tag.findByIdAndUpdate(tagId, {
         $addToSet: {
@@ -35,7 +37,7 @@ const generateTags = async () => {
       });
 
       await Event.findByIdAndUpdate(eventId, {
-        $push: {
+        $addToSet: {
           tags: tagId,
         },
       });
