@@ -3,7 +3,6 @@ const { Schema, model } = require('mongoose');
 const locationSchema = new Schema({
   buildingNumber: {
     type: String,
-    required: true,
   },
   streetName: {
     type: String,
@@ -22,12 +21,11 @@ const locationSchema = new Schema({
     required: true,
   },
   longitude: {
-    type: Date,
+    type: String,
     required: true,
-    get: formatDate,
   },
   state: {
-    type: Number,
+    type: String,
     required: true,
   },
   postCode: { type: String, required: true },
