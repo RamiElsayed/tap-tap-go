@@ -15,7 +15,6 @@ const generateLocations = async () => {
     const longitude = faker.address.longitude(-7.64133, 1.75159, 5);
     const state = faker.address.state();
     const postcode = faker.address.zipCodeByState(state);
-    const event = eventId;
 
     const location = {
       buildingNumber,
@@ -26,7 +25,7 @@ const generateLocations = async () => {
       longitude,
       state,
       postcode,
-      event,
+      eventId,
     };
 
     const createdLocation = await Location.create(Location);
