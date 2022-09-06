@@ -16,3 +16,17 @@
 .section__block-14 {
   margin-bottom: 14rem;
 }
+
+.heart {
+  color: #aa182b;
+  position: absolute;
+  /* bottom: 14px;
+  left: 140px; */
+}
+
+@media only screen and (max-width: 900px) {
+  .heart {
+    /* left: 350px; */
+    transform: scale(1.8);
+  }
+}

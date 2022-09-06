@@ -14,9 +14,7 @@ export default function EventCard(props) {
   const toggleHeart = () => setHearted(!hearted);
   return (
     <Card sx={{ maxWidth: "100%" }}>
-      <IconButton onClick={toggleHeart}>
-        <ToggleFavorite hearted={hearted} />
-      </IconButton>{" "}
+      {" "}
       <CardActionArea>
         <CardMedia
           component="img"
@@ -56,6 +54,9 @@ export default function EventCard(props) {
           >
             {props.cardData.price}
           </Typography>
+          <IconButton onClick={toggleHeart}>
+            <ToggleFavorite hearted={hearted} />
+          </IconButton>
         </CardContent>
       </CardActionArea>
     </Card>
