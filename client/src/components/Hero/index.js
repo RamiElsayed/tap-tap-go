@@ -2,6 +2,8 @@ import { Grid } from "@mui/material";
 import React from "react";
 import QuiltedImageList from "./sub-components/ImagesColumn";
 import Search from "./sub-components/Search";
+import CategoryPicker from "./sub-components/CategoryPicker";
+import BasicDatePicker from "./sub-components/DatePicker";
 import { Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -38,7 +40,17 @@ const Hero = () => {
           <Typography variant="h1" gutterBottom textAlign="center">
             Hobbies everywhere!
           </Typography>
-          s<Search></Search>
+          <Grid container>
+            <Grid item xs={12}>
+              <Search></Search>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <CategoryPicker></CategoryPicker>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <BasicDatePicker />
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={0} md={4}>
           <QuiltedImageList></QuiltedImageList>
