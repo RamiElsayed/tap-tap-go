@@ -11,7 +11,7 @@ const generateEvents = async () => {
     const { username } = users[i];
     const { _id: userId } = users[i];
 
-    const numberOfEvents = Math.floor(Math.random() * 3);
+    const numberOfEvents = Math.floor(Math.random() * 10);
 
     for (let j = 0; j < numberOfEvents; j++) {
       const randomAgeGroup =
