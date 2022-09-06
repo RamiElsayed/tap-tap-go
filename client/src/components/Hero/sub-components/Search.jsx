@@ -10,7 +10,7 @@ export default function Search() {
   let searchSuggestionLimit = 5;
 
   return (
-    <Stack sx={{ width: { xs: "90%", md: "60%" }, marginX: "auto" }}>
+    <Stack sx={{ width: { xs: "100%", md: "60%" }, marginX: "auto" }}>
       <Autocomplete
         // freeSolo
         open={open}
