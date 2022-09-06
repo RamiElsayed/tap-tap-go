@@ -11,8 +11,8 @@ const generateLocations = async () => {
     const streetName = faker.address.street();
     const cityName = faker.address.city();
     const county = faker.address.county();
-    const latitude = faker.address.latitude(50.10319, 60.15456, 5);
-    const longitude = faker.address.longitude(-7.64133, 1.75159, 5);
+    const latitude = faker.address.latitude(60.15456, 50.10319, 5);
+    const longitude = faker.address.longitude(1.75159, -7.64133, 5);
     const state = faker.address.state();
     const postcode = faker.address.zipCodeByState(state);
 
