@@ -1,5 +1,5 @@
 const { Review, Event, Tag } = require('../models');
-const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker/locale/en_GB');
 
 const generateTags = async () => {
   const events = await Event.find({});
