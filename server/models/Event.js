@@ -11,8 +11,9 @@ const eventSchema = new Schema({
     required: true,
   },
   location: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'Location',
+  },
   },
   description: {
     type: String,
@@ -33,8 +34,8 @@ const eventSchema = new Schema({
   },
   images: [
     {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
     },
   ],
   tags: [
