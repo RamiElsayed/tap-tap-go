@@ -25,11 +25,26 @@ const typeDefs = gql`
     attendees: Int!
     maxAttendees: Int!
   }
+  type Tag {
+    _id: ID!
+    tagName: String!
+  }
+  type Review {
+    username: String
+    title: String
+    reviewText: String
+    rating: String
+    userId: ID
+    eventId: ID
+  }
   type Query {
     users: [User]
     user(userId: ID!): User
-    evetnts: [Event]
+    events: [Event]
     event(eventId: ID!): Event
+    tags: [Tag]
+    tag(tagId: ID!): Tag
+    review(reviewId: ID!): Review
   }
 `;
 
