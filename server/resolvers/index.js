@@ -1,4 +1,4 @@
-const { DateResolver, BigIntResolver } = require('graphql-scalars');
+const { DateResolver } = require('graphql-scalars');
 const user = require('./user');
 const users = require('./users');
 const event = require('./event');
@@ -9,7 +9,6 @@ const reviews = require('./reviews');
 
 const resolvers = {
   Date: DateResolver,
-  BigInt: BigIntResolver,
   Query: {
     users,
     user,

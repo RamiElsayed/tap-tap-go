@@ -76,7 +76,7 @@ const typeDefs = gql`
     reviews: [Review]
   }
 
-  input UserInput {
+  input CreateUserInput {
     firstName: String!
     lastName: String!
     username: String!
@@ -86,7 +86,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(input: UserInput!): User
+    createUser(createUserInput: CreateUserInput!): User
   }
 `;
 
