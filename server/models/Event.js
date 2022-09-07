@@ -1,14 +1,18 @@
-const { Schema, model } = require("mongoose");
-const { formatDate } = require("../utils");
+const { Schema, model } = require('mongoose');
+const { formatDate } = require('../utils');
 
 const eventSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+  },
   eventName: {
     type: String,
     required: true,
   },
   location: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'Location',
   },
   description: {
     type: String,
@@ -29,14 +33,20 @@ const eventSchema = new Schema({
   },
   images: [
     {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
+    },
+  ],
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Tag',
     },
   ],
   reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'Review',
     },
   ],
   attendees: {
@@ -49,6 +59,6 @@ const eventSchema = new Schema({
   },
 });
 
-const Event = model("Event", eventSchema);
+const Event = model('Event', eventSchema);
 
 module.exports = Event;

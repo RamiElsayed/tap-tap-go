@@ -2,8 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const bcrypt = require("bcrypt");
 
-const eventSchema = require("./Event");
-
 const userSchema = new Schema(
   {
     firstName: {
@@ -11,6 +9,10 @@ const userSchema = new Schema(
       required: true,
     },
     lastName: {
+      type: String,
+      required: true,
+    },
+    username: {
       type: String,
       required: true,
     },
@@ -29,6 +31,12 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
+    events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
   },
   {
     toJSON: {
