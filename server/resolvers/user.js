@@ -1,5 +1,6 @@
-const { User } = require("../models");
-const { DateTime, PhoneNumber } = require("graphql-scalars");
+
+const { User } = require('../models');
+
 
 const user = async (_, { userId }) => {
   const userFromDatabase = await User.findById({ userId });
