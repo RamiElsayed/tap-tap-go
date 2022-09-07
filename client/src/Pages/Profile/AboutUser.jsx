@@ -1,12 +1,14 @@
 import { Card, CardContent, Paper, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
-function Description() {
+function AboutUser() {
   return (
     <Card sx={{ marginBottom: "1rem" }}>
       <CardContent>
         <Stack>
-          <Typography variant="h6">Intro</Typography>
+          <Typography variant="body1" fontWeight="600">
+            About You
+          </Typography>
           <Typography variant="body1">Address</Typography>
           <Typography variant="body1">Member since</Typography>
           <Typography variant="body1">Add website</Typography>
@@ -17,4 +19,4 @@ function Description() {
   );
 }
 
-export default Description;
+export default AboutUser;
