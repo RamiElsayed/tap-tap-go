@@ -1,9 +1,9 @@
 const { Review } = require('../models');
 
-const review = async () => {
+const reviews = async () => {
   const reviewsFromDatabase = await Review.find({});
   console.log(reviewsFromDatabase);
   return reviewsFromDatabase;
 };
 
-module.exports = review;
+module.exports = reviews;
