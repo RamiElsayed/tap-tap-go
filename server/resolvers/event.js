@@ -1,3 +1,4 @@
+const { DateTime, PhoneNumber } = require("graphql-scalars");
 const { Event } = require("../models");
 
 const event = async (_, { eventId }) => {
