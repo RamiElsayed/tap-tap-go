@@ -27,7 +27,7 @@ const RecentlySeen = ({ recentSearches }) => {
           flexDirection="row"
         >
           {recentSearches.map((el) => (
-            <Grid item key={el} xs={5} md={"auto"}>
+            <Grid item key={el} md={"auto"}>
               <Button
                 variant="outlined"
                 sx={{ color: "black", borderColor: "black" }}
