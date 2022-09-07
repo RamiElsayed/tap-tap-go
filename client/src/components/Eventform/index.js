@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, Container, Grid } from "@mui/material";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -15,83 +15,36 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useTheme } from "@mui/material/styles";
-import { Stack } from "@mui/system";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
+const keywords = [
+  "Oliver",
+  "Van",
+  "April",
+  "Ralph",
+  "Omar",
+  "Carlos",
+  "Miriam",
+  "Bradley",
+  "Virginia",
+  "Kelly",
 ];
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 export default function MultipleSelectChip() {
-  const theme = useTheme();
-  //   const [personName, setPersonName] = React.useState([]);
-  const [age, setAge] = React.useState("");
   const [value, setValue] = React.useState(dayjs());
 
-  //   const handleChange = (event) => {
-  //     const {
-  //       target: { value },
-  //     } = event;
-  //     setPersonName(
-  //       // On autofill we get a stringified value.
-  //       typeof value === "string" ? value.split(",") : value
-  //     );
-  //   };
-
-  return (
-    <BasicTextFields
-      value={value}
-      //   setValue={setValue}
-      //   personName={personName}
-      theme={theme}
-    />
-  );
+  return <BasicTextFields value={value} />;
 }
 
 function BasicTextFields({ value, setValue, theme }) {
+  const [startDate, setStartDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(null);
   const [age, setAge] = React.useState("");
-  const [personName, setPersonName] = React.useState([]);
+  const [keywordsList, setKeywordsList] = React.useState([]);
 
-  const handleAgeChange = (event) => {
-    setAge(event.target.value);
-  };
-
-  const handleNameChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const handleKeywords = (event) => {
+    const { value } = event.target;
+    setKeywordsList(value);
+    console.log(keywordsList);
   };
 
   return (
@@ -102,75 +55,70 @@ function BasicTextFields({ value, setValue, theme }) {
       <Card>
         <CardContent>
           <Grid container rowSpacing={2} columnSpacing={2}>
-            <Grid item sm={6}>
-              <Grid container rowSpacing={2}>
-                <Grid item sm={12}>
-                  <TextField
-                    fullWidth
-                    id="outlined-search"
-                    label="location"
-                    type="search"
-                  />
-                </Grid>
-                <Grid item sm={12}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                      label="Basic example"
-                      value={value}
-                      onChange={(newValue) => {
-                        setValue(newValue);
-                      }}
-                      renderInput={(params) => (
-                        <TextField sx={{ width: "50%" }} {...params} />
-                      )}
-                    />
-                    <DatePicker
-                      label="Basic example"
-                      value={value}
-                      onChange={(newValue) => {
-                        setValue(newValue);
-                      }}
-                      renderInput={(params) => (
-                        <TextField sx={{ width: "50%" }} {...params} />
-                      )}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-              </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField fullWidth label="Address" type="search" />
             </Grid>
-            <Grid item sm={6}>
-              <Stack>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleAgeChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-                <TextField
-                  name="image"
-                  fullWidth
-                  id="firstName"
-                  label="Price"
-                  autoFocus
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="End date"
+                  value={startDate}
+                  onChange={(newValue) => {
+                    setStartDate(newValue);
+                  }}
+                  renderInput={(params) => (
+                    <TextField sx={{ width: "49%" }} {...params} />
+                  )}
                 />
-                <TextField
-                  name="image"
-                  fullWidth
-                  id="firstName"
-                  label="max attendees"
-                  autoFocus
+                <DatePicker
+                  label="End date"
+                  value={endDate}
+                  onChange={(newValue) => {
+                    setEndDate(newValue);
+                  }}
+                  renderInput={(params) => (
+                    <TextField sx={{ width: "49%" }} {...params} />
+                  )}
                 />
-              </Stack>
+              </LocalizationProvider>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                name="image"
+                fullWidth
+                id="firstName"
+                label="Price"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <FormControl fullWidth>
+                <InputLabel id="ageGroup">Age</InputLabel>
+                <Select
+                  labelId="ageGroup"
+                  id="age-group-select"
+                  value={age}
+                  label="Age"
+                  onChange
+                >
+                  <MenuItem value={10}>Teenager</MenuItem>
+                  <MenuItem value={20}>Adult</MenuItem>
+                  <MenuItem value={30}>Senior</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Button variant="contained" component="label">
+                Upload
+                <input hidden accept="image/*" multiple type="file" />
+              </Button>
+            </Grid>
+            <Grid item xs={12} md={6}>
               <TextField
                 name="image"
                 fullWidth
@@ -179,18 +127,15 @@ function BasicTextFields({ value, setValue, theme }) {
                 autoFocus
               />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12} md={6}>
               <FormControl fullWidth>
-                <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+                <InputLabel id="keywords">Keywords</InputLabel>
                 <Select
-                  labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
+                  labelId="keywords"
                   multiple
-                  value={personName}
-                  onChange={handleNameChange}
-                  input={
-                    <OutlinedInput id="select-multiple-chip" label="Chip" />
-                  }
+                  value={keywordsList}
+                  onChange={handleKeywords}
+                  input={<OutlinedInput id="keywords" label="Keywords" />}
                   renderValue={(selected) => (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (
@@ -198,21 +143,16 @@ function BasicTextFields({ value, setValue, theme }) {
                       ))}
                     </Box>
                   )}
-                  MenuProps={MenuProps}
                 >
-                  {names.map((name) => (
-                    <MenuItem
-                      key={name}
-                      value={name}
-                      style={getStyles(name, personName, theme)}
-                    >
-                      {name}
+                  {keywords.map((keys) => (
+                    <MenuItem key={keys} value={keys}>
+                      {keys}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <Button
                 style={{ background: "red" }}
                 fullWidth
