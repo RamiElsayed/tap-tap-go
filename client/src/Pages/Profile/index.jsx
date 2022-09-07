@@ -5,6 +5,7 @@ import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
 import Bookmarks from "./Bookmarks";
 import ActionOptions from "./ActionOptions";
+import ReviewForm from "../../components/ReviewForm/index";
 
 let UserData = {
   firstName: "Fabian",
@@ -38,6 +39,8 @@ function Profile() {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {
       return <PostBoard />;
+    } else if (postBoardOption == "NewEvent") {
+      return <ReviewForm />;
     } else {
       return <h1>Hello</h1>;
     }
@@ -54,7 +57,7 @@ function Profile() {
         </Grid>
         <Grid item xs={12} md={3}>
           <AboutUser userInfo={userDetails} />
-          <ActionOptions />
+          <ActionOptions changePostBoard={renderPostBoard} />
         </Grid>
         <Grid item xs={12} md={9}>
           {renderPostBoar()}
