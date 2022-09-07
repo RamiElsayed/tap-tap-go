@@ -1,4 +1,13 @@
-import { Box, Card, CardContent, Chip, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Stack,
+  Typography,
+  Paper,
+  Button,
+} from "@mui/material";
 
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
@@ -6,6 +15,7 @@ import avatarImg from "../../_mock/avatarImg.jpg";
 import { ThemeProvider } from "@mui/material/styles";
 import Options from "./Options";
 import { createTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 const theme = createTheme();
 
@@ -21,6 +31,17 @@ theme.typography.h6 = {
     fontWeight: "400",
   },
 };
+
+const Item = styled(Button)(({ theme }) => ({
+  boxShadow: "none",
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  paddingRight: theme.spacing(3),
+  textAlign: "center",
+  fontWeight: 500,
+  whiteSpace: "nowrap",
+}));
 
 function headerPointers(attended, upcoming, yours) {
   return (
@@ -47,7 +68,7 @@ function headerPointers(attended, upcoming, yours) {
   );
 }
 
-function Banner({ userInfo }) {
+function Banner({ userInfo, bannerOptions, changePostBoard }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -113,7 +134,28 @@ function Banner({ userInfo }) {
             )}
           </Box>
         </Stack>
-        <Options></Options>
+        <Box
+          overflow={true}
+          sx={{
+            display: "flex",
+            overflow: "auto",
+            paddingLeft: "2rem",
+            paddingBottom: "0.5rem",
+          }}
+        >
+          {bannerOptions.map((el) => {
+            return (
+              <Item
+                key={el}
+                onClick={() => {
+                  changePostBoard(el);
+                }}
+              >
+                {el}
+              </Item>
+            );
+          })}
+        </Box>
       </Card>
     </ThemeProvider>
   );
