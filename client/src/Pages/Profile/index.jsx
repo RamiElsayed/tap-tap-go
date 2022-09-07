@@ -24,7 +24,7 @@ function Profile() {
     <div className="section__block-Y-5">
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Banner />
+          <Banner userInfo={userDetails} />
         </Grid>
         <Grid item xs={12} md={3}>
           <AboutUser />

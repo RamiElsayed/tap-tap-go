@@ -22,32 +22,32 @@ theme.typography.h6 = {
   },
 };
 
-function headerPointers() {
+function headerPointers(attended, upcoming, yours) {
   return (
     <>
       <Stack marginRight="2rem">
         <Typography variant="h6">Attended</Typography>
         <Typography variant="body1" textAlign="center">
-          0
+          {attended}
         </Typography>
       </Stack>
       <Stack marginRight="2rem">
         <Typography variant="h6">Upcoming</Typography>
         <Typography variant="body1" textAlign="center">
-          0
+          {upcoming}
         </Typography>
       </Stack>
       <Stack marginRight="2rem">
         <Typography variant="h6">Your events</Typography>
         <Typography variant="body1" textAlign="center">
-          0
+          {yours}
         </Typography>
       </Stack>
     </>
   );
 }
 
-function Banner() {
+function Banner({ userInfo }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -90,10 +90,14 @@ function Banner() {
                 marginTop: { xs: "2rem", sm: "auto" },
               }}
             >
-              Name
+              {userInfo.firstName} {userInfo.lastName}
             </Typography>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {headerPointers()}
+              {headerPointers(
+                userInfo.attended,
+                userInfo.upcoming,
+                userInfo.yours
+              )}
             </Box>
           </Stack>
         </CardContent>
@@ -101,7 +105,13 @@ function Banner() {
           height="100"
           sx={{ display: { xs: "flex", md: "none", paddingLeft: "1rem" } }}
         >
-          <Box sx={{ display: "flex", mx: "auto" }}>{headerPointers()}</Box>
+          <Box sx={{ display: "flex", mx: "auto" }}>
+            {headerPointers(
+              userInfo.attended,
+              userInfo.upcoming,
+              userInfo.yours
+            )}
+          </Box>
         </Stack>
         <Options></Options>
       </Card>
