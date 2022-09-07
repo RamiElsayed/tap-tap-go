@@ -15,7 +15,11 @@ function srcset(image, size, rows = 1, cols = 1) {
 export default function ImagesSideColumn() {
   return (
     <ImageList
-      sx={{ width: 500, height: "auto", display: { xs: "none", md: "grid" } }}
+      sx={{
+        width: "100%",
+        height: "auto",
+        display: { xs: "none", md: "grid" },
+      }}
       variant="quilted"
       cols={4}
       rowHeight={121}

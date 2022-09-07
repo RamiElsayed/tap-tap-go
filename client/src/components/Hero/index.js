@@ -31,7 +31,8 @@ const Hero = () => {
           item
           justifyContent="center"
           xs={12}
-          md={8}
+          md={7}
+          lg={8}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -61,7 +62,7 @@ const Hero = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={0} md={4}>
+        <Grid item xs={0} md={5} lg={4}>
           <ImagesSideColumn></ImagesSideColumn>
         </Grid>
       </Grid>
