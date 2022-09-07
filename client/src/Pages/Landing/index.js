@@ -4,11 +4,11 @@ import RecentlySeen from "../../components/RecentlySeen/index.js";
 import Cards from "../../components/Cards/index";
 import TopSellers from "../../components/TopSellers/index.js";
 
-export default function Landing() {
+export default function Landing({ recentSearches }) {
   return (
     <>
       <Hero />
-      <RecentlySeen></RecentlySeen>
+      <RecentlySeen recentSearches={recentSearches} />
       <TopSellers />
       <Cards />
     </>
