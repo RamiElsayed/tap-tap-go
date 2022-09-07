@@ -9,6 +9,7 @@ import ActionOptions from "./ActionOptions";
 let UserData = {
   firstName: "Fabian",
   lastName: "Sarango",
+  address: "3 barleycorn Drive",
   username: "Fabian Sarango",
   number: "075429718393",
   email: "fasasa@gmail.com",
@@ -27,7 +28,7 @@ function Profile() {
           <Banner userInfo={userDetails} />
         </Grid>
         <Grid item xs={12} md={3}>
-          <AboutUser />
+          <AboutUser userInfo={userDetails} />
           <ActionOptions />
         </Grid>
         <Grid item xs={12} md={9}>
