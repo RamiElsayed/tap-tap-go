@@ -2,33 +2,39 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
 import Banner from "./Banner";
-import Description from "./Description";
-import PostingBoard from "./PostingBoard";
+import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
-import CreteEvent from "./CreteEvent";
+import ActionOptions from "./ActionOptions";
+
+let UserData = {
+  firstName: "Fabian",
+  lastName: "Sarango",
+  username: "Fabian Sarango",
+  number: "075429718393",
+  email: "fasasa@gmail.com",
+  attended: 4,
+  upcoming: 5,
+  yours: 6,
+};
 
 function Profile() {
-  const [open, setOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState(UserData);
 
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={2} marginTop="2rem">
+    <div className="section__block-Y-5">
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Banner></Banner>
+          <Banner />
         </Grid>
-        {/* <Grid item xs={12}>
-          <Options></Options>
-        </Grid> */}
         <Grid item xs={12} md={3}>
-          <Description></Description>
-          <PostingBoard></PostingBoard>
-          <CreteEvent></CreteEvent>
+          <AboutUser />
+          <ActionOptions />
         </Grid>
         <Grid item xs={12} md={9}>
-          <PostBoard></PostBoard>
+          <PostBoard />
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 }
 
