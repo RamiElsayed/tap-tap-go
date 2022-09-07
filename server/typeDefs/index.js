@@ -73,6 +73,7 @@ const typeDefs = gql`
     tags: [Tag]
     tag(tagId: ID!): Tag
     review(reviewId: ID!): Review
+    reviews: [Review]
   }
 
   input UserInput {
