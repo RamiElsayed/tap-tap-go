@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import QuiltedImageList from "./sub-components/ImagesColumn";
+import ImagesSideColumn from "./sub-components/ImagesSideColumn";
 import Search from "./sub-components/Search";
 
 import BasicDatePicker from "./sub-components/DatePicker";
@@ -62,7 +62,7 @@ const Hero = () => {
           </Grid>
         </Grid>
         <Grid item xs={0} md={4}>
-          <QuiltedImageList></QuiltedImageList>
+          <ImagesSideColumn></ImagesSideColumn>
         </Grid>
       </Grid>
     </ThemeProvider>

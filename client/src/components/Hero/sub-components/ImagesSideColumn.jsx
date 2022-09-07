@@ -12,7 +12,7 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-export default function QuiltedImageList() {
+export default function ImagesSideColumn() {
   return (
     <ImageList
       sx={{ width: 500, height: "auto", display: { xs: "none", md: "grid" } }}
