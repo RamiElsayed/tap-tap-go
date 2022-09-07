@@ -1,11 +1,4 @@
 import "./App.css";
-<<<<<<< HEAD
-import "./login";
-import SignIn from "./login";
-
-function App() {
-  return <SignIn></SignIn>;
-=======
 
 import Profile from "./Pages/Profile";
 import Landing from "./Pages/Landing";
@@ -17,7 +10,6 @@ function App() {
       <EventPage />
     </>
   );
->>>>>>> main
 }
 
 export default App;
