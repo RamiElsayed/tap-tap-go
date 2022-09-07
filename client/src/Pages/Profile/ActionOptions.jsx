@@ -1,7 +1,7 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, Button } from "@mui/material";
 import { Stack } from "@mui/system";
 
-function ActionOptions() {
+function ActionOptions(props) {
   return (
     <Card sx={{ marginBottom: "1rem" }}>
       <CardContent>
@@ -10,13 +10,24 @@ function ActionOptions() {
             Share your experience
           </Typography>
           <Typography variant="body1">Create Post</Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography
+            onClick={() => {
+              props.changePostBoard("NewEvent");
+            }}
+            gutterBottom
+            variant="body1"
+          >
             Write review
           </Typography>
           <Typography variant="body1" fontWeight="600">
             Create your own event
           </Typography>
-          <Typography variant="body1">Create event</Typography>
+          <Typography
+
+          // variant="body1"
+          >
+            Create event
+          </Typography>
         </Stack>
       </CardContent>
     </Card>
