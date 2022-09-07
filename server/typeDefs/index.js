@@ -1,15 +1,16 @@
+
 const { Date, BigInt } = require('graphql-scalars');
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   scalar Date
   scalar BigInt
-
   type User {
     _id: ID!
     firstName: String!
     lastName: String!
     number: BigInt!
+
     email: String!
     events: [Event]!
   }
@@ -20,7 +21,7 @@ const typeDefs = gql`
     eventName: String!
     location: String!
     description: String
-    date: Date
+    date: DateTime
     price: Int
     ageGroup: String!
     images: [Image]!
