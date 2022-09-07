@@ -37,6 +37,21 @@ const typeDefs = gql`
     userId: ID
     eventId: ID
   }
+  type Tag {
+    tagName: String!
+    events: [Event]
+  }
+  type Location {
+    buildingNumber: String
+    streetName: String
+    cityName: String
+    county: String
+    latitude: String
+    longitude: String
+    state: String
+    postcode: String
+    eventId: String
+  }
   type Query {
     users: [User]
     user(userId: ID!): User
