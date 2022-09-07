@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
 import React, { useState } from "react";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
+import Bookmarks from "./Bookmarks";
 import ActionOptions from "./ActionOptions";
 
 let UserData = {
@@ -33,7 +33,7 @@ function Profile() {
     if (postBoardOption == "Activities") {
       return <PostBoard />;
     } else if (postBoardOption == "Bookmarks") {
-      return <PostBoard />;
+      return <Bookmarks />;
     } else if (postBoardOption == "Your Events") {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {
