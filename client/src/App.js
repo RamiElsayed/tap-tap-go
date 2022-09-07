@@ -9,6 +9,8 @@ import EventPage from "./Pages/EventPage";
 function App() {
   return (
     <>
+
+      <Landing />
       <SignIn />
     </>
   );
