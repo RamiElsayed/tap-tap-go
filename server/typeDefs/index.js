@@ -46,6 +46,17 @@ const typeDefs = gql`
     tag(tagId: ID!): Tag
     review(reviewId: ID!): Review
   }
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    username: String!
+    number: Int!
+    email: String!
+    password: String!
+  }
+  type Mutation {
+    createUser(input: UserInput!): User
+  }
 `;
 
 module.exports = typeDefs;
