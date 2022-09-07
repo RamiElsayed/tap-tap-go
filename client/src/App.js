@@ -9,20 +9,34 @@ import Landing from "./Pages/Landing";
 import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
 import Footer from "./components/Footer";
+import { useState } from "react";
 
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
+let recentLocations = [
+  "Birmingham",
+  "London",
+  "Derby",
+  "Brighton",
+  "Manchester",
+  "Leeds",
+];
+
 function App() {
+  const [recentSearches, setRecentSearches] = useState(recentLocations);
   return (
     <ApolloProvider client={client}>
       <Router>
         <Container maxWidth="xl">
           <ResponsiveAppBar />
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route
+              path="/"
+              element={<Landing recentSearches={recentSearches} />}
+            />
             <Route>
               <Route path="/user/:usedId" element={<Profile />} />
             </Route>
