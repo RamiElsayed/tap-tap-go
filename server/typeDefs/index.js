@@ -5,7 +5,7 @@ const typeDefs = gql`
   type User {
     _id: ID!
     firstName: String!
-    flastName: String!
+    lastName: String!
     number: Int!
     email: String!
     events: [Event]!
@@ -19,7 +19,7 @@ const typeDefs = gql`
     date: Date
     price: Int
     ageGroup: String!
-    images: [String]!
+    images: [Image]!
     tags: [Tag]
     reviews: [Review]
     attendees: Int!
@@ -28,8 +28,10 @@ const typeDefs = gql`
   type Tag {
     _id: ID!
     tagName: String!
+    events: [Event]
   }
   type Review {
+    _id: ID!
     username: String
     title: String
     reviewText: String
@@ -37,11 +39,8 @@ const typeDefs = gql`
     userId: ID
     eventId: ID
   }
-  type Tag {
-    tagName: String!
-    events: [Event]
-  }
   type Location {
+    _id: ID!
     buildingNumber: String
     streetName: String
     cityName: String
@@ -51,6 +50,11 @@ const typeDefs = gql`
     state: String
     postcode: String
     eventId: String
+  }
+  type Image {
+    _id: ID!
+    imageLink: String!
+    eventId: ID!
   }
   type Query {
     users: [User]
