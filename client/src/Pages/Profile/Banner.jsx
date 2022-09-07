@@ -5,7 +5,6 @@ import {
   Chip,
   Stack,
   Typography,
-  Paper,
   Button,
 } from "@mui/material";
 
@@ -13,7 +12,6 @@ import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import avatarImg from "../../_mock/avatarImg.jpg";
 import { ThemeProvider } from "@mui/material/styles";
-import Options from "./Options";
 import { createTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 
