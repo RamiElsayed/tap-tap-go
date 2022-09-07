@@ -1,5 +1,4 @@
-
-const { Date, BigInt } = require('graphql-scalars');
+const { DateTypeDefinition, BigIntTypeDefinition } = require('graphql-scalars');
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
@@ -21,7 +20,7 @@ const typeDefs = gql`
     eventName: String!
     location: String!
     description: String
-    date: DateTime
+    date: Date
     price: Int
     ageGroup: String!
     images: [Image]!
