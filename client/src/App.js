@@ -8,6 +8,7 @@ import ResponsiveAppBar from "./components/navbar";
 import Landing from "./Pages/Landing";
 import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
+import Footer from "./components/Footer";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -26,6 +27,7 @@ function App() {
               <Route path="/user/:usedId" element={<Profile />} />
             </Route>
           </Routes>
+          <Footer />
         </Container>
       </Router>
     </ApolloProvider>
