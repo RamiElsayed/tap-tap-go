@@ -64,6 +64,11 @@ const typeDefs = gql`
     eventId: ID!
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -84,6 +89,11 @@ const typeDefs = gql`
     password: String!
   }
 
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
   input CreateReviewInput {
     username: String!
     title: String!
@@ -93,7 +103,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(input: CreateUserInput!): User
+    createUser(input: CreateUserInput!): Auth
+    login(input: LoginInput!): Auth
     createReview(input: CreateReviewInput!): Review
   }
 `;
