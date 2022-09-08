@@ -29,7 +29,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
+export default function SignIn({signInStateOpener}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,10 +41,12 @@ export default function SignIn() {
 
   return (
     <Box
+    onClick={(event)=>signInStateOpener(event)}
+    value="CloseBox"
       sx={{
         height: "100vh",
         width: "100vw",
-        backgroundColor: "rgba(0,0,0,0.7)",
+        backgroundColor: "rgba(0,0,0,0.5)",
         zIndex: 999,
         position: "fixed",
         top: 0,
