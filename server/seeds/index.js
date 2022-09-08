@@ -36,6 +36,10 @@ const init = async () => {
     await seedLocations();
     await seedImages();
 
+    console.log(
+      `[INFO]: All data successfully seeded to the ${process.env.MONGODB_NAME} database.`,
+    );
+
     process.exit(0);
   } catch (error) {
     console.log(`[ERROR]: Failed to seed all data | ${error.message}`);

@@ -4,8 +4,10 @@ const users = require('./users');
 const event = require('./event');
 const events = require('./events');
 const tag = require('./tag');
+const tags = require('./tags');
 const review = require('./review');
 const reviews = require('./reviews');
+const createUser = require('./createUser');
 
 const resolvers = {
   Date: DateResolver,
@@ -15,7 +17,12 @@ const resolvers = {
     events,
     event,
     tag,
+    tags,
     review,
+    reviews,
+  },
+  Mutation: {
+    createUser,
   },
 };
 

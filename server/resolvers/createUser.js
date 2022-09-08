@@ -6,7 +6,7 @@ const createUser = async (_, { createUserInput }) => {
     const createdUser = await User.create(createUserInput);
     return { success: true, createdUser };
   } catch (err) {
-    console.log(`[ERROR]: Failed to create user | ${error.message}`);
+    console.log(`[ERROR]: Failed to create user | ${err.message}`);
     throw new ApolloError('Failed to create user');
   }
 };
