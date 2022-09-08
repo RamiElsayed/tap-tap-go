@@ -35,21 +35,19 @@ function App() {
   }
 
   function closeSignIn(event) {
-    console.log("inside");
     const isCloseBox = event.target.getAttribute("value");
-
     setSignInOpen((prev) => {
       return isCloseBox ? !prev : prev;
     });
   }
 
-  function renderSingIn() {
+  function renderSingInUpForm() {
     return signInOpen ? <SignForm closeForm={closeSignIn} /> : "";
   }
 
   return (
     <ApolloProvider client={client}>
-      {renderSingIn()}
+      {renderSingInUpForm()}
       <Router>
         <Container maxWidth="xl">
           <ResponsiveAppBar signInStateOpener={openSignIn} />
