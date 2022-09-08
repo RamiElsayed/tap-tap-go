@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import QuiltedImageList from "./sub-components/ImagesColumn";
+import ImagesSideColumn from "./sub-components/ImagesSideColumn";
 import Search from "./sub-components/Search";
 
 import BasicDatePicker from "./sub-components/DatePicker";
@@ -31,7 +31,8 @@ const Hero = () => {
           item
           justifyContent="center"
           xs={12}
-          md={8}
+          md={7}
+          lg={8}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -61,8 +62,8 @@ const Hero = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={0} md={4}>
-          <QuiltedImageList></QuiltedImageList>
+        <Grid item xs={0} md={5} lg={4}>
+          <ImagesSideColumn></ImagesSideColumn>
         </Grid>
       </Grid>
     </ThemeProvider>

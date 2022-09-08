@@ -3,7 +3,7 @@ import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import { Link } from "react-router-dom";
 
-const RecentlySeen = () => {
+const RecentlySeen = ({ recentSearches }) => {
   return (
     <>
       <Typography variant="h5" fontWeight="600" gutterBottom>
@@ -26,60 +26,17 @@ const RecentlySeen = () => {
           display="flex"
           flexDirection="row"
         >
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">Birmingham</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">London</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">Derby</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">Brighton</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">Manchester</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={5} md={"auto"}>
-            <Button
-              variant="outlined"
-              sx={{ color: "black", borderColor: "black" }}
-            >
-              <LocationOnIcon />
-              <Typography variant="h6">Leeds</Typography>
-            </Button>
-          </Grid>
+          {recentSearches.map((el) => (
+            <Grid item key={el} md={"auto"}>
+              <Button
+                variant="outlined"
+                sx={{ color: "black", borderColor: "black" }}
+              >
+                <LocationOnIcon />
+                <Typography variant="h6">{el}</Typography>
+              </Button>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </>

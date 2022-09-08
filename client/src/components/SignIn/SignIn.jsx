@@ -29,7 +29,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
+export default function SignIn({ closeSignIn, switchToSignUp }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,10 +41,12 @@ export default function SignIn() {
 
   return (
     <Box
+      onClick={(event) => closeSignIn(event)}
+      value="CloseBox"
       sx={{
         height: "100vh",
         width: "100vw",
-        backgroundColor: "rgba(0,0,0,0.7)",
+        backgroundColor: "rgba(0,0,0,0.5)",
         zIndex: 999,
         position: "fixed",
         top: 0,
@@ -116,9 +118,9 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Link href="/" variant="body2">
+                <Typography onClick={switchToSignUp} variant="body2">
                   Don't have an account? Sign Up
-                </Link>
+                </Typography>
               </Grid>
             </Grid>
           </Box>

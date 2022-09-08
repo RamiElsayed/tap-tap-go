@@ -6,6 +6,7 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
 export default function AvatarMenu({
   handleOpenUserMenu,
@@ -36,11 +37,14 @@ export default function AvatarMenu({
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem>
+          <Link style={{ textDecoration: "none" }} to={`/user/${1}`}>
+            Dashboard
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Typography to={`/user/${1}`}>Logout</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

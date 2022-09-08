@@ -1,34 +1,69 @@
 import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
 import React, { useState } from "react";
 import Banner from "./Banner";
-import Description from "./Description";
-import PostingBoard from "./PostingBoard";
+import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
-import CreteEvent from "./CreteEvent";
+import Bookmarks from "./Bookmarks";
+import ActionOptions from "./ActionOptions";
+import ReviewForm from "../../components/ReviewForm/index";
+
+let UserData = {
+  firstName: "Fabian",
+  lastName: "Sarango",
+  address: "3 barleycorn Drive",
+  username: "Fabian Sarango",
+  number: "075429718393",
+  email: "fasasa@gmail.com",
+  attended: 4,
+  upcoming: 5,
+  yours: 6,
+};
+
+let options = ["Activities", "Bookmarks", "Your Events", "Reviews", "Manage"];
 
 function Profile() {
-  const [open, setOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState(UserData);
+  const [postBoardOption, setPostBoard] = useState("Activities");
 
+  function renderPostBoard(value) {
+    console.log("inside");
+    setPostBoard(value);
+  }
+
+  function renderPostBoar() {
+    if (postBoardOption == "Activities") {
+      return <PostBoard />;
+    } else if (postBoardOption == "Bookmarks") {
+      return <Bookmarks />;
+    } else if (postBoardOption == "Your Events") {
+      return <PostBoard />;
+    } else if (postBoardOption == "Reviews") {
+      return <PostBoard />;
+    } else if (postBoardOption == "NewEvent") {
+      return <ReviewForm />;
+    } else {
+      return <h1>Hello</h1>;
+    }
+  }
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={2} marginTop="2rem">
+    <div className="section__block-Y-5">
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Banner></Banner>
+          <Banner
+            userInfo={userDetails}
+            bannerOptions={options}
+            changePostBoard={renderPostBoard}
+          />
         </Grid>
-        {/* <Grid item xs={12}>
-          <Options></Options>
-        </Grid> */}
         <Grid item xs={12} md={3}>
-          <Description></Description>
-          <PostingBoard></PostingBoard>
-          <CreteEvent></CreteEvent>
+          <AboutUser userInfo={userDetails} />
+          <ActionOptions changePostBoard={renderPostBoard} />
         </Grid>
         <Grid item xs={12} md={9}>
-          <PostBoard></PostBoard>
+          {renderPostBoar()}
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 }
 

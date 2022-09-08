@@ -9,12 +9,13 @@ import Stack from "@mui/material/Stack";
 import RenderMobileMenu from "./sub-components/RenderMobileMenu";
 import RenderMenu from "./sub-components/RenderMenu";
 import AvatarMenu from "./sub-components/AvatarMenu";
+import { Box } from "@mui/system";
 
 const settings = ["Account", "Dashboard", "Logout"];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ signInStateOpener }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [logged, setLogged] = useState(null);
+  const [logged, setLogged] = useState(true);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const pages = logged
@@ -50,15 +51,38 @@ const ResponsiveAppBar = () => {
           {/* For Desktop */}
           <RenderMenu handleCloseNavMenu={handleCloseNavMenu} pages={pages} />
           {logged ? (
-            <AvatarMenu
-              handleCloseUserMenu={handleCloseUserMenu}
-              handleOpenUserMenu={handleOpenUserMenu}
-              anchorElUser={anchorElUser}
-              settings={settings}
-            />
+            <Toolbar>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  marginRight: "1rem",
+                }}
+              >
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "inherit", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
+              <AvatarMenu
+                handleCloseUserMenu={handleCloseUserMenu}
+                handleOpenUserMenu={handleOpenUserMenu}
+                anchorElUser={anchorElUser}
+                settings={settings}
+              />
+            </Toolbar>
           ) : (
             <Stack direction="row" spacing={2}>
-              <Button variant="secondary" startIcon={<LoginIcon />}>
+              <Button
+                variant="secondary"
+                onClick={signInStateOpener}
+                startIcon={<LoginIcon />}
+              >
                 Sign In
               </Button>
             </Stack>
