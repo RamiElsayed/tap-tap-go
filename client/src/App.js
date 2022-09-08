@@ -2,7 +2,7 @@ import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import SignIn from "./login";
+import SignIn from "./components/SignIn/index";
 import Profile from "./Pages/Profile";
 import ResponsiveAppBar from "./components/navbar";
 import Landing from "./Pages/Landing";
@@ -28,11 +28,31 @@ let recentLocations = [
 
 function App() {
   const [recentSearches, setRecentSearches] = useState(recentLocations);
+  const [signInOpen, setSignInOpen] = useState(false)
+
+  function openSignIn(){
+    setSignInOpen((prev)=>!prev)
+  }
+
+  function closeSignIn(event){
+    const isCloseBox = event.target.getAttribute("value")
+
+    setSignInOpen((prev)=>{
+      return isCloseBox? !prev:prev;
+    })
+  }
+
+  function renderSingIn(){
+    return signInOpen? <SignIn signInStateOpener={closeSignIn} />:'';
+  }
+
   return (
     <ApolloProvider client={client}>
-      <Router>
+    {renderSingIn()}
+    <Router>
+    {renderSingIn}
         <Container maxWidth="xl">
-          <ResponsiveAppBar />
+          <ResponsiveAppBar signInStateOpener={openSignIn} />
           <Routes>
             <Route
               path="/"
