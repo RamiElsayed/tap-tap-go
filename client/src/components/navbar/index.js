@@ -12,9 +12,9 @@ import AvatarMenu from "./sub-components/AvatarMenu";
 
 const settings = ["Account", "Dashboard", "Logout"];
 
-const ResponsiveAppBar = ({signInStateOpener}) => {
+const ResponsiveAppBar = ({ signInStateOpener }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [logged, setLogged] = useState(null);
+  const [logged, setLogged] = useState(true);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const pages = logged
@@ -58,7 +58,11 @@ const ResponsiveAppBar = ({signInStateOpener}) => {
             />
           ) : (
             <Stack direction="row" spacing={2}>
-              <Button variant="secondary" onClick={signInStateOpener} startIcon={<LoginIcon />}>
+              <Button
+                variant="secondary"
+                onClick={signInStateOpener}
+                startIcon={<LoginIcon />}
+              >
                 Sign In
               </Button>
             </Stack>
