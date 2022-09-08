@@ -4,11 +4,10 @@ const { signToken } = require('../context/auth');
 
 const createUser = async (_, { input }) => {
   try {
-    const createdUser = await User.create(input);
-
+    const user = await User.create(input);
     return {
-      token: signToken(newUser),
-      user: createdUser,
+      token: signToken(user),
+      user,
     };
   } catch (err) {
     console.log(`[ERROR]: Failed to create user | ${err.message}`);

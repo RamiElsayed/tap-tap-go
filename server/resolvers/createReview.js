@@ -1,6 +1,7 @@
 const { ApolloError, AuthenticationError } = require('apollo-server');
+const { Types } = require('mongoose');
 
-const { Event, Review } = require('../models');
+const { Event, Review, User } = require('../models');
 
 const createReview = async (_, { input }, { user }) => {
   try {
@@ -17,11 +18,7 @@ const createReview = async (_, { input }, { user }) => {
         },
       });
 
-      const ReviewFromDatabase = await Review.findById(reviewId)
-        .populate('userId')
-        .populate('eventId');
-
-      return ReviewFromDatabase;
+      return (reviewFromDatabase = await Review.findById(reviewId));
     } else {
       throw new AuthenticationError(
         'You must be logged in to create a Review.',

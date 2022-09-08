@@ -18,7 +18,7 @@ const login = async (_, { input }) => {
       console.log('[ERROR]: Failed to login | Incorrect password');
       throw new AuthenticationError('Failed to login');
     }
-    console.log('You have successfully logged in');
+    console.log('You have successfully logged in', user);
     return {
       token: signToken(user),
       user,
