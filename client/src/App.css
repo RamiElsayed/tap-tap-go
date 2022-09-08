@@ -19,3 +19,12 @@
 .section__block-14 {
   margin-bottom: 14rem;
 }
+
+.img--Column {
+  position: relative;
+  transition: all 400ms;
+}
+
+.img--Column:hover {
+  filter: blur(1px) brightness(90%);
+}
