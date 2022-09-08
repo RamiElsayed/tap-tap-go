@@ -40,9 +40,9 @@ const typeDefs = gql`
     username: String
     title: String
     reviewText: String
-    rating: String
-    userId: ID
-    eventId: ID
+    rating: Int
+    userId: ID!
+    eventId: ID!
   }
 
   type Location {
