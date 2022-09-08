@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
@@ -17,14 +17,14 @@ const userSchema = new Schema(
       required: true,
     },
     number: {
-      type: Number,
+      type: String,
       required: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, "Must use a valid email address"],
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
     password: {
       type: String,
@@ -34,7 +34,7 @@ const userSchema = new Schema(
     events: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Event",
+        ref: 'Event',
       },
     ],
   },
@@ -43,11 +43,11 @@ const userSchema = new Schema(
       virtuals: true,
       id: false,
     },
-  }
+  },
 );
 
-userSchema.pre("save", async function (next) {
-  if (this.isNew || this.isModified("password")) {
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -64,6 +64,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 //    if (this.date < formatDate(new Date())) return this.date;
 // });
 
-const User = model("User", userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

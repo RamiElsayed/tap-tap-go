@@ -2,7 +2,7 @@ const { Review } = require('../models');
 
 const review = async (_, { reviewId }) => {
   const reviewFromDatabase = await Review.findById(reviewId);
-  console.log(review);
+  console.log(reviewFromDatabase);
   return reviewFromDatabase;
 };
 

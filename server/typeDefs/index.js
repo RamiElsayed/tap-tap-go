@@ -1,15 +1,14 @@
-const { DateTypeDefinition, BigIntTypeDefinition } = require('graphql-scalars');
+const { DateTypeDefinition } = require('graphql-scalars');
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   scalar Date
-  scalar BigInt
   type User {
     _id: ID!
     firstName: String!
     lastName: String!
-    number: BigInt!
-
+    username: String!
+    number: String!
     email: String!
     events: [Event]!
   }
@@ -73,19 +72,20 @@ const typeDefs = gql`
     tags: [Tag]
     tag(tagId: ID!): Tag
     review(reviewId: ID!): Review
+    reviews: [Review]
   }
 
-  input UserInput {
+  input CreateUserInput {
     firstName: String!
     lastName: String!
     username: String!
-    number: Int!
+    number: String!
     email: String!
     password: String!
   }
 
   type Mutation {
-    createUser(input: UserInput!): User
+    createUser(input: CreateUserInput!): User
   }
 `;
 
