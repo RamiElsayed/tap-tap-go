@@ -18,7 +18,9 @@ const createReview = async (_, { input }, { user }) => {
         },
       });
 
-      return (reviewFromDatabase = await Review.findById(reviewId));
+      const reviewFromDatabase = await Review.findById(reviewId);
+
+      return reviewFromDatabase;
     } else {
       throw new AuthenticationError(
         'You must be logged in to create a Review.',
