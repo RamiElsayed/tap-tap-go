@@ -66,7 +66,7 @@ export default function DropZone(props) {
   }, []);
 
   return (
-    <Card sx={{ width: "55%", mx: "auto" }}>
+    <Card sx={{ width: "100%", mx: "auto" }}>
       <CardContent>
         <Box
           sx={{ border: "1px dashed grey" }}

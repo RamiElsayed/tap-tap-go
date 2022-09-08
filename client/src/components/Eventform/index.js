@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useTheme } from "@mui/material/styles";
+import DropZone from "../dropZone/index";
 
 const keywords = [
   "Oliver",
@@ -29,24 +30,42 @@ const keywords = [
   "Kelly",
 ];
 
-export default function MultipleSelectChip() {
-  const [value, setValue] = React.useState(dayjs());
+export default function EventForm() {
+  const [newEvent, setNewEvent] = React.useState({
+    Address: "",
+    startDate: null,
+    endDate: null,
+    price: "",
+    ageGroup: "",
+    keywords: [],
+    images: [],
+  });
 
-  return <BasicTextFields value={value} />;
-}
-
-function BasicTextFields({ value, setValue, theme }) {
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
-  const [age, setAge] = React.useState("");
-  const [keywordsList, setKeywordsList] = React.useState([]);
+  const updateNewEventDetails = (event) => {
+    console.log(event);
+    const { value, name } = event.target;
+    console.log(event.currentTarget);
+    setNewEvent((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
   const handleKeywords = (event) => {
     const { value } = event.target;
-    setKeywordsList(value);
-    console.log(keywordsList);
+    setNewEvent((prev) => {
+      let { keywords } = prev;
+      return { ...prev, keywords: value };
+    });
   };
 
+  function updateDate(input, key) {
+    setNewEvent((prev) => {
+      return { ...prev, [key]: input };
+    });
+  }
+  React.useEffect(() => {
+    console.log(newEvent);
+  }, [newEvent]);
   return (
     <Container maxWidth="xl">
       <Typography gutterBottom component="h3" variant="h5">
@@ -56,7 +75,13 @@ function BasicTextFields({ value, setValue, theme }) {
         <CardContent>
           <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={12} md={6}>
-              <TextField fullWidth label="Address" type="search" />
+              <TextField
+                onChange={updateNewEventDetails}
+                value={newEvent.Address}
+                fullWidth
+                name="Address"
+                label="Address"
+              />
             </Grid>
             <Grid
               item
@@ -66,21 +91,19 @@ function BasicTextFields({ value, setValue, theme }) {
             >
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                  label="End date"
-                  value={startDate}
-                  onChange={(newValue) => {
-                    setStartDate(newValue);
-                  }}
+                  label="Start date"
+                  name="startDate"
+                  value={newEvent.startDate}
+                  onChange={(newValue) => updateDate(newValue, "startDate")}
                   renderInput={(params) => (
                     <TextField sx={{ width: "49%" }} {...params} />
                   )}
                 />
                 <DatePicker
                   label="End date"
-                  value={endDate}
-                  onChange={(newValue) => {
-                    setEndDate(newValue);
-                  }}
+                  name="endDate"
+                  value={newEvent.endDate}
+                  onChange={(newValue) => updateDate(newValue, "endDate")}
                   renderInput={(params) => (
                     <TextField sx={{ width: "49%" }} {...params} />
                   )}
@@ -89,11 +112,12 @@ function BasicTextFields({ value, setValue, theme }) {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="image"
+                name="price"
                 fullWidth
                 id="firstName"
                 label="Price"
                 autoFocus
+                onChange={updateNewEventDetails}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -101,31 +125,16 @@ function BasicTextFields({ value, setValue, theme }) {
                 <InputLabel id="ageGroup">Age</InputLabel>
                 <Select
                   labelId="ageGroup"
-                  id="age-group-select"
-                  value={age}
+                  value={newEvent.ageGroup}
                   label="Age"
-                  onChange
+                  name="ageGroup"
+                  onChange={updateNewEventDetails}
                 >
-                  <MenuItem value={10}>Teenager</MenuItem>
-                  <MenuItem value={20}>Adult</MenuItem>
-                  <MenuItem value={30}>Senior</MenuItem>
+                  <MenuItem value={"Teenagers"}>Teenagers</MenuItem>
+                  <MenuItem value={"Adult"}>Adult</MenuItem>
+                  <MenuItem value={"Senior"}>Senior</MenuItem>
                 </Select>
               </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Button variant="contained" component="label">
-                Upload
-                <input hidden accept="image/*" multiple type="file" />
-              </Button>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                name="image"
-                fullWidth
-                id="firstName"
-                label="image"
-                autoFocus
-              />
             </Grid>
             <Grid item xs={12} md={6}>
               <FormControl fullWidth>
@@ -133,7 +142,7 @@ function BasicTextFields({ value, setValue, theme }) {
                 <Select
                   labelId="keywords"
                   multiple
-                  value={keywordsList}
+                  value={newEvent.keywords}
                   onChange={handleKeywords}
                   input={<OutlinedInput id="keywords" label="Keywords" />}
                   renderValue={(selected) => (
@@ -151,6 +160,9 @@ function BasicTextFields({ value, setValue, theme }) {
                   ))}
                 </Select>
               </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <DropZone />
             </Grid>
             <Grid item xs={12}>
               <Button

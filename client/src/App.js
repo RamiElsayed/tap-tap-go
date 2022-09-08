@@ -10,7 +10,7 @@ import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import { useState } from "react";
-import ReviewForm from "./components/ReviewForm/index";
+import EventForm from "./components/Eventform/index";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -60,7 +60,7 @@ function App() {
               <Route path="/user/:usedId" element={<Profile />} />
             </Route>
             <Route>
-              <Route path="/test" element={<ReviewForm />} />
+              <Route path="/test" element={<EventForm />} />
             </Route>
           </Routes>
           <Footer />
