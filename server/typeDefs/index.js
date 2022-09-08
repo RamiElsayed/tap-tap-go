@@ -84,8 +84,17 @@ const typeDefs = gql`
     password: String!
   }
 
+  input CreateReviewInput {
+    username: String!
+    title: String!
+    reviewText: String!
+    rating: Int
+    eventId: ID!
+  }
+
   type Mutation {
     createUser(input: CreateUserInput!): User
+    createReview(input: CreateReviewInput!): Review
   }
 `;
 

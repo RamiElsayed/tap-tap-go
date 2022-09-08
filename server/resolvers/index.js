@@ -8,6 +8,7 @@ const tags = require('./tags');
 const review = require('./review');
 const reviews = require('./reviews');
 const createUser = require('./createUser');
+const createReview = require('./createReview');
 
 const resolvers = {
   Date: DateResolver,
@@ -23,6 +24,7 @@ const resolvers = {
   },
   Mutation: {
     createUser,
+    createReview,
   },
 };
 
