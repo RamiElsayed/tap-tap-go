@@ -25,7 +25,6 @@ const generateLocations = async () => {
       longitude,
       state,
       postcode,
-      eventId,
     };
 
     const createdLocation = await Location.create(location);
@@ -42,7 +41,7 @@ const generateLocations = async () => {
 
 const seedLocations = async () => {
   try {
-    const reviews = await generateLocations();
+    await generateLocations();
 
     console.log('Successfully seeded locations data.');
   } catch (err) {

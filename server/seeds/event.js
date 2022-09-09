@@ -51,7 +51,7 @@ const generateEvents = async () => {
 
 const seedEvents = async () => {
   try {
-    const events = await generateEvents();
+    await generateEvents();
     console.log('Successfully seeded events data.');
   } catch (err) {
     console.log(`Failed to seed events data || ${err.message}`);

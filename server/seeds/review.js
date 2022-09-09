@@ -7,7 +7,7 @@ const generateReviews = async () => {
 
   for (let i = 0; i < events.length; i++) {
     const { username: hostUsername } = events[i];
-    const { _id: associatedEvent } = events[i];
+    const { _id: eventId } = events[i];
 
     const numberOfReviews = Math.floor(Math.random() * 5);
 
@@ -30,7 +30,6 @@ const generateReviews = async () => {
         title,
         reviewText,
         rating,
-        associatedEvent,
         postedBy,
       };
 
@@ -38,7 +37,7 @@ const generateReviews = async () => {
 
       const { _id: reviewId } = createdReview;
 
-      await Event.findByIdAndUpdate(associatedEvent, {
+      await Event.findByIdAndUpdate(eventId, {
         $push: {
           reviews: reviewId,
         },
@@ -48,7 +47,7 @@ const generateReviews = async () => {
 };
 const seedReviews = async () => {
   try {
-    const reviews = await generateReviews();
+    await generateReviews();
 
     console.log('Successfully seeded reviews data.');
   } catch (err) {
