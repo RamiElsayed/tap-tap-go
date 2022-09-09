@@ -16,7 +16,7 @@ const reviewSchema = new Schema({
   rating: {
     type: Number,
   },
-  userId: {
+  postedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },

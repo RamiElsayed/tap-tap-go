@@ -10,7 +10,7 @@ const typeDefs = gql`
     username: String!
     number: String!
     email: String!
-    events: [Event]!
+    events: [Event]
   }
 
   type Event {
@@ -22,7 +22,7 @@ const typeDefs = gql`
     date: Date
     price: Int
     ageGroup: String!
-    images: [Image]!
+    images: [Image]
     tags: [Tag]
     reviews: [Review]
     attendees: Int!

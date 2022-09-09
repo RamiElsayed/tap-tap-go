@@ -20,11 +20,19 @@ const generateReviews = async () => {
         (user) => user.username !== hostUsername,
       );
 
-      const reviewerUsername =
-        nonHostAttendees[Math.floor(Math.random() * nonHostAttendees.length)]
-          .username;
+      const reviewer =
+        nonHostAttendees[Math.floor(Math.random() * nonHostAttendees.length)];
 
-      const review = { username: reviewerUsername, title, reviewText, rating };
+      const { username, _id: postedBy } = reviewer;
+
+      const review = {
+        username,
+        title,
+        reviewText,
+        rating,
+        eventId,
+        postedBy,
+      };
 
       const createdReview = await Review.create(review);
 

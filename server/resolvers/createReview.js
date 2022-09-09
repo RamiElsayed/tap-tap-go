@@ -18,7 +18,9 @@ const createReview = async (_, { input }, { user }) => {
         },
       });
 
-      const reviewFromDatabase = await Review.findById(reviewId);
+      const reviewFromDatabase = await Review.findById(reviewId)
+        .populate('postedBy')
+        .populate('eventId');
 
       return reviewFromDatabase;
     } else {
