@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const locationSchema = new Schema({
   buildingNumber: {
@@ -32,12 +32,8 @@ const locationSchema = new Schema({
     type: String,
     required: true,
   },
-  eventId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Event',
-  },
 });
 
-const Location = model('Location', locationSchema);
+const Location = model("Location", locationSchema);
 
 module.exports = Location;
