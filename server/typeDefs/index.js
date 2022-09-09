@@ -41,8 +41,8 @@ const typeDefs = gql`
     title: String
     reviewText: String
     rating: Int
-    userId: ID!
-    eventId: ID!
+    postedBy: ID!
+    associatedEvent: ID!
   }
 
   type Location {
@@ -99,7 +99,7 @@ const typeDefs = gql`
     title: String!
     reviewText: String!
     rating: Int
-    eventId: ID!
+    associatedEvemt: ID!
   }
 
   type Mutation {

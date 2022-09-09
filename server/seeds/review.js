@@ -7,7 +7,7 @@ const generateReviews = async () => {
 
   for (let i = 0; i < events.length; i++) {
     const { username: hostUsername } = events[i];
-    const { _id: eventId } = events[i];
+    const { _id: associatedEvent } = events[i];
 
     const numberOfReviews = Math.floor(Math.random() * 5);
 
@@ -30,7 +30,7 @@ const generateReviews = async () => {
         title,
         reviewText,
         rating,
-        eventId,
+        associatedEvent,
         postedBy,
       };
 
@@ -38,7 +38,7 @@ const generateReviews = async () => {
 
       const { _id: reviewId } = createdReview;
 
-      await Event.findByIdAndUpdate(eventId, {
+      await Event.findByIdAndUpdate(associatedEvent, {
         $push: {
           reviews: reviewId,
         },

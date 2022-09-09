@@ -6,13 +6,13 @@ const { Event, Review, User } = require('../models');
 const createReview = async (_, { input }, { user }) => {
   try {
     if (user) {
-      const { _id: userId } = user;
+      const { _id: postedBy } = user;
 
-      const createdReview = await Review.create({ ...input, userId });
+      const createdReview = await Review.create({ ...input, postedBy });
 
-      const { _id: reviewId, eventId } = createdReview;
+      const { _id: reviewId, associatedEvent } = createdReview;
 
-      await Event.findByIdAndUpdate(eventId, {
+      await Event.findByIdAndUpdate(associatedEvent, {
         $push: {
           reviews: reviewId,
         },
@@ -20,7 +20,7 @@ const createReview = async (_, { input }, { user }) => {
 
       const reviewFromDatabase = await Review.findById(reviewId)
         .populate('postedBy')
-        .populate('eventId');
+        .populate('associatedEvent');
 
       return reviewFromDatabase;
     } else {
