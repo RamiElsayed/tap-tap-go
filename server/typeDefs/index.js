@@ -99,7 +99,7 @@ const typeDefs = gql`
     title: String!
     reviewText: String!
     rating: Int
-    associatedEvemt: ID!
+    associatedEvent: ID!
   }
 
   type Mutation {
