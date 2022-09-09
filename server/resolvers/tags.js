@@ -1,9 +1,14 @@
 const { Tag } = require('../models');
 
 const tags = async () => {
-  const tags = await Tag.find({});
-  console.log(tags);
-  return tags;
+  try {
+    const tags = await Tag.find({});
+    console.log(tags);
+    return tags;
+  } catch (err) {
+    console.log(`[ERROR]: Failed to get tags | ${err.message}`);
+    throw new ApolloError('Failed to get tags');
+  }
 };
 
 module.exports = tags;

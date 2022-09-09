@@ -14,6 +14,7 @@ const generateTags = async () => {
     'Disco',
     'Jazz',
     'Swing',
+    'Salsa',
   ];
 
   const tagPromises = typesOfDance.map((type) => Tag.create({ tagName: type }));
