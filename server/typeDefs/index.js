@@ -1,5 +1,5 @@
-const { DateTypeDefinition } = require('graphql-scalars');
-const { gql } = require('apollo-server');
+const { DateTypeDefinition } = require("graphql-scalars");
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   scalar Date
@@ -41,8 +41,8 @@ const typeDefs = gql`
     title: String
     reviewText: String
     rating: Int
-    postedBy: ID!
-    associatedEvent: ID!
+    postedBy: User!
+    associatedEvent: Event!
   }
 
   type Location {
@@ -87,6 +87,7 @@ const typeDefs = gql`
     number: String!
     email: String!
     password: String!
+    isHost: Boolean!
   }
 
   input LoginInput {
@@ -101,11 +102,23 @@ const typeDefs = gql`
     rating: Int
     associatedEvent: ID!
   }
-
+  input CreateEventInput {
+    username: String
+    eventName: String!
+    location: String!
+    description: String
+    date: Date!
+    price: Int!
+    ageGroup: String
+    images: [Image]
+    tags: [Tag]!
+    maxAttendees: Int
+  }
   type Mutation {
     createUser(input: CreateUserInput!): Auth
     login(input: LoginInput!): Auth
     createReview(input: CreateReviewInput!): Review
+    createEvent(input: CreateEventInput!): Event
   }
 `;
 
