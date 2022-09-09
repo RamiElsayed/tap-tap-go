@@ -10,6 +10,7 @@ const typeDefs = gql`
     username: String!
     number: String!
     email: String!
+    isHost: Boolean!
     events: [Event]
   }
 
@@ -22,6 +23,7 @@ const typeDefs = gql`
     date: Date
     price: Int
     ageGroup: String!
+    createdBy: ID!
     images: [Image]
     tags: [Tag]
     reviews: [Review]
@@ -112,7 +114,7 @@ const typeDefs = gql`
     ageGroup: String
     images: [Image]
     tags: [Tag]!
-    maxAttendees: Int
+    maxAttendees: Int!
   }
   type Mutation {
     createUser(input: CreateUserInput!): Auth
