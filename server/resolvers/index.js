@@ -11,13 +11,16 @@ const createUser = require("./createUser");
 const createEvent = require("./createEvent");
 const createReview = require("./createReview");
 const login = require("./login");
+const deleteUser = require("./deleteUser");
+const deleteEvent = require("./deleteEvent");
+const deleteReview = require("./deleteReview");
 
 const resolvers = {
   Date: DateResolver,
   Query: {
     users,
     user,
-    events,
+    edelete
     event,
     tag,
     tags,

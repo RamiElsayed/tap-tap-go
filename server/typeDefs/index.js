@@ -1,5 +1,5 @@
-const { DateTypeDefinition } = require("graphql-scalars");
-const { gql } = require("apollo-server");
+const { DateTypeDefinition } = require('graphql-scalars');
+const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   scalar Date
@@ -121,6 +121,9 @@ const typeDefs = gql`
     login(input: LoginInput!): Auth
     createReview(input: CreateReviewInput!): Review
     createEvent(input: CreateEventInput!): Event
+    deleteUser(userId: ID!): User
+    deleteReview(reviewId: ID!): Review
+    deleteEvent(eventId: ID!): Event
   }
 `;
 
