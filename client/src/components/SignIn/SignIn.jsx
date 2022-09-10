@@ -15,10 +15,6 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -81,10 +77,6 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
             <Button
               type="submit"
               fullWidth
