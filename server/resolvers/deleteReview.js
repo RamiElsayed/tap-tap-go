@@ -21,5 +21,4 @@ const deleteReview = async (_, { reviewId }, { user }) => {
     throw new ApolloError('Failed to delete review');
   }
 };
-s;
 module.exports = deleteReview;
