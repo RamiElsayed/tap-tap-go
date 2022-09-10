@@ -1,7 +1,7 @@
 const { ApolloError, AuthenticationError } = require('apollo-server');
 const { Types } = require('mongoose');
 
-const { Event, Review, User } = require('../models');
+const { Review, User } = require('../models');
 
 const createReview = async (_, { input }, { user }) => {
   try {
@@ -10,17 +10,17 @@ const createReview = async (_, { input }, { user }) => {
 
       const createdReview = await Review.create({ ...input, postedBy });
 
-      const { _id: reviewId, associatedEvent } = createdReview;
+      const { _id: reviewId } = createdReview;
 
-      await Event.findByIdAndUpdate(associatedEvent, {
+      const reviewFromDatabase = await Review.findById(reviewId).populate(
+        'postedBy',
+      );
+
+      await User.findById(postedBy, {
         $push: {
           reviews: reviewId,
         },
       });
-
-      const reviewFromDatabase = await Review.findById(reviewId)
-        .populate('postedBy')
-        .populate('associatedEvent');
 
       return reviewFromDatabase;
     } else {
