@@ -10,6 +10,7 @@ import RenderMobileMenu from "./sub-components/RenderMobileMenu";
 import RenderMenu from "./sub-components/RenderMenu";
 import AvatarMenu from "./sub-components/AvatarMenu";
 import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 
 const settings = ["Account", "Dashboard", "Logout"];
 
@@ -59,15 +60,17 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
                   marginRight: "1rem",
                 }}
               >
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "inherit", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                ))}
+                <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+                  <Link to="/new-event">How it works</Link>
+                </Button>
+                <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+                  <Link style={{ textDecoration: "none" }} to="/new-event">
+                    Add event
+                  </Link>
+                </Button>
+                <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+                  Bookmark
+                </Button>
               </Box>
               <AvatarMenu
                 handleCloseUserMenu={handleCloseUserMenu}
@@ -78,6 +81,23 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
             </Toolbar>
           ) : (
             <Stack direction="row" spacing={2}>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  marginRight: "1rem",
+                }}
+              >
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "inherit", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
               <Button
                 variant="secondary"
                 onClick={signInStateOpener}
