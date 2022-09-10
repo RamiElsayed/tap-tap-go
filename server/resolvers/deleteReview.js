@@ -6,8 +6,12 @@ const deleteReview = async (_, { reviewId }, { user }) => {
   try {
     if (user) {
       const deleteReviewFromDatabase = await Review.findByIdAndDelete(reviewId);
-
       await User.findOneAndUpdate(
+        { _id: user._id },
+        { $pull: { reviews: { reviewId } } },
+        { new: true }
+      );
+      await Event.findOneAndUpdate(
         { _id: user._id },
         { $pull: { reviews: { reviewId } } },
         { new: true }
