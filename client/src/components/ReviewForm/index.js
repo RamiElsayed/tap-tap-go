@@ -15,13 +15,17 @@ function ReviewForm() {
 
   const updateReview = (event) => {
     let { name, value } = event.target;
+    if (name == "rating") {
+      value = parseInt(value);
+    }
+
+    console.log(typeof value);
     setReview((prev) => {
       return {
         prev,
         [name]: value,
       };
     });
-    console.log(newReview);
   };
 
   const printState = (event) => {
@@ -34,14 +38,17 @@ function ReviewForm() {
       <CardContent>
         <Box
           sx={{
-            width: 500,
             maxWidth: "400px",
             marginX: "auto",
           }}
         >
           <form onChange={updateReview}>
-            <Rating name="rating" value={null} size="large" />
-
+            <Rating
+              name="rating"
+              onChange={updateReview}
+              value={newReview.rating}
+              size="large"
+            />
             <Typography variant="h6" fontWeight="600">
               Add a headline
             </Typography>
