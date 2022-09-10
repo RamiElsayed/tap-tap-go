@@ -11,6 +11,7 @@ import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import EventForm from "./components/Eventform/index";
+import BookMark from "./components/bookmark";
 import { Keywords } from "./_mock/RecentSearches/index.js";
 
 const client = new ApolloClient({
@@ -49,6 +50,9 @@ function App() {
             </Route>
             <Route>
               <Route path="/new-event" element={<EventForm />} />
+            </Route>
+            <Route>
+              <Route path="/test" element={<BookMark />} />
             </Route>
           </Routes>
           <Footer />
