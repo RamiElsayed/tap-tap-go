@@ -5,30 +5,56 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 export default function RenderMobileMenu({
   handleOpenNavMenu,
   handleCloseNavMenu,
   anchorElNav,
   pages,
+  logged,
 }) {
+  function loggedOptions() {
+    let propsOptions = pages.map((page) => (
+      <Button
+        onClick={handleCloseNavMenu}
+        key={page.title}
+        sx={{ my: 2, color: "inherit", display: "block" }}
+      >
+        <Link to={`/${page.directory}`}>{page.title}</Link>
+      </Button>
+    ));
+
+    return (
+      <>
+        {propsOptions}
+        <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+          Bookmark
+        </Button>
+      </>
+    );
+  }
+
+  function unloggedOptions() {
+    return pages.map((page) => (
+      <Button
+        onClick={handleCloseNavMenu}
+        sx={{ my: 2, color: "inherit", display: "block" }}
+      >
+        How it works
+      </Button>
+    ));
+  }
+
   return (
     <>
       {/* For mobile */}
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-        {/* Menu icon for when the screen has been minimized */}
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup
-          onClick={handleOpenNavMenu}
-          color="inherit"
-        >
+        <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
           <MenuIcon />
         </IconButton>
 
-        {/* Menu options */}
         <Menu
           id="menu-appbar"
           anchorEl={anchorElNav}
@@ -47,32 +73,24 @@ export default function RenderMobileMenu({
             display: { xs: "block", md: "none" },
           }}
         >
-          {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          ))}
+          {logged ? loggedOptions() : unloggedOptions()}
         </Menu>
       </Box>
-
-      <Typography
-        variant="h5"
-        noWrap
-        component="a"
-        href=""
-        sx={{
-          mr: 2,
-          display: { xs: "flex", md: "none" },
-          flexGrow: 1,
-          fontFamily: "monospace",
-          fontWeight: 700,
-          letterSpacing: ".3rem",
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      >
-        TAPTAP GO
-      </Typography>
+      <Link style={{ textDecoration: "none", color: "black" }} to="/">
+        <Typography
+          variant="h5"
+          noWrap
+          sx={{
+            display: { xs: "flex", md: "none" },
+            flexGrow: 1,
+            fontFamily: "monospace",
+            fontWeight: 700,
+            letterSpacing: ".3rem",
+          }}
+        >
+          TAPTAP GO
+        </Typography>
+      </Link>
     </>
   );
 }
