@@ -60,10 +60,10 @@ function App() {
               <Route path="/user/:usedId" element={<Profile />} />
             </Route>
             <Route>
-              <Route path="/test" element={<EventForm />} />
+              <Route path="/new-event" element={<EventForm />} />
             </Route>
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </Container>
       </Router>
     </ApolloProvider>
