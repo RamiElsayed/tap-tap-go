@@ -42,6 +42,12 @@ const userSchema = new Schema(
         ref: "Event",
       },
     ],
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
   },
   {
     toJSON: {
