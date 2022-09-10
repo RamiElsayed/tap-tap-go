@@ -7,7 +7,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import Stack from "@mui/material/Stack";
 
 import RenderMobileMenu from "./sub-components/RenderMobileMenu";
-import RenderMenu from "./sub-components/RenderMenu";
+import RenderLogo from "./sub-components/RenderLogo";
 import AvatarMenu from "./sub-components/AvatarMenu";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
@@ -113,7 +113,7 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
             logged={logged}
           />
           {/* For Desktop */}
-          <RenderMenu handleCloseNavMenu={handleCloseNavMenu} pages={pages} />
+          <RenderLogo />
           {logged ? loggedOptions() : unloggedOptions()}
         </Toolbar>
       </Container>

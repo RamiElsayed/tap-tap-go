@@ -11,23 +11,15 @@ import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import EventForm from "./components/Eventform/index";
+import { Keywords } from "./_mock/RecentSearches/index.js";
 
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
-let recentLocations = [
-  "Birmingham",
-  "London",
-  "Derby",
-  "Brighton",
-  "Manchester",
-  "Leeds",
-];
-
 function App() {
-  const [recentSearches, setRecentSearches] = useState(recentLocations);
+  const [recentSearches, setRecentSearches] = useState(Keywords);
   const [signInOpen, setSignInOpen] = useState(false);
 
   function openSignIn() {
@@ -41,13 +33,9 @@ function App() {
     });
   }
 
-  function renderSingInUpForm() {
-    return signInOpen ? <SignForm closeForm={closeSignIn} /> : "";
-  }
-
   return (
     <ApolloProvider client={client}>
-      {renderSingInUpForm()}
+      {signInOpen ? <SignForm closeForm={closeSignIn} /> : ""}
       <Router>
         <Container maxWidth="xl">
           <ResponsiveAppBar signInStateOpener={openSignIn} />
@@ -63,7 +51,7 @@ function App() {
               <Route path="/new-event" element={<EventForm />} />
             </Route>
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </Container>
       </Router>
     </ApolloProvider>
