@@ -18,8 +18,6 @@ function ReviewForm() {
     if (name == "rating") {
       value = parseInt(value);
     }
-
-    console.log(typeof value);
     setReview((prev) => {
       return {
         prev,
