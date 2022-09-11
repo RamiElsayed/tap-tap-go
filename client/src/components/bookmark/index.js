@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const style = {
   width: "100%",
-  //   maxWidth: 360,
+
   bgcolor: "background.paper",
 };
 
