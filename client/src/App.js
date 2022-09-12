@@ -5,11 +5,8 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
-
 import { setContext } from "@apollo/client/link/context";
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import SignForm from "./components/SignIn/index";
 import Profile from "./Pages/Profile";
 import ResponsiveAppBar from "./components/navbar";
