@@ -1,5 +1,5 @@
-const { DateTypeDefinition } = require('graphql-scalars');
-const { gql } = require('apollo-server');
+const { DateTypeDefinition } = require("graphql-scalars");
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   scalar Date
@@ -10,20 +10,20 @@ const typeDefs = gql`
     username: String!
     number: String!
     email: String!
-    isHost: Boolean!
     events: [Event]
+    reviews: [Review]
   }
 
   type Event {
     _id: ID!
-    username: String!
-    eventName: String!
-    location: String!
+    username: String
+    eventName: String
+    location: String
     description: String
     date: Date
     price: Int
     ageGroup: String!
-    createdBy: ID!
+    createdById: User!
     images: [Image]
     tags: [Tag]
     reviews: [Review]
