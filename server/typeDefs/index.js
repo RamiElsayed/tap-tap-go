@@ -89,7 +89,6 @@ const typeDefs = gql`
     number: String!
     email: String!
     password: String!
-    isHost: Boolean!
   }
 
   input LoginInput {
@@ -117,7 +116,16 @@ const typeDefs = gql`
     maxAttendees: Int!
   }
   type Mutation {
-    createUser(input: CreateUserInput!): Auth
+    #createUser(input: CreateUserInput!): Auth
+    createUser(
+      firstName: String!
+      lastName: String!
+      username: String!
+      number: String!
+      email: String!
+      password: String!
+    ): Auth
+
     login(input: LoginInput!): Auth
     createReview(input: CreateReviewInput!): Review
     createEvent(input: CreateEventInput!): Event
