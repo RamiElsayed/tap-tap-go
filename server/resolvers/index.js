@@ -12,7 +12,7 @@ const createEvent = require('./createEvent');
 const createReview = require('./createReview');
 const login = require('./login');
 const deleteUser = require('./deleteUser');
-const deleteEvent = require('./deleteEvent');
+// const deleteEvent = require('./deleteEvent');
 const deleteReview = require('./deleteReview');
 
 const resolvers = {
@@ -33,7 +33,7 @@ const resolvers = {
     createReview,
     login,
     deleteUser,
-    deleteEvent,
+    // deleteEvent,
     deleteReview,
   },
 };

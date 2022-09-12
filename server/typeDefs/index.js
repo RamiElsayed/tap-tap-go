@@ -102,18 +102,18 @@ const typeDefs = gql`
     title: String!
     reviewText: String!
     rating: Int
-    associatedEvent: ID!
   }
   input CreateEventInput {
     username: String
     eventName: String!
-    location: String!
+    location: ID!
     description: String
     date: Date!
-    price: Int!
+    price: Int
     ageGroup: String
-    images: [Image]
-    tags: [Tag]!
+    images: [ID]
+    tags: [ID]
+    attendees: Int!
     maxAttendees: Int!
   }
   type Mutation {
@@ -123,7 +123,7 @@ const typeDefs = gql`
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
-    deleteEvent(eventId: ID!): Event
+    # deleteEvent(eventId: ID!): Event
   }
 `;
 
