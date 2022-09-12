@@ -1,69 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { Card, CardContent } from '@mui/material';
-import Copyright from './CopyRight';
+import React, { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { Card, CardContent } from "@mui/material";
+import Copyright from "./CopyRight";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../graphQL/mutations";
+import Auth from "../../utils/auth";
 
 export default function SignIn({ closeSignIn, switchToSignUp }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const updateStates = (event) => {
-    event.preventDefault();
-    const { value, name } = event.target;
-  };
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   useEffect(() => {
-    console.log(email);
+    console.log(email, password);
   }, [email]);
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await login({
+        variables: { email, password },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+    setEmail("");
+    setPassword("");
+    // clear form values
+  };
 
   return (
     <Box
       onClick={(event) => closeSignIn(event)}
       value="CloseBox"
       sx={{
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "rgba(0,0,0,0.5)",
         zIndex: 999,
-        position: 'fixed',
+        position: "fixed",
         top: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <CssBaseline />
       <Card
         sx={{
-          width: { xs: '95%', sm: '600px' },
-          maxWidth: '90%',
-          backgroundColor: 'white',
+          width: { xs: "95%", sm: "600px" },
+          maxWidth: "90%",
+          backgroundColor: "white",
         }}
       >
         <CardContent
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mx: 'auto',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            mx: "auto",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h2" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

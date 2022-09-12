@@ -36,14 +36,14 @@ export default function RenderMobileMenu({
   }
 
   function unloggedOptions() {
-    return pages.map((page) => (
+    return (
       <Button
         onClick={handleCloseNavMenu}
         sx={{ my: 2, color: "inherit", display: "block" }}
       >
         How it works
       </Button>
-    ));
+    );
   }
 
   return (

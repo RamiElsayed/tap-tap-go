@@ -1,21 +1,42 @@
-import './App.css';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import "./App.css";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SignForm from "./components/SignIn/index";
+import Profile from "./Pages/Profile";
+import ResponsiveAppBar from "./components/navbar";
+import Landing from "./Pages/Landing";
+import EventPage from "./Pages/EventPage";
+import { Container } from "@mui/system";
+import Footer from "./components/Footer";
+import { useState } from "react";
+import EventForm from "./components/Eventform/index";
+import BookMark from "./components/bookmark";
+import { Keywords } from "./_mock/RecentSearches/index.js";
 
-import SignForm from './components/SignIn/index';
-import Profile from './Pages/Profile';
-import ResponsiveAppBar from './components/navbar';
-import Landing from './Pages/Landing';
-import EventPage from './Pages/EventPage';
-import { Container } from '@mui/system';
-import Footer from './components/Footer';
-import { useState } from 'react';
-import EventForm from './components/Eventform/index';
-import BookMark from './components/bookmark';
-import { Keywords } from './_mock/RecentSearches/index.js';
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem("id_token");
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -28,16 +49,16 @@ function App() {
   }
 
   function closeModal(event) {
-    const isCloseBox = event.target.getAttribute('value');
+    const isCloseBox = event.target.getAttribute("value");
     console.log(isCloseBox);
     setSignInOpen((prev) => {
-      return isCloseBox === 'CloseBox' ? !prev : prev;
+      return isCloseBox === "CloseBox" ? !prev : prev;
     });
   }
 
   return (
     <ApolloProvider client={client}>
-      {signInOpen ? <SignForm closeForm={closeModal} /> : ''}
+      {signInOpen ? <SignForm closeForm={closeModal} /> : ""}
       <Router>
         <Container maxWidth="xl">
           <ResponsiveAppBar signInStateOpener={openModal} />
