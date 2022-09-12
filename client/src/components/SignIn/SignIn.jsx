@@ -1,66 +1,75 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import { Card, CardContent } from "@mui/material";
-import Copyright from "./CopyRight";
+import React, { useState, useEffect } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { Card, CardContent } from '@mui/material';
+import Copyright from './CopyRight';
 
 export default function SignIn({ closeSignIn, switchToSignUp }) {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const updateStates = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const { value, name } = event.target;
   };
+
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
 
   return (
     <Box
       onClick={(event) => closeSignIn(event)}
       value="CloseBox"
       sx={{
-        height: "100vh",
-        width: "100vw",
-        backgroundColor: "rgba(0,0,0,0.5)",
+        height: '100vh',
+        width: '100vw',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         zIndex: 999,
-        position: "fixed",
+        position: 'fixed',
         top: 0,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <CssBaseline />
       <Card
         sx={{
-          width: { xs: "95%", sm: "600px" },
-          maxWidth: "90%",
-          backgroundColor: "white",
+          width: { xs: '95%', sm: '600px' },
+          maxWidth: '90%',
+          backgroundColor: 'white',
         }}
       >
         <CardContent
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            mx: "auto",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mx: 'auto',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h2" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               label="Email Address"
               name="email"
@@ -71,8 +80,10 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
               margin="normal"
               required
               fullWidth
+              value={password}
               name="password"
               label="Password"
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
               autoComplete="current-password"
