@@ -23,11 +23,11 @@ function App() {
   const [recentSearches, setRecentSearches] = useState(Keywords);
   const [signInOpen, setSignInOpen] = useState(false);
 
-  function openSignIn() {
+  function openModal() {
     setSignInOpen((prev) => !prev);
   }
 
-  function closeSignIn(event) {
+  function closeModal(event) {
     const isCloseBox = event.target.getAttribute("value");
     setSignInOpen((prev) => {
       return isCloseBox ? !prev : prev;
@@ -36,10 +36,10 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      {signInOpen ? <SignForm closeForm={closeSignIn} /> : ""}
+      {signInOpen ? <SignForm closeForm={closeModal} /> : ""}
       <Router>
         <Container maxWidth="xl">
-          <ResponsiveAppBar signInStateOpener={openSignIn} />
+          <ResponsiveAppBar signInStateOpener={openModal} />
           <Routes>
             <Route
               path="/"
