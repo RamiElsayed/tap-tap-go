@@ -27,7 +27,7 @@
 
 @media only screen and (max-width: 900px) {
   .heart {
-    /* right: 400px; */
+    left: 20rem;
     transform: scale(1.8);
   }
 }
