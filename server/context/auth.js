@@ -2,7 +2,7 @@ const { AuthenticationError } = require("apollo-server");
 const jwt = require("jsonwebtoken");
 
 // set token secret and expiration date
-const secret = "mysecretsshhhhh";
+const secret = process.env.MONGODB_SECRET;
 const expiration = "2h";
 
 function authMiddleware({ req }) {
@@ -28,8 +28,8 @@ function authMiddleware({ req }) {
   return req;
 }
 
-function signToken({ username, email, _id }) {
-  const payload = { username, email, _id };
+function signToken({ username, email, _id, isHost }) {
+  const payload = { username, email, _id, isHost };
 
   return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
 }

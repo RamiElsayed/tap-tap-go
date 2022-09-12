@@ -20,11 +20,18 @@ const generateReviews = async () => {
         (user) => user.username !== hostUsername,
       );
 
-      const reviewerUsername =
-        nonHostAttendees[Math.floor(Math.random() * nonHostAttendees.length)]
-          .username;
+      const reviewer =
+        nonHostAttendees[Math.floor(Math.random() * nonHostAttendees.length)];
 
-      const review = { username: reviewerUsername, title, reviewText, rating };
+      const { username, _id: postedBy } = reviewer;
+
+      const review = {
+        username,
+        title,
+        reviewText,
+        rating,
+        postedBy,
+      };
 
       const createdReview = await Review.create(review);
 
@@ -40,7 +47,7 @@ const generateReviews = async () => {
 };
 const seedReviews = async () => {
   try {
-    const reviews = await generateReviews();
+    await generateReviews();
 
     console.log('Successfully seeded reviews data.');
   } catch (err) {

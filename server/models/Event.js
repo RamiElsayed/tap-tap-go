@@ -10,10 +10,6 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-  location: {
-    type: Schema.Types.ObjectId,
-    ref: 'Location',
-  },
   description: {
     type: String,
     required: true,
@@ -30,6 +26,14 @@ const eventSchema = new Schema({
   ageGroup: {
     type: String,
     required: true,
+  },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  location: {
+    type: Schema.Types.ObjectId,
+    ref: 'Location',
   },
   images: [
     {

@@ -10,7 +10,8 @@ const typeDefs = gql`
     username: String!
     number: String!
     email: String!
-    events: [Event]!
+    isHost: Boolean!
+    events: [Event]
   }
 
   type Event {
@@ -22,7 +23,8 @@ const typeDefs = gql`
     date: Date
     price: Int
     ageGroup: String!
-    images: [Image]!
+    createdBy: ID!
+    images: [Image]
     tags: [Tag]
     reviews: [Review]
     attendees: Int!
@@ -40,9 +42,9 @@ const typeDefs = gql`
     username: String
     title: String
     reviewText: String
-    rating: String
-    userId: ID
-    eventId: ID
+    rating: Int
+    postedBy: User!
+    associatedEvent: Event!
   }
 
   type Location {
@@ -64,6 +66,11 @@ const typeDefs = gql`
     eventId: ID!
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -82,10 +89,41 @@ const typeDefs = gql`
     number: String!
     email: String!
     password: String!
+    isHost: Boolean!
   }
 
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
+  input CreateReviewInput {
+    username: String!
+    title: String!
+    reviewText: String!
+    rating: Int
+    associatedEvent: ID!
+  }
+  input CreateEventInput {
+    username: String
+    eventName: String!
+    location: String!
+    description: String
+    date: Date!
+    price: Int!
+    ageGroup: String
+    images: [Image]
+    tags: [Tag]!
+    maxAttendees: Int!
+  }
   type Mutation {
-    createUser(input: CreateUserInput!): User
+    createUser(input: CreateUserInput!): Auth
+    login(input: LoginInput!): Auth
+    createReview(input: CreateReviewInput!): Review
+    createEvent(input: CreateEventInput!): Event
+    deleteUser(userId: ID!): User
+    deleteReview(reviewId: ID!): Review
+    deleteEvent(eventId: ID!): Event
   }
 `;
 

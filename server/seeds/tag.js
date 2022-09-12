@@ -14,6 +14,7 @@ const generateTags = async () => {
     'Disco',
     'Jazz',
     'Swing',
+    'Salsa',
   ];
 
   const tagPromises = typesOfDance.map((type) => Tag.create({ tagName: type }));
@@ -30,12 +31,6 @@ const generateTags = async () => {
 
       const { _id: tagId } = randomTag;
 
-      await Tag.findByIdAndUpdate(tagId, {
-        $addToSet: {
-          events: eventId,
-        },
-      });
-
       await Event.findByIdAndUpdate(eventId, {
         $addToSet: {
           tags: tagId,
@@ -46,7 +41,7 @@ const generateTags = async () => {
 };
 const seedTags = async () => {
   try {
-    const Tags = await generateTags();
+    await generateTags();
 
     console.log('Successfully seeded Tags data.');
   } catch (err) {

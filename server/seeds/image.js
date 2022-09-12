@@ -12,7 +12,7 @@ const generateImages = async () => {
     for (let j = 0; j < numberOfImages; j++) {
       const imageLink = faker.image.city(200, 300);
 
-      const image = { imageLink, eventId };
+      const image = { imageLink };
 
       const createdImage = await Image.create(image);
 
@@ -29,7 +29,7 @@ const generateImages = async () => {
 
 const seedImages = async () => {
   try {
-    const images = await generateImages();
+    await generateImages();
 
     console.log('Successfully seeded Images data.');
   } catch (err) {
