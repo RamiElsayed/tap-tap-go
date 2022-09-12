@@ -2,9 +2,8 @@ const { AuthenticationError } = require("apollo-server");
 const { User } = require("../models");
 const { signToken } = require("../context/auth");
 
-const login = async (_, { input }) => {
+const login = async (_, { email, password }) => {
   try {
-    const { email, password } = input;
     const user = await User.findOne({ email });
 
     if (!user) {

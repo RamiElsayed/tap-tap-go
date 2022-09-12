@@ -126,7 +126,8 @@ const typeDefs = gql`
       password: String!
     ): Auth
 
-    login(input: LoginInput!): Auth
+    #login(input: LoginInput!): Auth
+    login(email: String!, password: String!): Auth
     createReview(input: CreateReviewInput!): Review
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
