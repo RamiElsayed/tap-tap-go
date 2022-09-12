@@ -29,7 +29,7 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
     event.preventDefault();
     try {
       const { data } = await login({
-        variables: { email, password },
+        variables: { email: email, password: password },
       });
 
       Auth.login(data.login.token);
