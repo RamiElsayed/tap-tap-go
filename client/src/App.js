@@ -7,9 +7,9 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignForm from "./components/SignIn/index";
+import { SignForms } from "./components/SignForms/index";
 import Profile from "./Pages/Profile";
-import ResponsiveAppBar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Landing from "./Pages/Landing";
 import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
@@ -40,28 +40,27 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+export const App = () => {
   const [recentSearches, setRecentSearches] = useState(Keywords);
-  const [signInOpen, setSignInOpen] = useState(false);
+  const [modalState, setModalState] = useState(false);
 
   function openModal() {
-    setSignInOpen((prev) => !prev);
+    setModalState((prev) => !prev);
   }
 
   function closeModal(event) {
     const isCloseBox = event.target.getAttribute("value");
-    console.log(isCloseBox);
-    setSignInOpen((prev) => {
+    setModalState((prev) => {
       return isCloseBox === "CloseBox" ? !prev : prev;
     });
   }
 
   return (
     <ApolloProvider client={client}>
-      {signInOpen ? <SignForm closeForm={closeModal} /> : ""}
+      {modalState ? <SignForms closeModal={closeModal} /> : ""}
       <Router>
         <Container maxWidth="xl">
-          <ResponsiveAppBar signInStateOpener={openModal} />
+          <Navbar openModal={openModal} />
           <Routes>
             <Route
               path="/"
@@ -82,6 +81,4 @@ function App() {
       </Router>
     </ApolloProvider>
   );
-}
-
-export default App;
+};

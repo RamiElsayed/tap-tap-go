@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { ADD_USER } from "../../graphQL/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,11 +15,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import Copyright from "./CopyRight";
-import { ADD_USER } from "../../graphQL/mutations";
-import { useMutation } from "@apollo/client";
-import Auth from "../../utils/auth";
 
-export default function SignUp({ closeSignUp, switchToSignIn }) {
+export const SignUp = ({ closeSignUp, switchToSignIn }) => {
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -54,7 +56,7 @@ export default function SignUp({ closeSignUp, switchToSignIn }) {
 
   return (
     <Box
-      onClick={(event) => closeSignUp(event)}
+      onClick={closeSignUp}
       value="CloseBox"
       sx={{
         height: "100vh",
@@ -185,4 +187,4 @@ export default function SignUp({ closeSignUp, switchToSignIn }) {
       </Card>
     </Box>
   );
-}
+};

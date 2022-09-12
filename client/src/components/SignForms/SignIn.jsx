@@ -14,7 +14,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../graphQL/mutations";
 import Auth from "../../utils/auth";
 
-export default function SignIn({ closeSignIn, switchToSignUp }) {
+export const SignIn = ({ closeSignIn, switchToSignUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -131,4 +131,4 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
       </Card>
     </Box>
   );
-}
+};
