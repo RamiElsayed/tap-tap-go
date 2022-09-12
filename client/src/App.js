@@ -20,7 +20,7 @@ import BookMark from "./components/bookmark";
 import { Keywords } from "./_mock/RecentSearches/index.js";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "http://localhost:3001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
