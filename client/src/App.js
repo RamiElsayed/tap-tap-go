@@ -10,24 +10,17 @@ import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import { useState } from "react";
-import ReviewForm from "./components/ReviewForm/index";
+import EventForm from "./components/Eventform/index";
+import BookMark from "./components/bookmark";
+import { Keywords } from "./_mock/RecentSearches/index.js";
 
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
-let recentLocations = [
-  "Birmingham",
-  "London",
-  "Derby",
-  "Brighton",
-  "Manchester",
-  "Leeds",
-];
-
 function App() {
-  const [recentSearches, setRecentSearches] = useState(recentLocations);
+  const [recentSearches, setRecentSearches] = useState(Keywords);
   const [signInOpen, setSignInOpen] = useState(false);
 
   function openSignIn() {
@@ -41,13 +34,9 @@ function App() {
     });
   }
 
-  function renderSingInUpForm() {
-    return signInOpen ? <SignForm closeForm={closeSignIn} /> : "";
-  }
-
   return (
     <ApolloProvider client={client}>
-      {renderSingInUpForm()}
+      {signInOpen ? <SignForm closeForm={closeSignIn} /> : ""}
       <Router>
         <Container maxWidth="xl">
           <ResponsiveAppBar signInStateOpener={openSignIn} />
@@ -60,7 +49,10 @@ function App() {
               <Route path="/user/:usedId" element={<Profile />} />
             </Route>
             <Route>
-              <Route path="/test" element={<ReviewForm />} />
+              <Route path="/new-event" element={<EventForm />} />
+            </Route>
+            <Route>
+              <Route path="/test" element={<BookMark />} />
             </Route>
           </Routes>
           <Footer />

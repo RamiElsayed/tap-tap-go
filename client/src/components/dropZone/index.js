@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -66,7 +66,7 @@ export default function DropZone(props) {
   }, []);
 
   return (
-    <Card sx={{ width: "55%", mx: "auto" }}>
+    <Card sx={{ width: "100%", mx: "auto" }}>
       <CardContent>
         <Box
           sx={{ border: "1px dashed grey" }}

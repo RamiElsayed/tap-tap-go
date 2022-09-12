@@ -12,9 +12,8 @@ const RecentlySeen = ({ recentSearches }) => {
       <Grid
         container
         spacing={2}
-        marginX="2rem"
         alignItems="center"
-        marginX="auto"
+        mx="auto"
         className="section__block-5"
       >
         <Grid

@@ -8,9 +8,7 @@ import { Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { top100Films } from "./sub-components/fakeData";
 
-let theme = createTheme({
-  // ...
-});
+let theme = createTheme({});
 
 theme = createTheme(theme, {
   typography: {

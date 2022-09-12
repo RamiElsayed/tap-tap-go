@@ -3,6 +3,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { itemData } from "../../../_mock/Cities/index.js";
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -31,12 +32,14 @@ export default function ImagesSideColumn() {
           cols={item.cols || 1}
           rows={item.rows || 1}
         >
-          <img
-            className="img--Column"
-            {...srcset(item.img, 121, item.rows, item.cols)}
-            alt={item.title}
-            loading="lazy"
-          />
+          <Link to={`/search-by/city/${item.title}`}>
+            <img
+              className="img--Column"
+              {...srcset(item.img, 121, item.rows, item.cols)}
+              alt={item.title}
+              loading="lazy"
+            />
+          </Link>
           <Typography
             variant="h6"
             sx={{
