@@ -46,17 +46,25 @@ export default function EventCard(props) {
             />
             <Typography variant="caption">{props.cardData.nRatings}</Typography>
           </Box>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            textAlign="left"
-            mt={2}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "left",
+            }}
           >
-            {props.cardData.price}
-          </Typography>
-          <IconButton onClick={toggleHeart}>
-            <ToggleFavorite hearted={hearted} />
-          </IconButton>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="left"
+              mt={2}
+            >
+              {props.cardData.price}
+            </Typography>
+            <IconButton onClick={toggleHeart}>
+              <ToggleFavorite hearted={hearted} />
+            </IconButton>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

@@ -19,14 +19,15 @@
 
 .heart {
   color: #aa182b;
+  transform: scale(1.2);
   position: absolute;
-  /* bottom: 14px;
-  left: 140px; */
+  left: 0.5rem;
+  top: 0.2rem;
 }
 
 @media only screen and (max-width: 900px) {
   .heart {
-    /* left: 350px; */
+    /* right: 400px; */
     transform: scale(1.8);
   }
 }
