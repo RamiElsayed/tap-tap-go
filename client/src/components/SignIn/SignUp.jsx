@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,15 +10,46 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import Copyright from "./CopyRight";
+import { ADD_USER } from "../../graphQL/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
 
 export default function SignUp({ closeSignUp, switchToSignIn }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+    number: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
     });
+  };
+
+  // New line
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -60,25 +91,68 @@ export default function SignUp({ closeSignUp, switchToSignIn }) {
           <Typography component="h2" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              label="First Name"
+              name="firstName"
+              value={formState.firstName}
+              onChange={handleChange}
+              type="text"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              name="lastName"
+              value={formState.lastName}
+              onChange={handleChange}
+              label="Last Name"
+              type="text"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="username"
+              value={formState.username}
+              onChange={handleChange}
+              label="username"
+              type="text"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="number"
+              value={formState.number}
+              onChange={handleChange}
+              label="Phone number"
+              type="number"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              label="Email"
+              type="email"
+              autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               name="password"
+              value={formState.password}
+              onChange={handleChange}
               label="Password"
               type="password"
-              id="password"
               autoComplete="current-password"
             />
             {/* <FormControlLabel

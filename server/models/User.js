@@ -31,11 +31,11 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
-    isHost: {
-      type: Boolean,
-      default: false,
-      required: true,
-    },
+    // isHost: {
+    //   type: Boolean,
+    //   default: false,
+    //   // required: true,
+    // },
     events: [
       {
         type: Schema.Types.ObjectId,
