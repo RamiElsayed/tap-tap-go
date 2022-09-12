@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import LoginIcon from "@mui/icons-material/Login";
-import Stack from "@mui/material/Stack";
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import LoginIcon from '@mui/icons-material/Login';
+import Stack from '@mui/material/Stack';
 
-import RenderMobileMenu from "./sub-components/RenderMobileMenu";
-import RenderLogo from "./sub-components/RenderLogo";
-import AvatarMenu from "./sub-components/AvatarMenu";
-import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import RenderMobileMenu from './sub-components/RenderMobileMenu';
+import RenderLogo from './sub-components/RenderLogo';
+import AvatarMenu from './sub-components/AvatarMenu';
+import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const ResponsiveAppBar = ({ signInStateOpener }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const pages = logged
     ? [
-        { title: "How it works?", directory: "How-it-works" },
-        { title: "Add event", directory: "new-event" },
+        { title: 'How it works?', directory: 'How-it-works' },
+        { title: 'Add event', directory: 'new-event' },
       ]
-    : [{ title: "Bookmark", directory: "Bookmark" }];
+    : [{ title: 'Bookmark', directory: 'Bookmark' }];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -45,21 +45,21 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
         <Box
           sx={{
             flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            marginRight: "1rem",
+            display: { xs: 'none', md: 'flex' },
+            marginRight: '1rem',
           }}
         >
           {pages.map((page) => (
             <Button
               onClick={handleCloseNavMenu}
               key={page.title}
-              sx={{ my: 2, color: "inherit", display: "block" }}
+              sx={{ my: 2, color: 'inherit', display: 'block' }}
             >
               <Link to={`/${page.directory}`}>{page.title}</Link>
             </Button>
           ))}
 
-          <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+          <Button sx={{ my: 2, color: 'inherit', display: 'block' }}>
             Bookmark
           </Button>
         </Box>
@@ -78,13 +78,13 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
         <Box
           sx={{
             flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            marginRight: "1rem",
+            display: { xs: 'none', md: 'flex' },
+            marginRight: '1rem',
           }}
         >
           <Button
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: "inherit", display: "block" }}
+            sx={{ my: 2, color: 'inherit', display: 'block' }}
           >
             How it works
           </Button>
