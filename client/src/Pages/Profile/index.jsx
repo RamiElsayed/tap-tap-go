@@ -17,7 +17,7 @@ let options = ['Activities', 'Bookmarks', 'Your Events', 'Reviews', 'Manage'];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
-  const userParam = '6320a4ece509e346ef00de11';
+  const userParam = '6320f88cd4e162f5d91e0138';
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });
@@ -41,7 +41,7 @@ const Profile = () => {
       return <PostBoard />;
     } else if (postBoardOption == 'Reviews') {
       return userDetails.reviews.map((review, i) => (
-        <ReviewCard cardData={review} key={i} />
+        <ReviewCard {...review} key={i} />
       ));
     } else if (postBoardOption == 'NewEvent') {
       return <ReviewForm />;
