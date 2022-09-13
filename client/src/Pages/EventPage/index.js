@@ -1,3 +1,5 @@
+import EventDetailsA from "../../components/EventDetails/EventDetailsA";
+import EventDetailsB from "../../components/EventDetails/EventDetailsB";
 import ReviewCard from "../../components/ReviewCard/index";
 
 const cardData = {
@@ -11,6 +13,8 @@ const cardData = {
 function EventPage() {
   return (
     <>
+      <EventDetailsA />
+      <EventDetailsB />
       <ReviewCard cardData={cardData} />
       <p>test</p>
     </>
