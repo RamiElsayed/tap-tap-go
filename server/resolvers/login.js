@@ -3,7 +3,6 @@ const { User } = require('../models');
 const { signToken } = require('../context/auth');
 
 const login = async (_, { input }) => {
-  // The input type in a GraphQL schema is a special object type that groups a set of arguments together, and can then be used as an argument to another field. previously we were passing fields individually hence in args object just destructure once.  but using type input we have to destructure twice.
   try {
     const { email, password } = input;
     const user = await User.findOne({ email });

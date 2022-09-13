@@ -3,7 +3,6 @@ const { User } = require('../models');
 const { signToken } = require('../context/auth');
 
 const createUser = async (_, { input }) => {
-  // destructure input from args object. since input is already an object. just pass this directly into below.
   try {
     const user = await User.create(input);
     return {
