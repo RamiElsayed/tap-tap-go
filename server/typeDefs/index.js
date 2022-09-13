@@ -12,6 +12,7 @@ const typeDefs = gql`
     createdAt: Date!
     profileAvatar: String
     aboutMe: String
+    websiteUrl: String
     number: String!
     email: String!
     bookmarks: [Event]

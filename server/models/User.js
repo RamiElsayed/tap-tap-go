@@ -33,6 +33,9 @@ const userSchema = new Schema(
     aboutMe: {
       type: String,
     },
+    websiteUrl: {
+      type: String,
+    },
     number: {
       type: String,
       required: true,

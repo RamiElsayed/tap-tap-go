@@ -17,7 +17,7 @@ let options = ['Activities', 'Bookmarks', 'Your Events', 'Reviews', 'Manage'];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
-  const userParam = '6320eefdb59b38c8a493cef2';
+  const userParam = '6320f88cd4e162f5d91e0138';
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });

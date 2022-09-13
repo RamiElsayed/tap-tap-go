@@ -38,6 +38,7 @@ export const GET_PROFILEDATA = gql`
       createdAt
       profileAvatar
       aboutMe
+      websiteUrl
       number
       email
       bookmarks {

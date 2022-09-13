@@ -11,6 +11,7 @@ const generateUsers = () => {
     const createdAt = faker.date.past(5);
     const profileAvatar = faker.image.avatar();
     const aboutMe = faker.lorem.paragraphs(1);
+    const websiteUrl = faker.internet.domainName();
     const number = faker.phone.number('###########');
     const email = faker.internet.email(firstName, lastName);
     const password = faker.internet.password(5);
@@ -25,6 +26,7 @@ const generateUsers = () => {
       createdAt,
       profileAvatar,
       aboutMe,
+      websiteUrl,
       password,
     });
   }
