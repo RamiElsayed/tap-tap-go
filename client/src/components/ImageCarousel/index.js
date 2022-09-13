@@ -5,27 +5,24 @@ import { Carousel } from "react-responsive-carousel";
 
 export default function ImageCarousel() {
   return (
-    <Carousel>
+    <Carousel className="carousel">
       <div>
-        <img
-          className="carousel-img"
-          src="https://www.mammal.org.uk/wp-content/uploads/2021/09/red-fox-300x300.jpg"
-        />
+        <img src="https://www.mammal.org.uk/wp-content/uploads/2021/09/red-fox-300x300.jpg" />
       </div>
       <div>
-        <img className="carousel-img" src="assets/2.jpeg" />
+        <img src="assets/2.jpeg" />
       </div>
       <div>
-        <img className="carousel-img" src="assets/3.jpeg" />
+        <img src="assets/3.jpeg" />
       </div>
       <div>
-        <img className="carousel-img" src="assets/4.jpeg" />
+        <img src="assets/4.jpeg" />
       </div>
       <div>
-        <img className="carousel-img" src="assets/5.jpeg" />
+        <img src="assets/5.jpeg" />
       </div>
       <div>
-        <img className="carousel-img" src="assets/6.jpeg" />
+        <img src="assets/6.jpeg" />
       </div>
     </Carousel>
   );
