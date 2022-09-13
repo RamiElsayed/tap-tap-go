@@ -1,3 +1,5 @@
+import { gql } from "@apollo/client";
+
 export const GET_USER = gql`
   query getUser($userId: ID!) {
     user(input: $userId) {
@@ -17,6 +19,56 @@ export const GET_USER = gql`
         }
         events
         reviews
+      }
+    }
+  }
+`;
+export const GET_PROFILEDATA = gql`
+  query Query($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      firstName
+      lastName
+      username
+      number
+      email
+      bookmarks {
+        eventName
+        _id
+        date
+        price
+        location {
+          _id
+          cityName
+          state
+          postcode
+          streetName
+        }
+      }
+      reviews {
+        _id
+        title
+        reviewText
+        rating
+      }
+      events {
+        username
+        eventName
+      }
+    }
+  }
+`;
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      email
+      thoughts {
+        _id
+        thoughtText
+        thoughtAuthor
+        createdAt
       }
     }
   }

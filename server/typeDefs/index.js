@@ -19,7 +19,7 @@ const typeDefs = gql`
     _id: ID!
     username: String
     eventName: String
-    location: String
+    location: Location
     description: String
     date: Date
     price: Int
