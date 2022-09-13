@@ -31,6 +31,12 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
+    bookmarks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
     // isHost: {
     //   type: Boolean,
     //   default: false,
