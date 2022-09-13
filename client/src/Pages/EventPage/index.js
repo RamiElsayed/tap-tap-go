@@ -1,5 +1,6 @@
 import EventDetailsA from "../../components/EventDetails/EventDetailsA";
 import EventDetailsB from "../../components/EventDetails/EventDetailsB";
+import ImageCarousel from "../../components/ImageCarousel";
 import ReviewCard from "../../components/ReviewCard/index";
 
 const cardData = {
@@ -14,6 +15,7 @@ function EventPage() {
   return (
     <>
       <EventDetailsA />
+      <ImageCarousel />
       <EventDetailsB />
       <ReviewCard cardData={cardData} />
       <p>test</p>
