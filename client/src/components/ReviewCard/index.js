@@ -1,24 +1,24 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 
-import { CardActionArea } from "@mui/material";
+import { CardActionArea } from '@mui/material';
 
-export default function ReviewCard(props) {
+export default function ReviewCard({ cardData }) {
   return (
-    <Card sx={{ maxWidth: "850px" }}>
+    <Card sx={{ maxWidth: '850px' }}>
       <CardContent>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <Typography
@@ -28,12 +28,12 @@ export default function ReviewCard(props) {
             textAlign="left"
             fontWeight="600"
           >
-            {props.cardData.title}
+            {cardData.title}
           </Typography>
           <Rating
             size="medium"
             name="read-only"
-            value={props.cardData.value}
+            value={cardData.rating}
             icon={<CircleRoundedIcon fontSize="inherit" />}
             emptyIcon={<CircleRoundedIcon fontSize="inherit" />}
             readOnly
@@ -45,7 +45,7 @@ export default function ReviewCard(props) {
           component="div"
           textAlign="left"
         >
-          {props.cardData.author}
+          {cardData.username}
         </Typography>
         <Typography
           variant="body1"
@@ -53,7 +53,7 @@ export default function ReviewCard(props) {
           textAlign="left"
           mt={2}
         >
-          {props.cardData.description}
+          {cardData.reviewText}
         </Typography>
       </CardContent>
     </Card>

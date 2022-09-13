@@ -42,6 +42,11 @@ const generateReviews = async () => {
           reviews: reviewId,
         },
       });
+      await User.findByIdAndUpdate(postedBy, {
+        $push: {
+          reviews: reviewId,
+        },
+      });
     }
   }
 };
