@@ -6,13 +6,13 @@ import SignForm from "./components/SignIn/index";
 import Profile from "./Pages/Profile";
 import ResponsiveAppBar from "./components/navbar";
 import Landing from "./Pages/Landing";
-import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import EventForm from "./components/Eventform/index";
 import BookMark from "./components/bookmark";
 import { Keywords } from "./_mock/RecentSearches/index.js";
+import EventPage from "./Pages/EventPage";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -54,7 +54,9 @@ function App() {
             <Route>
               <Route path="/test" element={<BookMark />} />
             </Route>
+            <Route path="/event" element={<EventPage />} />
           </Routes>
+
           <Footer />
         </Container>
       </Router>
