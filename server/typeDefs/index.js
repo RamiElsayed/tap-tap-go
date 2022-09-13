@@ -1,5 +1,5 @@
-const { DateTypeDefinition } = require("graphql-scalars");
-const { gql } = require("apollo-server");
+const { DateTypeDefinition } = require('graphql-scalars');
+const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   scalar Date
@@ -116,18 +116,18 @@ const typeDefs = gql`
     maxAttendees: Int!
   }
   type Mutation {
-    #createUser(input: CreateUserInput!): Auth
-    createUser(
-      firstName: String!
-      lastName: String!
-      username: String!
-      number: String!
-      email: String!
-      password: String!
-    ): Auth
+    createUser(input: CreateUserInput!): Auth
+    # createUser(
+    #   firstName: String!
+    #   lastName: String!
+    #   username: String!
+    #   number: String!
+    #   email: String!
+    #   password: String!
+    # ): Auth
 
-    #login(input: LoginInput!): Auth
-    login(email: String!, password: String!): Auth
+    login(input: LoginInput!): Auth
+    # login(email: String!, password: String!): Auth
     createReview(input: CreateReviewInput!): Review
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
