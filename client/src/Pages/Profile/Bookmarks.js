@@ -9,7 +9,7 @@ const cardData = {
   nRatings: 254,
 };
 
-function Bookmarks() {
+function Bookmarks({ bookmarkData }) {
   return (
     <Card sx={{ width: { xs: "100%", md: "100%" } }}>
       <CardContent
@@ -26,18 +26,13 @@ function Bookmarks() {
           justifyContent="center"
           className="section__block-4"
         >
-          <Grid item xs={11} sm={10} md={4} lg={3}>
-            <EventCard cardData={cardData}></EventCard>
-          </Grid>
-          <Grid item xs={11} sm={10} md={4} lg={3}>
-            <EventCard cardData={cardData}></EventCard>
-          </Grid>
-          <Grid item xs={11} sm={10} md={4} lg={3}>
-            <EventCard cardData={cardData}></EventCard>
-          </Grid>
-          <Grid item xs={11} sm={10} md={4} lg={3}>
-            <EventCard cardData={cardData}></EventCard>
-          </Grid>
+          {bookmarkData.map((el) => {
+            return (
+              <Grid item xs={11} sm={10} md={4} lg={3}>
+                <EventCard cardData={el} />
+              </Grid>
+            );
+          })}
         </Grid>
       </CardContent>
     </Card>

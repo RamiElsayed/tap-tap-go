@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import { CardActionArea } from "@mui/material";
 
-export default function EventCard(props) {
+export default function EventCard({ cardData }) {
   return (
     <Card sx={{ maxWidth: "100%" }}>
       <CardActionArea>
@@ -15,7 +15,7 @@ export default function EventCard(props) {
           component="img"
           height="170"
           image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={props.cardData.alt}
+          alt={cardData.eventName}
         />
         <CardContent>
           <Typography
@@ -24,7 +24,7 @@ export default function EventCard(props) {
             component="div"
             textAlign="left"
           >
-            {props.cardData.title}
+            {cardData.eventName}
           </Typography>
           <Box
             sx={{
@@ -36,10 +36,11 @@ export default function EventCard(props) {
             <Rating
               size="small"
               name="read-only"
-              value={props.cardData.value}
+              // value={props.cardData.value}
+              value={5}
               readOnly
             />
-            <Typography variant="caption">{props.cardData.nRatings}</Typography>
+            <Typography variant="caption">256</Typography>
           </Box>
           <Typography
             variant="body2"
@@ -47,7 +48,7 @@ export default function EventCard(props) {
             textAlign="left"
             mt={2}
           >
-            {props.cardData.price}
+            {cardData.price}
           </Typography>
         </CardContent>
       </CardActionArea>
