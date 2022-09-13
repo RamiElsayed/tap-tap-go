@@ -11,10 +11,18 @@ const cardData = {
   value: 4,
 };
 
+const eventData = {
+  date: "12th May 1990",
+  username: "Username Jones",
+  name: "Salsa with Fabian Sarango",
+  location: "Velvet Rooms",
+  price: 8,
+};
+
 function EventPage() {
   return (
     <>
-      <EventDetailsA />
+      <EventDetailsA eventData={eventData} />
       <ImageCarousel />
       <EventDetailsB />
       <ReviewCard cardData={cardData} />

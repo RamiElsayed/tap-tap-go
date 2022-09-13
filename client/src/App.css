@@ -28,3 +28,9 @@
 .img--Column:hover {
   filter: blur(1px) brightness(90%);
 }
+
+.event-details {
+  height: 300px;
+  width: 300px;
+  background-color: #ffd072;
+}
