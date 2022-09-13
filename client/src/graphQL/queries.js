@@ -53,6 +53,14 @@ export const GET_PROFILEDATA = gql`
           postcode
           streetName
         }
+        images {
+          _id
+          imageLink
+        }
+        tags {
+          _id
+          tagName
+        }
       }
       reviews {
         _id
@@ -67,6 +75,7 @@ export const GET_PROFILEDATA = gql`
     }
   }
 `;
+
 export const QUERY_ME = gql`
   query me {
     me {
