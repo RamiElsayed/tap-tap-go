@@ -9,7 +9,12 @@ const cardData = {
 };
 
 function EventPage() {
-  return <ReviewCard cardData={cardData} />;
+  return (
+    <>
+      <ReviewCard cardData={cardData} />
+      <p>test</p>
+    </>
+  );
 }
 
 export default EventPage;

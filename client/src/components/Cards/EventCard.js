@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import { CardActionArea } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function EventCard(props) {
   return (
     <Card sx={{ maxWidth: "100%" }}>
-      <CardActionArea>
+      <CardActionArea component={RouterLink} to={"/event"}>
         <CardMedia
           component="img"
           height="170"
