@@ -9,28 +9,25 @@ import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
 import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
-import areIntervalsOverlappingWithOptions from "date-fns/esm/fp/areIntervalsOverlappingWithOptions/index";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
 let options = ["Activities", "Bookmarks", "Your Events", "Reviews", "Manage"];
 
-function Profile() {
+const Profile = () => {
   //const { userId: userParam } = useParams();
-  const userParam = "632071e89a8b7213cf9d0812";
+  const userParam = "63208fd7a316f0af42ad5557";
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });
-  const userDetails = data?.user || [];
 
-  //const [userDetails, setUserDetails] = useState(UserData);
-  console.log(userDetails);
+  let userDetails = data?.user || [];
 
-  //const [userDetails, setUserDetails] = useState(UserData);
+  // const [userDetails, setUserDetails] = useState("");
+
   const [postBoardOption, setPostBoard] = useState("Activities");
 
   function changeBoardOptions(value) {
-    console.log("inside");
     setPostBoard(value);
   }
 
@@ -38,7 +35,7 @@ function Profile() {
     if (postBoardOption == "Activities") {
       return <PostBoard />;
     } else if (postBoardOption == "Bookmarks") {
-      return <Bookmarks />;
+      return <Bookmarks bookmarkData={userDetails.bookmarks} />;
     } else if (postBoardOption == "Your Events") {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {
@@ -69,6 +66,6 @@ function Profile() {
       </Grid>
     </div>
   );
-}
+};
 
 export default Profile;
