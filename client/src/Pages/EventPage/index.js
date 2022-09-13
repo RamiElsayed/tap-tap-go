@@ -34,23 +34,19 @@ const eventData = {
 
 export default function EventPage() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={3} xl={3}>
+        <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
           <EventDetailsA eventData={eventData} />
         </Grid>
-        <Grid item xs={12} md={6} lg={9} xl={9}>
+        <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
           <ImageCarousel />
         </Grid>
         <Grid item xs={4}>
-          <Item>
-            <EventDetailsB />
-          </Item>
+          <EventDetailsB />
         </Grid>
         <Grid item xs={8}>
-          <Item>
-            <ReviewCard cardData={cardData} />
-          </Item>
+          <ReviewCard cardData={cardData} />
         </Grid>
       </Grid>
     </Box>
