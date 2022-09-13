@@ -1,21 +1,21 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import { CardActionArea } from "@mui/material";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+import { CardActionArea } from '@mui/material';
 
-export default function EventCard({ cardData }) {
+export default function EventCard({ eventName, price }) {
   return (
-    <Card sx={{ maxWidth: "100%" }}>
+    <Card sx={{ maxWidth: '100%' }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="170"
           image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={cardData.eventName}
+          alt={eventName}
         />
         <CardContent>
           <Typography
@@ -24,13 +24,13 @@ export default function EventCard({ cardData }) {
             component="div"
             textAlign="left"
           >
-            {cardData.eventName}
+            {eventName}
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "left",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'left',
             }}
           >
             <Rating
@@ -48,7 +48,7 @@ export default function EventCard({ cardData }) {
             textAlign="left"
             mt={2}
           >
-            {cardData.price}
+            £{price}
           </Typography>
         </CardContent>
       </CardActionArea>
