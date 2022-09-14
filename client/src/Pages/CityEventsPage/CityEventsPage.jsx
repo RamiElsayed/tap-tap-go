@@ -19,7 +19,7 @@ const CityEventsPage = () => {
           marginTop: { xs: '3rem', md: '0rem' },
         }}
       >
-        <Typography variant="h2" gutterBottom textAlign="left">
+        <Typography variant="h2" textAlign="left" my={4}>
           City Name
         </Typography>
         {/* TODO: will map later with data. all of these card to make sure layout is correct and responsiveness */}
@@ -27,7 +27,7 @@ const CityEventsPage = () => {
           <Grid item xs={12} md={4}>
             <CityCard />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={6} md={4}>
             <CityCard />
           </Grid>
           <Grid item xs={12} md={4}>
