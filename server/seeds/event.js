@@ -1,11 +1,11 @@
-const { Event, User } = require('../models');
-const { faker } = require('@faker-js/faker/locale/en_GB');
-const { formatDate } = require('../utils/index');
-const Tag = require('../models/Tag');
+const { Event, User } = require("../models");
+const { faker } = require("@faker-js/faker/locale/en_GB");
+const { formatDate } = require("../utils/index");
+const Tag = require("../models/Tag");
 
 const generateEvents = async () => {
   const users = await User.find({});
-  const ageGroupArr = ['Children', 'Teenagers', 'Adults', 'Seniors'];
+  const ageGroupArr = ["Children", "Teenagers", "Adults", "Seniors"];
 
   for (let i = 0; i < users.length; i++) {
     const { username } = users[i];
@@ -32,6 +32,7 @@ const generateEvents = async () => {
         date,
         price,
         ageGroup,
+        createdById: userId,
         attendees,
         maxAttendees,
       };
@@ -53,7 +54,7 @@ const generateEvents = async () => {
 const seedEvents = async () => {
   try {
     await generateEvents();
-    console.log('Successfully seeded events data.');
+    console.log("Successfully seeded events data.");
   } catch (err) {
     console.log(`Failed to seed events data || ${err.message}`);
   }
