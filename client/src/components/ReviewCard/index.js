@@ -10,7 +10,7 @@ import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 
 import { CardActionArea } from "@mui/material";
 
-export default function ReviewCard({ cardData }) {
+export default function ReviewCard({ title, rating, username, reviewText }) {
   return (
     <Card sx={{ maxWidth: "850px", mb: "1rem" }}>
       <CardContent>
@@ -28,12 +28,12 @@ export default function ReviewCard({ cardData }) {
             textAlign="left"
             fontWeight="600"
           >
-            {cardData.title}
+            {title}
           </Typography>
           <Rating
             size="medium"
             name="read-only"
-            value={cardData.rating}
+            value={rating}
             icon={<CircleRoundedIcon fontSize="inherit" />}
             emptyIcon={<CircleRoundedIcon fontSize="inherit" />}
             readOnly
@@ -45,7 +45,7 @@ export default function ReviewCard({ cardData }) {
           component="div"
           textAlign="left"
         >
-          {cardData.username}
+          {username}
         </Typography>
         <Typography
           variant="body1"
@@ -53,7 +53,7 @@ export default function ReviewCard({ cardData }) {
           textAlign="left"
           mt={2}
         >
-          {cardData.reviewText}
+          {reviewText}
         </Typography>
       </CardContent>
     </Card>

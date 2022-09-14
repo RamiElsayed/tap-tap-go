@@ -1,21 +1,35 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import { CardActionArea } from "@mui/material";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+import { CardActionArea } from '@mui/material';
 
-export default function EventCard({ cardData }) {
+export default function EventCard({ eventName, price, reviews, images }) {
+  const averageRating = () => {
+    return (
+      reviews
+        .map((review) => review.rating)
+        .reduce((acc, curr) => acc + curr, 0) / reviews.length
+    );
+  };
+
+  const randomImageSelector = () => {
+    return images[Math.floor(Math.random() * images.length)].imageLink;
+  };
+
+  console.log('reviews', reviews);
+
   return (
-    <Card sx={{ maxWidth: "100%" }}>
+    <Card sx={{ maxWidth: '100%' }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="170"
-          image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={cardData.eventName}
+          image={randomImageSelector()}
+          alt={eventName}
         />
         <CardContent>
           <Typography
@@ -24,23 +38,24 @@ export default function EventCard({ cardData }) {
             component="div"
             textAlign="left"
           >
-            {cardData.eventName}
+            {eventName}
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "left",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'left',
             }}
           >
             <Rating
               size="small"
               name="read-only"
               // value={props.cardData.value}
-              value={5}
+              value={averageRating()}
+              precision={0.5}
               readOnly
             />
-            <Typography variant="caption">256</Typography>
+            <Typography variant="caption">{reviews.length}</Typography>
           </Box>
           <Typography
             variant="body2"
@@ -48,7 +63,7 @@ export default function EventCard({ cardData }) {
             textAlign="left"
             mt={2}
           >
-            {cardData.price}
+            £{price}
           </Typography>
         </CardContent>
       </CardActionArea>

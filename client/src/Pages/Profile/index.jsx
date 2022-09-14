@@ -23,6 +23,7 @@ const Profile = () => {
   });
 
   let userDetails = data?.user || [];
+  console.log("userDetails", userDetails);
 
   // const [userDetails, setUserDetails] = useState("");
 
@@ -41,7 +42,7 @@ const Profile = () => {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {
       return userDetails.reviews.map((review, i) => (
-        <ReviewCard cardData={review} key={i} />
+        <ReviewCard {...review} key={i} />
       ));
     } else if (postBoardOption == "NewEvent") {
       return <ReviewForm />;

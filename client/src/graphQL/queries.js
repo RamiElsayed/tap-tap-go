@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_USER = gql`
   query getUser($userId: ID!) {
@@ -9,6 +9,10 @@ export const GET_USER = gql`
         firstName
         lastName
         username
+        address
+        createdAt
+        profileAvatar
+        aboutMe
         number
         email
         bookmarks {
@@ -30,6 +34,11 @@ export const GET_PROFILEDATA = gql`
       firstName
       lastName
       username
+      address
+      createdAt
+      profileAvatar
+      aboutMe
+      websiteUrl
       number
       email
       bookmarks {
@@ -43,6 +52,18 @@ export const GET_PROFILEDATA = gql`
           state
           postcode
           streetName
+        }
+        images {
+          _id
+          imageLink
+        }
+        tags {
+          _id
+          tagName
+        }
+        reviews {
+          _id
+          rating
         }
       }
       reviews {
@@ -58,6 +79,7 @@ export const GET_PROFILEDATA = gql`
     }
   }
 `;
+
 export const QUERY_ME = gql`
   query me {
     me {
