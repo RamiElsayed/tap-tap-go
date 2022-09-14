@@ -1,28 +1,29 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { ADD_USER } from '../../graphQL/mutations';
-import { useMutation } from '@apollo/client';
-import Auth from '../../utils/auth';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { Card, CardContent } from '@mui/material';
-import Copyright from './CopyRight';
+import { ADD_USER } from "../../graphQL/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { Card, CardContent } from "@mui/material";
+import Copyright from "./CopyRight";
 
 export const SignUp = ({ closeSignUp, switchToSignIn }) => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
-    number: '',
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
+    username: "",
+    address: "",
+    number: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -46,8 +47,7 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
       const { data } = await createUser({
         variables: { input: { ...formState } },
       });
-      console.log(data);
-      await Auth.login(data.createUser.token);
+      Auth.login(data.createUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -58,35 +58,35 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
       onClick={closeSignUp}
       value="CloseBox"
       sx={{
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "rgba(0,0,0,0.5)",
         zIndex: 999,
-        position: 'fixed',
+        position: "fixed",
         top: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <CssBaseline />
       <Card
         sx={{
-          width: { xs: '95%', sm: '600px' },
-          maxWidth: '90%',
-          backgroundColor: 'white',
+          width: { xs: "95%", sm: "600px" },
+          maxWidth: "90%",
+          backgroundColor: "white",
         }}
       >
         <CardContent
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mx: 'auto',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            mx: "auto",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h2" variant="h5">
@@ -122,6 +122,16 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
               value={formState.username}
               onChange={handleChange}
               label="username"
+              type="text"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="address"
+              value={formState.address}
+              onChange={handleChange}
+              label="Address"
               type="text"
             />
             <TextField
