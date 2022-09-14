@@ -55,6 +55,23 @@
   bottom: 500px;
 }
 
+.tags-list {
+  margin-bottom: 50px;
+}
+
+.tags-list li {
+  display: inline;
+  background-color: #aa182b;
+  border-radius: 20%;
+  padding: 10px;
+  margin: 20px;
+}
+
+.tags-list li a {
+  text-decoration: none;
+  color: white;
+}
+
 @media only screen and (max-width: 1200px) {
   .get-tix-btn {
     left: 0;

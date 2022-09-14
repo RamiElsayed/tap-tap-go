@@ -91,26 +91,59 @@ export default function EventPage() {
           <Stack>
             {" "}
             <ReviewCard
-              style={{ position: "relative", bottom: "500px" }}
               title={cardData.title}
               rating={cardData.value}
               username={cardData.author}
               reviewText={cardData.description}
             />
             <ReviewCard
-              style={{ position: "relative", bottom: "500px" }}
               title={cardData.title}
               rating={cardData.value}
               username={cardData.author}
               reviewText={cardData.description}
             />
             <ReviewCard
-              style={{ position: "relative", bottom: "500px" }}
               title={cardData.title}
               rating={cardData.value}
               username={cardData.author}
               reviewText={cardData.description}
             />
+          </Stack>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          xl={12}
+          display="flex"
+          justifyContent="center"
+        >
+          <Stack>
+            <h1 style={{ marginTop: "50px", textAlign: "center" }}>
+              Looking for Similar Events?
+            </h1>
+            <ul className="tags-list">
+              <li>
+                <a href="#">Tag 1</a>
+              </li>
+              <li>
+                <a href="#">Tag 2</a>
+              </li>
+              <li>
+                <a href="#">Tag 3</a>
+              </li>
+              <li>
+                <a href="#">Tag 4</a>
+              </li>
+              <li>
+                <a href="#">Tag 5</a>
+              </li>
+              <li>
+                <a href="#">Tag 6</a>
+              </li>
+            </ul>
           </Stack>
         </Grid>
       </Grid>
