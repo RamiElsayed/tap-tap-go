@@ -45,13 +45,25 @@
 
 .get-tix-btn {
   background-color: #aa182b !important;
-  left: 40%;
+  left: 35%;
   width: 250px;
   height: 50px;
+}
+
+.event-text {
+  position: relative;
+  margin: 30px;
+  bottom: 270px;
 }
 
 @media only screen and (max-width: 1200px) {
   .get-tix-btn {
     left: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .event-text {
+    position: static;
   }
 }

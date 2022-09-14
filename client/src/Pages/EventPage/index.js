@@ -28,7 +28,7 @@ const cardData = {
 const eventData = {
   date: "12th May 1990",
   username: "Username Jones",
-  name: "Salsa with Fabian Sarango",
+  title: "Salsa with Fabian Sarango",
   location: "Velvet Rooms",
   price: 8,
   ageGroup: "All Welcome",
@@ -38,9 +38,12 @@ const eventData = {
   postcode: "B1 2DR",
 };
 
+const eventText =
+  "Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett.";
+
 export default function EventPage() {
   return (
-    <Box>
+    <Box display="flex">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
           <EventDetailsA eventData={eventData} />
@@ -55,6 +58,15 @@ export default function EventPage() {
           <Button className="get-tix-btn" variant="contained">
             Get Tickets
           </Button>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
+          <div></div>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
+          <div class="event-text">
+            <h1 style={{ textAlign: "center" }}>{eventData.title}</h1>
+            <p>{eventText}</p>
+          </div>
         </Grid>
         <Grid item xs={8}>
           <ReviewCard cardData={cardData} />
