@@ -6,19 +6,12 @@ const CityEventsPage = () => {
   return (
     <Grid
       container
-      sx={{ display: 'flex', flexDirection: 'column' }}
+      sx={{
+        flexGrow: '1',
+      }}
       className="section__block-5"
     >
-      <Grid
-        item
-        justifyContent="center"
-        xs={12}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginTop: { xs: '3rem', md: '0rem' },
-        }}
-      >
+      <Grid item xs={12}>
         <Typography variant="h2" textAlign="left" my={4}>
           City Name
         </Typography>
@@ -27,7 +20,7 @@ const CityEventsPage = () => {
           <Grid item xs={12} md={4}>
             <CityCard />
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={4}>
             <CityCard />
           </Grid>
           <Grid item xs={12} md={4}>

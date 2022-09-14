@@ -61,7 +61,10 @@ export const App = () => {
     <ApolloProvider client={client}>
       {modalState ? <SignForms closeModal={closeModal} /> : ''}
       <Router>
-        <Container maxWidth="xl">
+        <Container
+          maxWidth="xl"
+          sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        >
           <Navbar openModal={openModal} />
           <Routes>
             <Route
