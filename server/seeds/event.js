@@ -19,6 +19,7 @@ const generateEvents = async () => {
 
       const eventName = faker.lorem.words(3);
       const description = faker.lorem.paragraph(3);
+      const createdById = userId;
       const date = formatDate(faker.date.future());
       const price = faker.commerce.price();
       const ageGroup = randomAgeGroup;
@@ -29,6 +30,7 @@ const generateEvents = async () => {
         username,
         eventName,
         description,
+        createdById,
         date,
         price,
         ageGroup,
