@@ -3,11 +3,25 @@ const { faker } = require('@faker-js/faker/locale/en_GB');
 
 const generateLocations = async () => {
   const events = await Event.find({});
+  const cities = [
+    'London',
+    'Birmingham',
+    'Nottingham',
+    'Bristol',
+    'Bath',
+    'Cardiff',
+    'Leicester',
+    'Liverpool',
+    'Brighton',
+    'Exeter',
+    'Surrey',
+    'York',
+  ];
 
   for (let i = 0; i < events.length; i++) {
     const { _id: eventId } = events[i];
 
-    const cityName = faker.address.cityName();
+    const cityName = cities[Math.floor(Math.random() * cities.length)];
     const buildingNumber = faker.address.buildingNumber();
     const streetName = faker.address.street();
     const county = faker.address.county();
