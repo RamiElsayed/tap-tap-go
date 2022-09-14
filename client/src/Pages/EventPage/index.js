@@ -52,7 +52,9 @@ export default function EventPage() {
           <EventDetailsB eventData={eventData} />
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
-          {/* <Button variant="contained">Get Tickets</Button> */}
+          <Button className="get-tix-btn" variant="contained">
+            Get Tickets
+          </Button>
         </Grid>
         <Grid item xs={8}>
           <ReviewCard cardData={cardData} />
