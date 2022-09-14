@@ -35,7 +35,14 @@
   background-color: #ffd072;
 }
 
-.carousel {
+/* .carousel {
   padding: 8px;
-  height: 300px;
+  height: 305px;
+} */
+
+.carousel {
+  padding-top: 8px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  height: 309px;
 }
