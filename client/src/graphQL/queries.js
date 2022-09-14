@@ -95,3 +95,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_TAGS = gql`
+  query Tags {
+    tags {
+      tagName
+    }
+  }
+`;

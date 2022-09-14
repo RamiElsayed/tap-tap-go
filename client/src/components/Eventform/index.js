@@ -17,23 +17,23 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useTheme } from "@mui/material/styles";
 import DropZone from "../dropZone/index";
 import { Stack } from "@mui/system";
-
-const keywords = [
-  "Oliver",
-  "Van",
-  "April",
-  "Ralph",
-  "Omar",
-  "Carlos",
-  "Miriam",
-  "Bradley",
-  "Virginia",
-  "Kelly",
-];
+import { QUERY_TAGS } from "../../graphQL/queries";
+import { useQuery } from "@apollo/client";
 
 export default function EventForm() {
+  const { loading, data } = useQuery(QUERY_TAGS);
+  const [keywords, setKeywords] = React.useState([]);
+
+  React.useEffect(() => {
+    if (data?.tags?.length) {
+      console.log(data.tags);
+      setKeywords(data.tags.map((el) => el.tagName));
+    }
+  }, [data]);
+
   const [newEvent, setNewEvent] = React.useState({
     Address: "",
+    eventName: "",
     startDate: null,
     endDate: null,
     price: "",
@@ -41,6 +41,7 @@ export default function EventForm() {
     keywords: [],
     images: [],
     description: "",
+    maxAttendees: "",
   });
 
   const [formNumber, setFormNumber] = React.useState(false);
@@ -68,9 +69,9 @@ export default function EventForm() {
     });
   }
 
-  // React.useEffect(() => {
-  //   console.log(newEvent);
-  // }, [newEvent]);
+  React.useEffect(() => {
+    console.log(newEvent);
+  }, [newEvent]);
 
   function renderForm() {
     if (formNumber == true) {
@@ -103,8 +104,44 @@ export default function EventForm() {
               onChange={updateNewEventDetails}
               value={newEvent.Address}
               fullWidth
+              name="eventName"
+              label="Event Name"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              onChange={updateNewEventDetails}
+              value={newEvent.Address}
+              fullWidth
+              name="streetName"
+              label="Street Name"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              onChange={updateNewEventDetails}
+              value={newEvent.Address}
+              fullWidth
+              name="postcode"
+              label="Postcode"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              onChange={updateNewEventDetails}
+              value={newEvent.Address}
+              fullWidth
               name="Address"
               label="Address"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              onChange={updateNewEventDetails}
+              value={newEvent.Address}
+              fullWidth
+              name="maxAttendees"
+              label="Max attendees"
             />
           </Grid>
           <Grid
@@ -119,18 +156,7 @@ export default function EventForm() {
                 name="startDate"
                 value={newEvent.startDate}
                 onChange={(newValue) => updateDate(newValue, "startDate")}
-                renderInput={(params) => (
-                  <TextField sx={{ width: "49%" }} {...params} />
-                )}
-              />
-              <DatePicker
-                label="End date"
-                name="endDate"
-                value={newEvent.endDate}
-                onChange={(newValue) => updateDate(newValue, "endDate")}
-                renderInput={(params) => (
-                  <TextField sx={{ width: "49%" }} {...params} />
-                )}
+                renderInput={(params) => <TextField fullWidth {...params} />}
               />
             </LocalizationProvider>
           </Grid>

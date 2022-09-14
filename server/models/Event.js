@@ -2,10 +2,6 @@ const { Schema, model } = require("mongoose");
 const { formatDate } = require("../utils");
 
 const eventSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
   eventName: {
     type: String,
     required: true,
@@ -30,9 +26,7 @@ const eventSchema = new Schema({
   createdById: {
     type: Schema.Types.ObjectId,
     ref: "User",
-  },
-  createdByName: {
-    type: String,
+    required: true,
   },
   location: {
     type: Schema.Types.ObjectId,
@@ -58,7 +52,6 @@ const eventSchema = new Schema({
   ],
   attendees: {
     type: Number,
-    required: true,
   },
   maxAttendees: {
     type: Number,
