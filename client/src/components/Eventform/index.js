@@ -1,24 +1,24 @@
-import * as React from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Chip from "@mui/material/Chip";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Card, CardContent, Container, Grid } from "@mui/material";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { useTheme } from "@mui/material/styles";
-import DropZone from "../dropZone/index";
-import { Stack } from "@mui/system";
-import { QUERY_TAGS } from "../../graphQL/queries";
-import { useQuery } from "@apollo/client";
+import * as React from 'react';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { Card, CardContent, Container, Grid } from '@mui/material';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useTheme } from '@mui/material/styles';
+import DropZone from '../dropZone/index';
+import { Stack } from '@mui/system';
+import { QUERY_TAGS } from '../../graphQL/queries';
+import { useQuery } from '@apollo/client';
 
 export default function EventForm() {
   const { loading, data } = useQuery(QUERY_TAGS);
@@ -32,16 +32,16 @@ export default function EventForm() {
   }, [data]);
 
   const [newEvent, setNewEvent] = React.useState({
-    Address: "",
-    eventName: "",
+    Address: '',
+    eventName: '',
     startDate: null,
     endDate: null,
-    price: "",
-    ageGroup: "",
+    price: '',
+    ageGroup: '',
     keywords: [],
     images: [],
-    description: "",
-    maxAttendees: "",
+    description: '',
+    maxAttendees: '',
   });
 
   const [formNumber, setFormNumber] = React.useState(false);
@@ -90,7 +90,7 @@ export default function EventForm() {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button style={{ background: "red" }} fullWidth variant="contained">
+            <Button style={{ background: 'red' }} fullWidth variant="contained">
               Submit
             </Button>
           </Grid>
@@ -148,14 +148,14 @@ export default function EventForm() {
             item
             xs={12}
             md={6}
-            sx={{ display: "flex", justifyContent: "space-between" }}
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="Start date"
                 name="startDate"
                 value={newEvent.startDate}
-                onChange={(newValue) => updateDate(newValue, "startDate")}
+                onChange={(newValue) => updateDate(newValue, 'startDate')}
                 renderInput={(params) => <TextField fullWidth {...params} />}
               />
             </LocalizationProvider>
@@ -180,9 +180,9 @@ export default function EventForm() {
                 name="ageGroup"
                 onChange={updateNewEventDetails}
               >
-                <MenuItem value={"Teenagers"}>Teenagers</MenuItem>
-                <MenuItem value={"Adult"}>Adult</MenuItem>
-                <MenuItem value={"Senior"}>Senior</MenuItem>
+                <MenuItem value={'Teenagers'}>Teenagers</MenuItem>
+                <MenuItem value={'Adult'}>Adult</MenuItem>
+                <MenuItem value={'Senior'}>Senior</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -196,7 +196,7 @@ export default function EventForm() {
                 onChange={handleKeywords}
                 input={<OutlinedInput id="keywords" label="Keywords" />}
                 renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {selected.map((value) => (
                       <Chip key={value} label={value} />
                     ))}
@@ -216,7 +216,7 @@ export default function EventForm() {
           </Grid>
           <Grid item xs={12}>
             <Button
-              style={{ background: "red" }}
+              style={{ background: 'red' }}
               onClick={() => setFormNumber((prev) => !prev)}
               fullWidth
               variant="contained"
@@ -230,16 +230,16 @@ export default function EventForm() {
   }
 
   return (
-    <Container maxWidth="xl">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-
-          height: "90vh",
-        }}
-      >
+    <Container
+      maxWidth="xl"
+      sx={{
+        flexGrow: '1',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <div>
         <Typography
           gutterBottom
           textAlign="center"
