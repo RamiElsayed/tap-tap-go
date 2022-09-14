@@ -2,17 +2,20 @@ const { ApolloError, AuthenticationError } = require("apollo-server");
 
 const { Review, Event, User } = require("../models");
 
-const deleteReview = async (_, { reviewId }, { user, event }) => {
+const deleteReview = async (_, { reviewId }, { user }) => {
   try {
+    console.log(user);
     if (user) {
       const deleteReviewFromDatabase = await Review.findByIdAndDelete(reviewId);
+      const { postedBy } = deleteReviewFromDatabase;
+      const { eventId } = deleteReviewFromDatabase;
       await User.findOneAndUpdate(
-        { _id: user._id },
-        { $pull: { reviews: { reviewId } } },
+        postedBy,
+        { $pull: { reviews: reviewId } },
         { new: true }
       );
       await Event.findOneAndUpdate(
-        { _id: event._id },
+        eventId,
         { $pull: { reviews: { reviewId } } },
         { new: true }
       );

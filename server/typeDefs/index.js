@@ -1,5 +1,5 @@
-const { DateTypeDefinition } = require('graphql-scalars');
-const { gql } = require('apollo-server');
+const { DateTypeDefinition } = require("graphql-scalars");
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   scalar Date
@@ -92,6 +92,7 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     username: String!
+    address: String
     number: String!
     email: String!
     password: String!

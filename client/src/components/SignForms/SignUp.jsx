@@ -37,16 +37,17 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
 
   // New line
 
-  const [createUser, { error, data }] = useMutation(ADD_USER);
+  const [createUser, { error }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log("formState", formState);
 
     try {
       const { data } = await createUser({
         variables: { input: { ...formState } },
       });
+      console.log("sigupform", data);
       Auth.login(data.createUser.token);
     } catch (e) {
       console.error(e);
