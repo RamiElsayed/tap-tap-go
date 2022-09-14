@@ -1,24 +1,24 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Rating from '@mui/material/Rating';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Rating from "@mui/material/Rating";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 
-import { CardActionArea } from '@mui/material';
+import { CardActionArea } from "@mui/material";
 
 export default function ReviewCard({ cardData }) {
   return (
-    <Card sx={{ maxWidth: '850px' }}>
+    <Card sx={{ maxWidth: "850px", mb: "1rem" }}>
       <CardContent>
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <Typography

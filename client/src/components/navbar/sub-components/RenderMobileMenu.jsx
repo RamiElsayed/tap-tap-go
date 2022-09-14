@@ -26,12 +26,12 @@ export default function RenderMobileMenu({
     ));
 
     return (
-      <>
+      <div>
         {propsOptions}
         <Button sx={{ my: 2, color: "inherit", display: "block" }}>
           Bookmark
         </Button>
-      </>
+      </div>
     );
   }
 
