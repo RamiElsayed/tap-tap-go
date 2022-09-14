@@ -1,5 +1,5 @@
-const { Review, Event, User } = require('../models');
-const { faker } = require('@faker-js/faker/locale/en_GB');
+const { Review, Event, User } = require("../models");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 
 const generateReviews = async () => {
   const users = await User.find({});
@@ -17,7 +17,7 @@ const generateReviews = async () => {
       const rating = faker.datatype.number({ min: 1, max: 5 });
 
       const nonHostAttendees = users.filter(
-        (user) => user.username !== hostUsername,
+        (user) => user.username !== hostUsername
       );
 
       const reviewer =
@@ -31,6 +31,7 @@ const generateReviews = async () => {
         reviewText,
         rating,
         postedBy,
+        eventId,
       };
 
       const createdReview = await Review.create(review);
@@ -54,7 +55,7 @@ const seedReviews = async () => {
   try {
     await generateReviews();
 
-    console.log('Successfully seeded reviews data.');
+    console.log("Successfully seeded reviews data.");
   } catch (err) {
     console.log(`Failed to seed reviews data || ${err.message}`);
   }

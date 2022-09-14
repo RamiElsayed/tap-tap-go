@@ -20,6 +20,10 @@ const reviewSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  eventId: {
+    type: Schema.Types.ObjectId,
+    ref: "Event",
+  },
 });
 
 const Review = model("Review", reviewSchema);

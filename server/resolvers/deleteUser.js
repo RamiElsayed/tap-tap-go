@@ -2,11 +2,15 @@ const { ApolloError, AuthenticationError } = require("apollo-server");
 
 const { User } = require("../models");
 
-const deleteUser = async (_, { userId }, { user }) => {
+const deleteUser = async (_, { userId }, { user, event }) => {
   try {
     if (user) {
       await User.findById(userId);
-      await Event.deleteMany({});
+      await Event.findByIdAndUpdate(
+        { _id: event._id },
+        { $pull: { reviews: { reviewId } } },
+        { new: true }
+      );
     } else {
       throw new AuthenticationError("You must be logged in to delete a user.");
     }
