@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
@@ -10,6 +10,7 @@ import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
 import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
 import ReviewCard from "../../components/ReviewCard";
+import Auth from "../../utils/auth";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
@@ -17,13 +18,14 @@ let options = ["Activities", "Bookmarks", "Your Events", "Reviews", "Manage"];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
-  const userParam = "6320cd815331363cf7df1b6a";
+  // const userParam = "6321b33222ddc6d1be9f22dc";
+  const userParam = Auth.getProfile().data._id;
+
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });
 
   let userDetails = data?.user || [];
-  console.log("userDetails", userDetails);
 
   // const [userDetails, setUserDetails] = useState("");
 
