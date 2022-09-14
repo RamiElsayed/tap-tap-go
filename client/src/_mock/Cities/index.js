@@ -7,11 +7,11 @@ let itemData = [
   },
   {
     img: 'https://images.unsplash.com/photo-1589352511666-341e33517a0b',
-    title: 'Bham',
+    title: 'Birmingham',
   },
   {
     img: 'https://images.unsplash.com/photo-1502732728614-8329a1bf1415',
-    title: 'Notts',
+    title: 'Nottingham',
   },
   {
     img: 'https://images.unsplash.com/photo-1603776032023-ec5e5201c36e',

@@ -1,37 +1,38 @@
-import "./App.css";
+import './App.css';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { SignForms } from "./components/SignForms/index";
-import Profile from "./Pages/Profile";
-import Navbar from "./components/Navbar";
-import Landing from "./Pages/Landing";
-import EventPage from "./Pages/EventPage";
-import { Container } from "@mui/system";
-import Footer from "./components/Footer";
-import { useState } from "react";
-import EventForm from "./components/Eventform/index";
-import BookMark from "./components/bookmark";
-import { Keywords } from "./_mock/RecentSearches/index.js";
-import { SignUp } from "./components/SignForms/SignUp";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { SignForms } from './components/SignForms/index';
+import Profile from './Pages/Profile';
+import Navbar from './components/Navbar';
+import Landing from './Pages/Landing';
+import CityEventsPage from './Pages/CityEventsPage';
+import EventPage from './Pages/EventPage';
+import { Container } from '@mui/system';
+import Footer from './components/Footer';
+import { useState } from 'react';
+import EventForm from './components/Eventform/index';
+import BookMark from './components/bookmark';
+import { Keywords } from './_mock/RecentSearches/index.js';
+import { SignUp } from './components/SignForms/SignUp';
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -50,15 +51,15 @@ export const App = () => {
   }
 
   function closeModal(event) {
-    const isCloseBox = event.target.getAttribute("value");
+    const isCloseBox = event.target.getAttribute('value');
     setModalState((prev) => {
-      return isCloseBox === "CloseBox" ? !prev : prev;
+      return isCloseBox === 'CloseBox' ? !prev : prev;
     });
   }
 
   return (
     <ApolloProvider client={client}>
-      {modalState ? <SignForms closeModal={closeModal} /> : ""}
+      {modalState ? <SignForms closeModal={closeModal} /> : ''}
       <Router>
         <Container maxWidth="xl">
           <Navbar openModal={openModal} />
@@ -67,12 +68,13 @@ export const App = () => {
               path="/"
               element={<Landing recentSearches={recentSearches} />}
             />
-
             <Route path="/user/:usedId" element={<Profile />} />
             <Route path="/signup" element={<SignUp />} />
-
+            <Route
+              path="/search/cities/:itemTitle"
+              element={<CityEventsPage />}
+            />
             <Route path="/new-event" element={<EventForm />} />
-
             <Route path="/test" element={<BookMark />} />
           </Routes>
           <Footer />
