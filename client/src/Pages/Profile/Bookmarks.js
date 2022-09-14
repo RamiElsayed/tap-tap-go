@@ -10,7 +10,7 @@ const cardData = {
 };
 
 function Bookmarks({ bookmarkData }) {
-  console.log(bookmarkData);
+  console.log('bookmarkData', bookmarkData);
   return (
     <Card sx={{ width: { xs: '100%', md: '100%' } }}>
       <CardContent

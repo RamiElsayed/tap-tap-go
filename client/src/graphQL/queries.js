@@ -61,6 +61,10 @@ export const GET_PROFILEDATA = gql`
           _id
           tagName
         }
+        reviews {
+          _id
+          rating
+        }
       }
       reviews {
         _id

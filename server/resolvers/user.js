@@ -8,7 +8,12 @@ const user = async (_, { userId }) => {
       .populate('events')
       .populate({
         path: 'bookmarks',
-        populate: [{ path: 'location' }, { path: 'images' }, { path: 'tags' }],
+        populate: [
+          { path: 'location' },
+          { path: 'images' },
+          { path: 'tags' },
+          { path: 'reviews' },
+        ],
       });
 
     return userFromDatabase;

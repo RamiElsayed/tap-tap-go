@@ -17,12 +17,13 @@ let options = ['Activities', 'Bookmarks', 'Your Events', 'Reviews', 'Manage'];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
-  const userParam = '6320f88cd4e162f5d91e0138';
+  const userParam = '6321249bcfeb84ebbe6b5132';
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });
 
   let userDetails = data?.user || [];
+  console.log('userDetails', userDetails);
 
   // const [userDetails, setUserDetails] = useState("");
 
