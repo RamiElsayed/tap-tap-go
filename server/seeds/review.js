@@ -14,7 +14,7 @@ const generateReviews = async () => {
     for (let j = 0; j < numberOfReviews; j++) {
       const title = faker.lorem.lines(1);
       const reviewText = faker.lorem.paragraph();
-      const rating = faker.datatype.number({ min: 1, max: 10 });
+      const rating = faker.datatype.number({ min: 1, max: 5 });
 
       const nonHostAttendees = users.filter(
         (user) => user.username !== hostUsername,
