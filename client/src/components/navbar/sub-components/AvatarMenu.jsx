@@ -7,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import Auth from "../../../utils/auth";
 
 export default function AvatarMenu({
   handleOpenUserMenu,
@@ -41,7 +42,7 @@ export default function AvatarMenu({
           </Link>
         </MenuItem>
         <MenuItem>
-          <Typography to={`/user/${1}`}>Logout</Typography>
+          <Typography onClick={() => Auth.logout()}>Logout</Typography>
         </MenuItem>
       </Menu>
     </Box>

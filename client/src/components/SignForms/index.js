@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { SignIn } from './SignIn';
-import { SignUp } from './SignUp';
+import { SignIn } from "./SignIn";
+import { SignUp } from "./SignUp";
 
 export const SignForms = ({ closeModal }) => {
-  const [isSignIn, setIsSignIn] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true);
 
   function switchSignType() {
     setIsSignIn((prev) => !prev);
