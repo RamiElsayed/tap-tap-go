@@ -8,15 +8,29 @@ import Rating from "@mui/material/Rating";
 import { CardActionArea } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
-export default function EventCard(props) {
+export default function EventCard({ eventName, price, reviews, images }) {
+  const averageRating = () => {
+    return (
+      reviews
+        .map((review) => review.rating)
+        .reduce((acc, curr) => acc + curr, 0) / reviews.length
+    );
+  };
+
+  const randomImageSelector = () => {
+    return images[Math.floor(Math.random() * images.length)].imageLink;
+  };
+
+  console.log("reviews", reviews);
+
   return (
     <Card sx={{ maxWidth: "100%" }}>
       <CardActionArea component={RouterLink} to={"/event"}>
         <CardMedia
           component="img"
           height="170"
-          image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={props.cardData.alt}
+          image={randomImageSelector()}
+          alt={eventName}
         />
         <CardContent>
           <Typography
@@ -25,7 +39,7 @@ export default function EventCard(props) {
             component="div"
             textAlign="left"
           >
-            {props.cardData.title}
+            {eventName}
           </Typography>
           <Box
             sx={{
@@ -37,10 +51,12 @@ export default function EventCard(props) {
             <Rating
               size="small"
               name="read-only"
-              value={props.cardData.value}
+              // value={props.cardData.value}
+              value={averageRating()}
+              precision={0.5}
               readOnly
             />
-            <Typography variant="caption">{props.cardData.nRatings}</Typography>
+            <Typography variant="caption">{reviews.length}</Typography>
           </Box>
           <Typography
             variant="body2"
@@ -48,7 +64,7 @@ export default function EventCard(props) {
             textAlign="left"
             mt={2}
           >
-            {props.cardData.price}
+            £{price}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -10,23 +10,18 @@ const locationSchema = new Schema({
   },
   cityName: {
     type: String,
-    required: true,
   },
   county: {
     type: String,
-    required: true,
   },
   latitude: {
     type: String,
-    required: true,
   },
   longitude: {
     type: String,
-    required: true,
   },
   state: {
     type: String,
-    required: true,
   },
   postcode: {
     type: String,

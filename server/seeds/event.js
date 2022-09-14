@@ -43,6 +43,7 @@ const generateEvents = async () => {
       await User.findByIdAndUpdate(userId, {
         $push: {
           events: eventId,
+          bookmarks: eventId,
         },
       });
     }
