@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import { Stack } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -39,7 +40,7 @@ const eventData = {
 };
 
 const eventText =
-  "Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett.";
+  "Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett.Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett. Pokem ipsum dolor sit amet Wartortle Palpitoad Donphan Quagsire Tangrowth Pinsir. Kanto Lotad Chimecho Serperior Leafeon Krokorok Cobalion. Pikachu Buizel Drifloon Dusknoir Geodude Fuchsia City Ruby. Hive Badge Celadon Department Store Nosepass Slakoth Helix Fossil Pokemon Master Wailord. Sapphire Seismitoad Charmander Samurott Misty Camerupt Bulbasaur. Qui officia deserunt mollit Flying Vigoroth Mime Jr Hitmontop Huntail Gloom. Vine Whip Starmie Magnemite Skiploom Grimer Sigilyph searching far and wide. Sonic Boom Ledian Kabutops Kanto Venomoth Sawk Wing Attack. Fire Sunkern Bronzong Cobalion Rare Candy quis nostrud exercitation Moltres. Boulder Badge Kyurem Ninetales Regirock Hitmonchan Thunder Badge Diglett.";
 
 export default function EventPage() {
   return (
@@ -55,21 +56,62 @@ export default function EventPage() {
           <EventDetailsB eventData={eventData} />
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
-          <Button className="get-tix-btn" variant="contained">
-            Get Tickets
-          </Button>
+          <Stack>
+            <Button className="get-tix-btn" variant="contained">
+              Get Tickets
+            </Button>
+            <div>
+              <h1 style={{ textAlign: "center", marginTop: "50px" }}>
+                {eventData.title}
+              </h1>
+              <p style={{ margin: " 0 50px" }}>{eventText}</p>
+            </div>
+          </Stack>
         </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
-          <div></div>
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+          <h1
+            style={{
+              textAlign: "center",
+              marginTop: "50px",
+            }}
+          >
+            Reviews
+          </h1>
         </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
-          <div class="event-text">
-            <h1 style={{ textAlign: "center" }}>{eventData.title}</h1>
-            <p>{eventText}</p>
-          </div>
-        </Grid>
-        <Grid item xs={8}>
-          <ReviewCard cardData={cardData} />
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          xl={12}
+          display="flex"
+          justifyContent="center"
+        >
+          <Stack>
+            {" "}
+            <ReviewCard
+              style={{ position: "relative", bottom: "500px" }}
+              title={cardData.title}
+              rating={cardData.value}
+              username={cardData.author}
+              reviewText={cardData.description}
+            />
+            <ReviewCard
+              style={{ position: "relative", bottom: "500px" }}
+              title={cardData.title}
+              rating={cardData.value}
+              username={cardData.author}
+              reviewText={cardData.description}
+            />
+            <ReviewCard
+              style={{ position: "relative", bottom: "500px" }}
+              title={cardData.title}
+              rating={cardData.value}
+              username={cardData.author}
+              reviewText={cardData.description}
+            />
+          </Stack>
         </Grid>
       </Grid>
     </Box>
