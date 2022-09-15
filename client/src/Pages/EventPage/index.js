@@ -44,31 +44,49 @@ const eventText =
 
 export default function EventPage() {
   return (
-    <Box display="flex">
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
+    <Grid container spacing={3}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        lg={3}
+        sx={{ order: { xs: "2", md: "1" } }}
+      >
+        <Stack>
           <EventDetailsA eventData={eventData} />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
-          <ImageCarousel />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={3} xl={3}>
           <EventDetailsB eventData={eventData} />
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
-          <Stack>
-            <Button className="get-tix-btn" variant="contained">
-              Get Tickets
-            </Button>
-            <div>
-              <h1 style={{ textAlign: "center", marginTop: "50px" }}>
-                {eventData.title}
-              </h1>
-              <p style={{ margin: " 0 50px" }}>{eventText}</p>
-            </div>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        </Stack>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        lg={9}
+        sx={{ order: { xs: "1", md: "2" } }}
+      >
+        <Stack>
+          <ImageCarousel />
+          <Button
+            sx={{
+              backgroundColor: "#aa182b",
+              marginY: "1rem",
+              marginX: "auto",
+              width: "250px",
+              height: "50px",
+            }}
+            variant="contained"
+          >
+            Get Tickets
+          </Button>
+          <div>
+            <h1 style={{ textAlign: "center", marginTop: "50px" }}>
+              {eventData.title}
+            </h1>
+            <p style={{ margin: " 0 50px" }}>{eventText}</p>
+          </div>
+
           <h1
             style={{
               textAlign: "center",
@@ -77,19 +95,14 @@ export default function EventPage() {
           >
             Reviews
           </h1>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          lg={12}
-          xl={12}
-          display="flex"
-          justifyContent="center"
-        >
-          <Stack>
-            {" "}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignContent: "center",
+              justifyContent: "center",
+            }}
+          >
             <ReviewCard
               title={cardData.title}
               rating={cardData.value}
@@ -108,18 +121,7 @@ export default function EventPage() {
               username={cardData.author}
               reviewText={cardData.description}
             />
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          lg={12}
-          xl={12}
-          display="flex"
-          justifyContent="center"
-        >
+          </Box>
           <Stack>
             <h1 style={{ marginTop: "50px", textAlign: "center" }}>
               Looking for Similar Events?
@@ -145,8 +147,82 @@ export default function EventPage() {
               </li>
             </ul>
           </Stack>
-        </Grid>
+        </Stack>
       </Grid>
-    </Box>
+
+      {/* <Grid item xs={12} sm={6} md={6} lg={9} xl={9}>
+        <Stack>
+          <Button className="get-tix-btn" variant="contained">
+            Get Tickets
+          </Button>
+          <div>
+            <h1 style={{ textAlign: "center", marginTop: "50px" }}>
+              {eventData.title}
+            </h1>
+            <p style={{ margin: " 0 50px" }}>{eventText}</p>
+          </div>
+        </Stack>
+      </Grid> */}
+      {/* <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        <h1
+          style={{
+            textAlign: "center",
+            marginTop: "50px",
+          }}
+        >
+          Reviews
+        </h1>
+      </Grid>
+      <Grid item xs={12} display="flex" justifyContent="center">
+        <Stack>
+          {" "}
+          <ReviewCard
+            title={cardData.title}
+            rating={cardData.value}
+            username={cardData.author}
+            reviewText={cardData.description}
+          />
+          <ReviewCard
+            title={cardData.title}
+            rating={cardData.value}
+            username={cardData.author}
+            reviewText={cardData.description}
+          />
+          <ReviewCard
+            title={cardData.title}
+            rating={cardData.value}
+            username={cardData.author}
+            reviewText={cardData.description}
+          />
+        </Stack>
+      </Grid>
+      <Grid item xs={12} display="flex" justifyContent="center">
+        <Stack>
+          <h1 style={{ marginTop: "50px", textAlign: "center" }}>
+            Looking for Similar Events?
+          </h1>
+          <ul className="tags-list">
+            <li>
+              <a href="#">Tag 1</a>
+            </li>
+            <li>
+              <a href="#">Tag 2</a>
+            </li>
+            <li>
+              <a href="#">Tag 3</a>
+            </li>
+            <li>
+              <a href="#">Tag 4</a>
+            </li>
+            <li>
+              <a href="#">Tag 5</a>
+            </li>
+            <li>
+              <a href="#">Tag 6</a>
+            </li>
+          </ul>
+        </Stack>
+      </Grid> */}
+    </Grid>
   );
 }
