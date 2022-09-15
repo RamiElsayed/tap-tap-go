@@ -45,9 +45,10 @@ const client = new ApolloClient({
 export const App = () => {
   const [recentSearches, setRecentSearches] = useState(Keywords);
   const [modalState, setModalState] = useState(false);
+  const [BookmarksModalState, setBookmarksModalState] = useState(false);
 
-  function openModal() {
-    setModalState((prev) => !prev);
+  function openModal(type) {
+    type((prev) => !prev);
   }
 
   function closeModal(event) {
@@ -60,12 +61,22 @@ export const App = () => {
   return (
     <ApolloProvider client={client}>
       {modalState ? <SignForms closeModal={closeModal} /> : ""}
+      {BookmarksModalState ? (
+        <BookMark
+          closeBookmarks={() => setBookmarksModalState((prev) => !prev)}
+        />
+      ) : (
+        ""
+      )}
       <Router>
         <Container
           maxWidth="xl"
           sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
         >
-          <Navbar openModal={openModal} />
+          <Navbar
+            openBookmarks={setBookmarksModalState}
+            openModal={setModalState}
+          />
           <Routes>
             <Route
               path="/"
