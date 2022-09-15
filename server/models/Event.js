@@ -1,11 +1,9 @@
 const { Schema, model } = require("mongoose");
 const { formatDate } = require("../utils");
+const locationSchema = require("../models/Location");
+const imageSchema = require("../models/Image");
 
 const eventSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
   eventName: {
     type: String,
     required: true,
@@ -15,9 +13,8 @@ const eventSchema = new Schema({
     required: true,
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
-    get: formatDate,
   },
   price: {
     type: Number,
@@ -31,19 +28,8 @@ const eventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  createdByName: {
-    type: String,
-  },
-  location: {
-    type: Schema.Types.ObjectId,
-    ref: "Location",
-  },
-  images: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Image",
-    },
-  ],
+  location: locationSchema,
+  images: [imageSchema],
   tags: [
     {
       type: Schema.Types.ObjectId,
@@ -58,7 +44,6 @@ const eventSchema = new Schema({
   ],
   attendees: {
     type: Number,
-    required: true,
   },
   maxAttendees: {
     type: Number,

@@ -1,13 +1,12 @@
-const { Tag } = require('../models');
+const { Tag } = require("../models");
 
 const tags = async () => {
   try {
     const tags = await Tag.find({});
-    console.log(tags);
     return tags;
   } catch (err) {
     console.log(`[ERROR]: Failed to get tags | ${err.message}`);
-    throw new ApolloError('Failed to get tags');
+    throw new ApolloError("Failed to get tags");
   }
 };
 

@@ -1,5 +1,6 @@
 const { DateTypeDefinition } = require("graphql-scalars");
 const { gql } = require("apollo-server");
+const locationSchema = require("../models/Location");
 
 const typeDefs = gql`
   scalar Date
@@ -8,19 +9,49 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     username: String!
+    address: String
+    createdAt: Date!
+    profileAvatar: String
+    aboutMe: String
+    websiteUrl: String
     number: String!
     email: String!
+    bookmarks: [Event]
     events: [Event]
     reviews: [Review]
   }
 
+  type LocationEvent {
+    buildingNumber: String
+    streetName: String
+    cityName: String
+    county: String
+    latitude: String
+    longitude: String
+    state: String
+    postcode: String
+    eventId: String
+  }
+
+  input Location {
+    buildingNumber: String
+    streetName: String
+    cityName: String
+    county: String
+    latitude: String
+    longitude: String
+    state: String
+    postcode: String
+    eventId: String
+  }
+
   type Event {
     _id: ID!
-    username: String
+    #username: String
     eventName: String
-    location: String
+    location: LocationEvent
     description: String
-    date: Date
+    date: String
     price: Int
     ageGroup: String!
     createdById: User!
@@ -47,23 +78,12 @@ const typeDefs = gql`
     associatedEvent: Event!
   }
 
-  type Location {
-    _id: ID!
-    buildingNumber: String
-    streetName: String
-    cityName: String
-    county: String
-    latitude: String
-    longitude: String
-    state: String
-    postcode: String
-    eventId: String
+  type Image {
+    imageLink: String!
   }
 
-  type Image {
-    _id: ID!
+  input InputImage {
     imageLink: String!
-    eventId: ID!
   }
 
   type Auth {
@@ -89,7 +109,6 @@ const typeDefs = gql`
     number: String!
     email: String!
     password: String!
-    isHost: Boolean!
   }
 
   input LoginInput {
@@ -104,16 +123,14 @@ const typeDefs = gql`
     rating: Int
   }
   input CreateEventInput {
-    username: String
     eventName: String!
-    location: ID!
+    location: Location
     description: String
-    date: Date!
+    date: String!
     price: Int
     ageGroup: String
-    images: [ID]
+    images: [InputImage]
     tags: [ID]
-    attendees: Int!
     maxAttendees: Int!
   }
   type Mutation {

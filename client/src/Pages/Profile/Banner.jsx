@@ -96,7 +96,7 @@ function Banner({ userInfo, bannerOptions, changePostBoard }) {
               marginRight: "3rem",
             }}
             alt="Remy Sharp"
-            src={avatarImg}
+            src={userInfo.profileAvatar}
           />
           <Stack height="100" m="2rem" justifyContent="space-between">
             <Typography

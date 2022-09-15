@@ -7,7 +7,6 @@ export default function Copyright(props) {
       variant="body2"
       color="text.secondary"
       align="center"
-      fullWidth
       {...props}
     >
       {"Copyright © "}

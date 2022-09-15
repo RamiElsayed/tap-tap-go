@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { formatDate } = require("../utils");
 
 const bcrypt = require("bcrypt");
 
@@ -16,6 +17,25 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    address: {
+      type: String,
+    },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+      required: true,
+      trim: true,
+      get: formatDate,
+    },
+    profileAvatar: {
+      type: String,
+    },
+    aboutMe: {
+      type: String,
+    },
+    websiteUrl: {
+      type: String,
+    },
     number: {
       type: String,
       required: true,
@@ -31,11 +51,17 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
-    isHost: {
-      type: Boolean,
-      default: false,
-      required: true,
-    },
+    bookmarks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
+    // isHost: {
+    //   type: Boolean,
+    //   default: false,
+    //   // required: true,
+    // },
     events: [
       {
         type: Schema.Types.ObjectId,

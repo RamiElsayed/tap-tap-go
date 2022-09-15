@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,16 +10,38 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import Copyright from "./CopyRight";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../graphQL/mutations";
+import Auth from "../../utils/auth";
 
-export default function SignIn({ closeSignIn, switchToSignUp }) {
-  const handleSubmit = (event) => {
+export const SignIn = ({ closeSignIn, switchToSignUp }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    try {
+      const { data } = await login({
+        variables: { input: { email: email, password: password } },
+      });
+
+      if (data) {
+        Auth.login(data.login.token);
+        // TODO: need to figure out how to setLoggedIn state to true. need to consider context/redux.
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    setEmail("");
+    setPassword("");
+    // clear form values
   };
 
   return (
     <Box
-      onClick={(event) => closeSignIn(event)}
+      onClick={closeSignIn}
       value="CloseBox"
       sx={{
         height: "100vh",
@@ -56,11 +78,13 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
           <Typography component="h2" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               label="Email Address"
               name="email"
@@ -71,8 +95,10 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
               margin="normal"
               required
               fullWidth
+              value={password}
               name="password"
               label="Password"
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -103,4 +129,4 @@ export default function SignIn({ closeSignIn, switchToSignUp }) {
       </Card>
     </Box>
   );
-}
+};

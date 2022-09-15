@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // set token secret and expiration date
 const secret = process.env.MONGODB_SECRET;
-const expiration = '24h';
+const expiration = '72h';
 
 function authMiddleware({ req }) {
   // allows token to be sent via  req.query or headers
@@ -28,8 +28,8 @@ function authMiddleware({ req }) {
   return req;
 }
 
-function signToken({ username, email, _id, isHost }) {
-  const payload = { username, email, _id, isHost };
+function signToken({ username, email, _id }) {
+  const payload = { username, email, _id };
 
   return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
 }

@@ -7,10 +7,10 @@ const generateImages = async () => {
   for (let i = 0; i < events.length; i++) {
     const { _id: eventId } = events[i];
 
-    const numberOfImages = Math.floor(Math.random() * 5);
+    const numberOfImages = Math.floor(Math.random() * 5 + 1);
 
     for (let j = 0; j < numberOfImages; j++) {
-      const imageLink = faker.image.city(200, 300);
+      const imageLink = faker.image.city(200, 300, true);
 
       const image = { imageLink };
 

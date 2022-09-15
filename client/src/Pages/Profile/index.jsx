@@ -1,44 +1,56 @@
 import { Grid } from "@mui/material";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
 import Bookmarks from "./Bookmarks";
 import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
+import { useQuery } from "@apollo/client";
+import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
+import ReviewCard from "../../components/ReviewCard";
+import Auth from "../../utils/auth";
 
-let UserData = {
-  firstName: "Fabian",
-  lastName: "Sarango",
-  address: "3 barleycorn Drive",
-  username: "Fabian Sarango",
-  number: "075429718393",
-  email: "fasasa@gmail.com",
-  attended: 4,
-  upcoming: 5,
-  yours: 6,
-};
+// Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
 let options = ["Activities", "Bookmarks", "Your Events", "Reviews", "Manage"];
 
-function Profile() {
-  const [userDetails, setUserDetails] = useState(UserData);
+const Profile = () => {
+  //const { userId: userParam } = useParams();
+  // const userParam = "6321b33222ddc6d1be9f22dc";
+  const userParam = Auth.getProfile().data._id;
+
+  useEffect(() => {
+    let userIDFromToken = Auth.getProfile().data._id;
+    console.log(userIDFromToken);
+  }, []);
+
+  const { loading, data } = useQuery(GET_PROFILEDATA, {
+    variables: { userId: userParam },
+  });
+
+  let userDetails = data?.user || [];
+
+  // const [userDetails, setUserDetails] = useState("");
+
   const [postBoardOption, setPostBoard] = useState("Activities");
 
-  function renderPostBoard(value) {
-    console.log("inside");
+  function changeBoardOptions(value) {
     setPostBoard(value);
   }
 
-  function renderPostBoar() {
+  function renderPostBoard() {
     if (postBoardOption == "Activities") {
       return <PostBoard />;
     } else if (postBoardOption == "Bookmarks") {
-      return <Bookmarks />;
+      return <Bookmarks bookmarkData={userDetails.bookmarks} />;
     } else if (postBoardOption == "Your Events") {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {
-      return <PostBoard />;
+      return userDetails.reviews.map((review, i) => (
+        <ReviewCard {...review} key={i} />
+      ));
     } else if (postBoardOption == "NewEvent") {
       return <ReviewForm />;
     } else {
@@ -52,19 +64,19 @@ function Profile() {
           <Banner
             userInfo={userDetails}
             bannerOptions={options}
-            changePostBoard={renderPostBoard}
+            changePostBoard={changeBoardOptions}
           />
         </Grid>
         <Grid item xs={12} md={3}>
           <AboutUser userInfo={userDetails} />
-          <ActionOptions changePostBoard={renderPostBoard} />
+          <ActionOptions changePostBoard={changeBoardOptions} />
         </Grid>
         <Grid item xs={12} md={9}>
-          {renderPostBoar()}
+          {renderPostBoard()}
         </Grid>
       </Grid>
     </div>
   );
-}
+};
 
 export default Profile;

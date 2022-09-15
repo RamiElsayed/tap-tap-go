@@ -11,10 +11,11 @@ import RenderLogo from "./sub-components/RenderLogo";
 import AvatarMenu from "./sub-components/AvatarMenu";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
 
-const ResponsiveAppBar = ({ signInStateOpener }) => {
+const Navbar = ({ openModal }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(Auth.loggedIn());
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const pages = logged
@@ -91,7 +92,7 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
         </Box>
         <Button
           variant="secondary"
-          onClick={signInStateOpener}
+          onClick={openModal}
           startIcon={<LoginIcon />}
         >
           Sign In
@@ -120,4 +121,4 @@ const ResponsiveAppBar = ({ signInStateOpener }) => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Navbar;
