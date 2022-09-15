@@ -21,6 +21,11 @@ const Profile = () => {
   // const userParam = "6321b33222ddc6d1be9f22dc";
   const userParam = Auth.getProfile().data._id;
 
+  useEffect(() => {
+    let userIDFromToken = Auth.getProfile().data._id;
+    console.log(userIDFromToken);
+  }, []);
+
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
   });

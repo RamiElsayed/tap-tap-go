@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const locationSchema = new Schema({
   buildingNumber: {
@@ -6,7 +6,6 @@ const locationSchema = new Schema({
   },
   streetName: {
     type: String,
-    required: true,
   },
   cityName: {
     type: String,
@@ -25,10 +24,7 @@ const locationSchema = new Schema({
   },
   postcode: {
     type: String,
-    required: true,
   },
 });
 
-const Location = model("Location", locationSchema);
-
-module.exports = Location;
+module.exports = locationSchema;

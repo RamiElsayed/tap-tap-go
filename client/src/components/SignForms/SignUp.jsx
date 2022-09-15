@@ -20,7 +20,7 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
     firstName: "",
     lastName: "",
     username: "",
-    address: "",
+    // location: "",
     number: "",
     email: "",
     password: "",
@@ -125,16 +125,16 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
               label="username"
               type="text"
             />
-            <TextField
+            {/* <TextField
               margin="normal"
               required
               fullWidth
-              name="address"
-              value={formState.address}
+              name="location"
+              value={formState.location}
               onChange={handleChange}
               label="Address"
               type="text"
-            />
+            /> */}
             <TextField
               margin="normal"
               required
