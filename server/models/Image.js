@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const imageSchema = new Schema({
   imageLink: {
@@ -7,6 +7,4 @@ const imageSchema = new Schema({
   },
 });
 
-const Image = model("Image", imageSchema);
-
-module.exports = Image;
+module.exports = imageSchema;

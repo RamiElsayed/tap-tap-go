@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_USER = gql`
   query getUser($userId: ID!) {
@@ -99,6 +99,7 @@ export const QUERY_ME = gql`
 export const QUERY_TAGS = gql`
   query Tags {
     tags {
+      _id
       tagName
     }
   }
