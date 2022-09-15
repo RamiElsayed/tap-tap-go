@@ -1,7 +1,7 @@
-const { ApolloError, AuthenticationError } = require('apollo-server');
-const { Types } = require('mongoose');
+const { ApolloError, AuthenticationError } = require("apollo-server");
+const { Types } = require("mongoose");
 
-const { Review, User } = require('../models');
+const { Review, User } = require("../models");
 
 const createReview = async (_, { input }, { user }) => {
   try {
@@ -13,10 +13,10 @@ const createReview = async (_, { input }, { user }) => {
       const { _id: reviewId } = createdReview;
 
       const reviewFromDatabase = await Review.findById(reviewId).populate(
-        'postedBy',
+        "postedBy"
       );
 
-      await User.findById(postedBy, {
+      await User.findByIdAndUpdate(postedBy, {
         $push: {
           reviews: reviewId,
         },
@@ -25,12 +25,12 @@ const createReview = async (_, { input }, { user }) => {
       return reviewFromDatabase;
     } else {
       throw new AuthenticationError(
-        'You must be logged in to create a Review.',
+        "You must be logged in to create a Review."
       );
     }
   } catch (err) {
     console.log(`[ERROR]: Failed to create review | ${err.message}`);
-    throw new ApolloError('Failed to create Review.');
+    throw new ApolloError("Failed to create Review.");
   }
 };
 
