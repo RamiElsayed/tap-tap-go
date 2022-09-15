@@ -11,6 +11,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
 import ReviewCard from "../../components/ReviewCard";
 import Auth from "../../utils/auth";
+import EventCard from "../../components/Cards/EventCard";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
@@ -31,6 +32,7 @@ const Profile = () => {
   });
 
   let userDetails = data?.user || [];
+  console.log(userDetails);
 
   // const [userDetails, setUserDetails] = useState("");
 
@@ -44,7 +46,17 @@ const Profile = () => {
     if (postBoardOption == "Activities") {
       return <PostBoard />;
     } else if (postBoardOption == "Bookmarks") {
-      return <Bookmarks bookmarkData={userDetails.bookmarks} />;
+      return (
+        <Grid container spacing={2}>
+          {userDetails.bookmarks.map((review, i) => {
+            return (
+              <Grid item xs={11} sm={10} md={4} lg={3}>
+                <EventCard {...review} key={i} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      );
     } else if (postBoardOption == "Your Events") {
       return <PostBoard />;
     } else if (postBoardOption == "Reviews") {

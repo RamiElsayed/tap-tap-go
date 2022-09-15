@@ -41,13 +41,12 @@ export default function EventForm() {
   }, [data]);
 
   const [newEvent, setNewEvent] = React.useState({
-    eventName: "salsa",
+    eventName: "",
     date: null,
-    // price: nul
-    price: 323,
-    ageGroup: "Adult",
-    description: "test",
-    maxAttendees: 23,
+    price: "",
+    ageGroup: "",
+    description: "",
+    maxAttendees: "",
   });
 
   const [tags, setTags] = React.useState({
@@ -55,15 +54,15 @@ export default function EventForm() {
     keywords: [],
   });
   const [eventAddress, setAddress] = React.useState({
-    buildingNumber: "3",
-    streetName: "barleycorn",
-    cityName: "bham",
-    postcode: "b16 0na",
+    buildingNumber: "",
+    streetName: "",
+    cityName: "",
+    postcode: "",
   });
-  const [imageOne, setImageOne] = React.useState({ imageLink: "hellow" });
-  const [imageTwo, setImageTwo] = React.useState({ imageLink: "2" });
-  const [imageThree, setImageThree] = React.useState({ imageLink: "3" });
-  const [imageFour, setImageFour] = React.useState({ imageLink: "4" });
+  const [imageOne, setImageOne] = React.useState({ imageLink: "" });
+  const [imageTwo, setImageTwo] = React.useState({ imageLink: "" });
+  const [imageThree, setImageThree] = React.useState({ imageLink: "" });
+  const [imageFour, setImageFour] = React.useState({ imageLink: "" });
   const [formNumber, setFormNumber] = React.useState(false);
 
   const updateState = (event, setter) => {
@@ -107,14 +106,12 @@ export default function EventForm() {
   }
 
   React.useEffect(() => {
-    // let tokenUserName = Auth.getProfile().data._id;
     completeEventInformation = {
       ...newEvent,
       tags: tags.tags,
       images: [imageOne, imageTwo, imageThree, imageFour],
       location: eventAddress,
     };
-    console.log(completeEventInformation);
   }, [newEvent, eventAddress]);
 
   const [createEvent, { error, mutationData }] = useMutation(ADD_EVENT);

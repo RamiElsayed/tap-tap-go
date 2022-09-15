@@ -12,19 +12,33 @@ const style = {
   bgcolor: "background.paper",
 };
 
-function BookMark() {
+function BookMark({ closeBookmarks }) {
   return (
-    <Box>
+    <Box
+      onClick={closeBookmarks}
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        zIndex: 999,
+        position: "fixed",
+        top: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Card sx={{ width: "70%", height: "500px", mx: "auto" }}>
         <CardContent sx={{ padding: "3rem" }}>
           <List sx={style} component="nav" aria-label="mailbox folders">
-            <Link to="/">
-              <ListItem button>
-                <ListItemText primary="EventName" />
-                <ListItemText primary="Cost" />
-                <ListItemText primary="location" />
-              </ListItem>
-            </Link>
+            {/* <Link to="/"> */}
+            <ListItem button>
+              <ListItemText primary="EventName" />
+              <ListItemText primary="Cost" />
+              <ListItemText primary="location" />
+            </ListItem>
+            {/* </Link> */}
             <Divider />
           </List>
         </CardContent>
