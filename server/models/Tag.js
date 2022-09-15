@@ -2,8 +2,12 @@ const { Schema, model } = require("mongoose");
 
 const tagSchema = new Schema({
   tagName: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
+  },
+  events: {
+    type: Schema.Types.ObjectId,
+    ref: "Event",
   },
 });
 

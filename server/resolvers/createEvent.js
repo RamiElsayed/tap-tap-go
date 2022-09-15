@@ -1,5 +1,5 @@
 const { ApolloError, AuthenticationError } = require("apollo-server-express");
-const { User, Event } = require("../models");
+const { User, Event, Tag } = require("../models");
 
 const createEvent = async (_, { input }, { user }) => {
   try {
@@ -9,8 +9,16 @@ const createEvent = async (_, { input }, { user }) => {
         ...input,
         createdBy: hostId,
       });
-
+      console.log(createEvent);
       const { _id: eventId } = createdEvent;
+      input.tags.forEach((el) => {
+        console.log(el);
+        Tag.findByIdAndUpdate(el, {
+          $push: {
+            events: createdEvent._id,
+          },
+        });
+      });
 
       await User.findByIdAndUpdate(hostId, {
         $push: {

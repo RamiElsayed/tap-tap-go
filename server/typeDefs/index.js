@@ -68,6 +68,11 @@ const typeDefs = gql`
     tagName: String!
     events: [Event]
   }
+  type Tag {
+    _id: ID!
+    tagName: String!
+    events: [Event]
+  }
 
   type Review {
     _id: ID!
@@ -141,7 +146,7 @@ const typeDefs = gql`
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
-    goToEvent(eventID:ID!):
+    goToEvent(eventID: ID!): User
     # deleteEvent(eventId: ID!): Event
   }
 `;
