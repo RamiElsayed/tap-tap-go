@@ -21,11 +21,11 @@ const userSchema = new Schema(
       type: String,
     },
     createdAt: {
-      type: Date,
+      type: String,
       default: new Date(),
       required: true,
-      trim: true,
-      get: formatDate,
+      // trim: true,
+      // get: formatDate,
     },
     profileAvatar: {
       type: String,
@@ -62,6 +62,18 @@ const userSchema = new Schema(
     //   default: false,
     //   // required: true,
     // },
+    myEvents: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
+    events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
     events: [
       {
         type: Schema.Types.ObjectId,
