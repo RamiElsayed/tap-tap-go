@@ -90,7 +90,9 @@ export const App = () => {
             />
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
+            <Route path="/event" element={<EventPage />} />
           </Routes>
+
           <Footer />
         </Container>
       </Router>

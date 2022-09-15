@@ -1,11 +1,12 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Rating from '@mui/material/Rating';
-import { CardActionArea } from '@mui/material';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Rating from "@mui/material/Rating";
+import { CardActionArea } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function EventCard({ eventName, price, reviews, images }) {
   const averageRating = () => {
@@ -20,11 +21,11 @@ export default function EventCard({ eventName, price, reviews, images }) {
     return images[Math.floor(Math.random() * images.length)].imageLink;
   };
 
-  console.log('reviews', reviews);
+  console.log("reviews", reviews);
 
   return (
-    <Card sx={{ maxWidth: '100%' }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: "100%" }}>
+      <CardActionArea component={RouterLink} to={"/event"}>
         <CardMedia
           component="img"
           height="170"
@@ -42,9 +43,9 @@ export default function EventCard({ eventName, price, reviews, images }) {
           </Typography>
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'left',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "left",
             }}
           >
             <Rating

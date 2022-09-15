@@ -28,3 +28,58 @@
 .img--Column:hover {
   filter: blur(1px) brightness(90%);
 }
+
+.event-details {
+  height: 300px;
+  width: 300px;
+  background-color: #ffd072;
+}
+
+.carousel {
+  padding-top: 8px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin: auto;
+  height: 308px;
+}
+
+.get-tix-btn {
+  background-color: #aa182b !important;
+  left: 35%;
+  width: 250px;
+  height: 50px;
+}
+
+.review-card {
+  position: relative;
+  bottom: 500px;
+}
+
+.tags-list {
+  margin-bottom: 50px;
+}
+
+.tags-list li {
+  display: inline;
+  background-color: #aa182b;
+  border-radius: 20%;
+  padding: 10px;
+  margin: 20px;
+}
+
+.tags-list li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+  .get-tix-btn {
+    left: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .event-text {
+    position: static;
+  }
+}
