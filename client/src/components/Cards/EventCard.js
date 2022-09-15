@@ -74,7 +74,7 @@ export default function EventCard({ eventName, price, reviews, images }) {
               textAlign="left"
               mt={2}
             >
-              {props.cardData.price}
+              {price}
             </Typography>
             <IconButton onClick={toggleHeart}>
               <ToggleFavorite hearted={hearted} />

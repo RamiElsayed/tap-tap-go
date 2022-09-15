@@ -33,11 +33,12 @@
     left: 20rem;
     transform: scale(1.8);
   }
-.img--Column {
-  position: relative;
-  transition: all 400ms;
-}
+  .img--Column {
+    position: relative;
+    transition: all 400ms;
+  }
 
-.img--Column:hover {
-  filter: blur(1px) brightness(90%);
+  .img--Column:hover {
+    filter: blur(1px) brightness(90%);
+  }
 }
