@@ -86,7 +86,9 @@ const Navbar = ({ openModal }) => {
           <Button
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: "inherit", display: "block" }}
-          ></Button>
+          >
+            How it works
+          </Button>
         </Box>
         <Button
           variant="secondary"
