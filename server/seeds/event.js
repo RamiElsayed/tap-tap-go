@@ -25,6 +25,12 @@ const generateEvents = async () => {
       const ageGroup = randomAgeGroup;
       const attendees = faker.datatype.number(100);
       const maxAttendees = faker.datatype.number(100);
+      const images = [
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+      ];
       const location = {
         cityName: faker.address.cityName(),
         buildingNumber: faker.address.buildingNumber(),
@@ -44,6 +50,7 @@ const generateEvents = async () => {
         attendees,
         maxAttendees,
         location,
+        images,
       };
 
       const createdEvent = await Event.create(event);

@@ -27,10 +27,62 @@ export const GET_USER = gql`
     }
   }
 `;
+// export const GET_PROFILEDATA = gql`
+//   query Query($userId: ID!) {
+//     user(userId: $userId) {
+//       _id
+//       firstName
+//       lastName
+//       username
+//       address
+//       createdAt
+//       profileAvatar
+//       aboutMe
+//       websiteUrl
+//       number
+//       email
+//       bookmarks {
+//         eventName
+//         _id
+//         date
+//         price
+//         location {
+//           _id
+//           cityName
+//           state
+//           postcode
+//           streetName
+//         }
+//         images {
+//           _id
+//           imageLink
+//         }
+//         tags {
+//           _id
+//           tagName
+//         }
+//         reviews {
+//           _id
+//           rating
+//         }
+//       }
+//       reviews {
+//         _id
+//         title
+//         reviewText
+//         rating
+//       }
+//       events {
+//         username
+//         eventName
+//       }
+//     }
+//   }
+// `;
+
 export const GET_PROFILEDATA = gql`
   query Query($userId: ID!) {
     user(userId: $userId) {
-      _id
       firstName
       lastName
       username
@@ -43,38 +95,28 @@ export const GET_PROFILEDATA = gql`
       email
       bookmarks {
         eventName
-        _id
-        date
         price
-        location {
-          _id
-          cityName
-          state
-          postcode
-          streetName
-        }
+        date
         images {
-          _id
           imageLink
         }
-        tags {
-          _id
-          tagName
-        }
         reviews {
-          _id
-          rating
+          title
         }
       }
       reviews {
-        _id
+        username
         title
         reviewText
         rating
       }
       events {
-        username
         eventName
+        location {
+          streetName
+        }
+        price
+        date
       }
     }
   }
