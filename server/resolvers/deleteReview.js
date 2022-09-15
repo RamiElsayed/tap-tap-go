@@ -1,5 +1,6 @@
 const { ApolloError, AuthenticationError } = require("apollo-server");
 const { differenceInCalendarQuarters } = require("date-fns");
+const mongoose = require("mongoose");
 
 const { Review, Event, User } = require("../models");
 
@@ -8,8 +9,12 @@ const deleteReview = async (_, { reviewId }, { user }) => {
     if (user) {
       const { _id: userId } = user;
 
-      const { eventId, postedBy } = Review.findById(reviewId);
-      if (userId === postedBy) {
+      const { eventId, postedBy } = await Review.findById(reviewId).lean();
+      var newUser = mongoose.Types.ObjectId(userId).toString();
+
+      console.log(eventId, postedBy);
+
+      if (newUser === postedBy.toString()) {
         await Review.findByIdAndDelete(reviewId);
 
         await User.findOneAndUpdate(
