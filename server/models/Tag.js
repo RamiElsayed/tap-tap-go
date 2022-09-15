@@ -5,10 +5,12 @@ const tagSchema = new Schema({
     type: String,
     required: true,
   },
-  events: {
-    type: Schema.Types.ObjectId,
-    ref: "Event",
-  },
+  events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Event",
+    },
+  ],
 });
 
 const Tag = model("Tag", tagSchema);
