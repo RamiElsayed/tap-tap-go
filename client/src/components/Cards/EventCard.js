@@ -9,7 +9,13 @@ import ToggleFavorite from "./ToggleFavorite";
 import IconButton from "@mui/material/IconButton";
 import { CardActionArea } from "@mui/material";
 
-export default function EventCard({ eventName, price, reviews, images }) {
+export default function EventCard({
+  eventName,
+  price,
+  reviews,
+  images,
+  rating,
+}) {
   const [hearted, setHearted] = useState(false);
   const toggleHeart = () => setHearted(!hearted);
   const averageRating = () => {
@@ -49,13 +55,14 @@ export default function EventCard({ eventName, price, reviews, images }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "left",
+              position: "relative",
             }}
           >
             <Rating
               size="small"
               name="read-only"
               // value={props.cardData.value}
-              value={averageRating()}
+              value={rating}
               precision={0.5}
               readOnly
             />
@@ -76,7 +83,15 @@ export default function EventCard({ eventName, price, reviews, images }) {
             >
               {price}
             </Typography>
-            <IconButton onClick={toggleHeart}>
+            <IconButton
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                padding: "2rem",
+              }}
+              onClick={toggleHeart}
+            >
               <ToggleFavorite hearted={hearted} />
             </IconButton>
           </Box>
