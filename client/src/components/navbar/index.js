@@ -7,19 +7,23 @@ import LoginIcon from "@mui/icons-material/Login";
 import Stack from "@mui/material/Stack";
 
 import RenderMobileMenu from "./sub-components/RenderMobileMenu";
-import RenderMenu from "./sub-components/RenderMenu";
+import RenderLogo from "./sub-components/RenderLogo";
 import AvatarMenu from "./sub-components/AvatarMenu";
+import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
 
-const settings = ["Account", "Dashboard", "Logout"];
-
-const ResponsiveAppBar = () => {
+const Navbar = ({ openModal }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [logged, setLogged] = useState(null);
+  const [logged, setLogged] = useState(Auth.loggedIn());
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const pages = logged
-    ? ["How it works?", "Add event", "Bookmark"]
-    : ["How it works?"];
+    ? [
+        { title: "How it works?", directory: "How-it-works" },
+        { title: "Add event", directory: "new-event" },
+      ]
+    : [{ title: "Bookmark", directory: "Bookmark" }];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,6 +40,67 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  function loggedOptions() {
+    return (
+      <Toolbar>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            marginRight: "1rem",
+          }}
+        >
+          {pages.map((page) => (
+            <Button
+              onClick={handleCloseNavMenu}
+              key={page.title}
+              sx={{ my: 2, color: "inherit", display: "block" }}
+            >
+              <Link to={`/${page.directory}`}>{page.title}</Link>
+            </Button>
+          ))}
+
+          <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+            Bookmark
+          </Button>
+        </Box>
+        <AvatarMenu
+          handleCloseUserMenu={handleCloseUserMenu}
+          handleOpenUserMenu={handleOpenUserMenu}
+          anchorElUser={anchorElUser}
+        />
+      </Toolbar>
+    );
+  }
+
+  function unloggedOptions() {
+    return (
+      <Stack direction="row" spacing={2}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            marginRight: "1rem",
+          }}
+        >
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "inherit", display: "block" }}
+          >
+            How it works
+          </Button>
+        </Box>
+        <Button
+          variant="secondary"
+          onClick={openModal}
+          startIcon={<LoginIcon />}
+        >
+          Sign In
+        </Button>
+      </Stack>
+    );
+  }
+
   return (
     <AppBar color="transparent" position="static">
       <Container maxWidth="xl">
@@ -46,26 +111,14 @@ const ResponsiveAppBar = () => {
             handleCloseNavMenu={handleCloseNavMenu}
             anchorElNav={anchorElNav}
             pages={pages}
+            logged={logged}
           />
           {/* For Desktop */}
-          <RenderMenu handleCloseNavMenu={handleCloseNavMenu} pages={pages} />
-          {logged ? (
-            <AvatarMenu
-              handleCloseUserMenu={handleCloseUserMenu}
-              handleOpenUserMenu={handleOpenUserMenu}
-              anchorElUser={anchorElUser}
-              settings={settings}
-            />
-          ) : (
-            <Stack direction="row" spacing={2}>
-              <Button variant="secondary" startIcon={<LoginIcon />}>
-                Sign In
-              </Button>
-            </Stack>
-          )}
+          <RenderLogo />
+          {logged ? loggedOptions() : unloggedOptions()}
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Navbar;

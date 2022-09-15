@@ -1,12 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 
-export default function RenderMenu({ handleCloseNavMenu, pages }) {
+export default function RenderLogo({ handleCloseNavMenu, pages }) {
   return (
-    <>
+    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
       <Typography
         variant="h6"
         noWrap
@@ -24,17 +22,6 @@ export default function RenderMenu({ handleCloseNavMenu, pages }) {
       >
         TAPTAP GO
       </Typography>
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        {pages.map((page) => (
-          <Button
-            key={page}
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: "inherit", display: "block" }}
-          >
-            {page}
-          </Button>
-        ))}
-      </Box>
-    </>
+    </Box>
   );
 }

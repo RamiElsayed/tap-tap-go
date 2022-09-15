@@ -1,8 +1,7 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
+const { formatDate } = require("../utils");
 
-const bcrypt = require('bcrypt');
-
-const eventSchema = require('./Event');
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
@@ -18,25 +17,61 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    address: {
+      type: String,
+    },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+      required: true,
+      trim: true,
+      get: formatDate,
+    },
+    profileAvatar: {
+      type: String,
+    },
+    aboutMe: {
+      type: String,
+    },
+    websiteUrl: {
+      type: String,
+    },
     number: {
-      type: Number,
+      type: String,
       required: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
+      match: [/.+@.+\..+/, "Must use a valid email address"],
     },
     password: {
       type: String,
       required: true,
       minLength: 5,
     },
+    bookmarks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
+    // isHost: {
+    //   type: Boolean,
+    //   default: false,
+    //   // required: true,
+    // },
     events: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Event',
+        ref: "Event",
+      },
+    ],
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
       },
     ],
   },
@@ -45,11 +80,11 @@ const userSchema = new Schema(
       virtuals: true,
       id: false,
     },
-  },
+  }
 );
 
-userSchema.pre('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -66,6 +101,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 //    if (this.date < formatDate(new Date())) return this.date;
 // });
 
-const User = model('User', userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

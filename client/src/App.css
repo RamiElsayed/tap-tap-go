@@ -12,6 +12,9 @@
 .section__block-5 {
   margin-bottom: 5rem;
 }
+.section__block-Y-5 {
+  margin: 5rem 0;
+}
 
 .section__block-14 {
   margin-bottom: 14rem;
@@ -30,4 +33,11 @@
     left: 20rem;
     transform: scale(1.8);
   }
+.img--Column {
+  position: relative;
+  transition: all 400ms;
+}
+
+.img--Column:hover {
+  filter: blur(1px) brightness(90%);
 }

@@ -9,18 +9,31 @@ import ToggleFavorite from "./ToggleFavorite";
 import IconButton from "@mui/material/IconButton";
 import { CardActionArea } from "@mui/material";
 
-export default function EventCard(props) {
+export default function EventCard({ eventName, price, reviews, images }) {
   const [hearted, setHearted] = useState(false);
   const toggleHeart = () => setHearted(!hearted);
+  const averageRating = () => {
+    return (
+      reviews
+        .map((review) => review.rating)
+        .reduce((acc, curr) => acc + curr, 0) / reviews.length
+    );
+  };
+
+  const randomImageSelector = () => {
+    return images[Math.floor(Math.random() * images.length)].imageLink;
+  };
+
+  console.log("reviews", reviews);
+
   return (
     <Card sx={{ maxWidth: "100%" }}>
-      {" "}
       <CardActionArea>
         <CardMedia
           component="img"
           height="170"
-          image="https://upload.wikimedia.org/wikipedia/commons/2/2b/Salsa_dancing.jpg"
-          alt={props.cardData.alt}
+          image={randomImageSelector()}
+          alt={eventName}
         />
         <CardContent>
           <Typography
@@ -29,7 +42,7 @@ export default function EventCard(props) {
             component="div"
             textAlign="left"
           >
-            {props.cardData.title}
+            {eventName}
           </Typography>
           <Box
             sx={{
@@ -41,10 +54,12 @@ export default function EventCard(props) {
             <Rating
               size="small"
               name="read-only"
-              value={props.cardData.value}
+              // value={props.cardData.value}
+              value={averageRating()}
+              precision={0.5}
               readOnly
             />
-            <Typography variant="caption">{props.cardData.nRatings}</Typography>
+            <Typography variant="caption">{reviews.length}</Typography>
           </Box>
           <Box
             sx={{
