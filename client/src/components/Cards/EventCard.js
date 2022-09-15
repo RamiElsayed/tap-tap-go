@@ -22,7 +22,6 @@ export default function EventCard({ eventName, price, reviews, images }) {
   };
 
   console.log("reviews", reviews);
-  import { Link as RouterLink } from "react-router-dom";
 
   return (
     <Card sx={{ maxWidth: "100%" }}>
