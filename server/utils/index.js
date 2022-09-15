@@ -1,5 +1,5 @@
-const { format } = require('date-fns');
+const { format } = require("date-fns");
 
-const formatDate = (date) => format(new Date(date), 'yyyy-MM-dd');
+const formatDate = (date) => format(new Date(date), "dd/MM/yyyy");
 
 module.exports = { formatDate };

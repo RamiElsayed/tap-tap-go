@@ -1,5 +1,5 @@
-const { User } = require('../models');
-const { faker } = require('@faker-js/faker/locale/en_GB');
+const { User } = require("../models");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 
 const generateUsers = () => {
   const usersArr = [];
@@ -12,9 +12,9 @@ const generateUsers = () => {
     const profileAvatar = faker.image.avatar();
     const aboutMe = faker.lorem.paragraphs(1);
     const websiteUrl = faker.internet.domainName();
-    const number = faker.phone.number('###########');
+    const number = faker.phone.number("###########");
     const email = faker.internet.email(firstName, lastName);
-    const password = faker.internet.password(5);
+    const password = "password";
     usersArr.push({
       firstName,
       lastName,
@@ -39,7 +39,7 @@ const seedUsers = async () => {
 
     await Promise.all(userPromises);
 
-    console.log('Successfully seeded users data.');
+    console.log("Successfully seeded users data.");
   } catch (err) {
     console.log(`Failed to seed users data || ${err.message}`);
   }
