@@ -7,33 +7,34 @@ const createReview = async (_, { input }, { user }) => {
   try {
     if (user) {
       const { _id: postedBy } = user;
-      const { postedBy: userId, eventId } = input;
-      if (postedBy !== userId) {
-        const createdReview = await Review.create({ ...input, postedBy });
-
-        const { _id: reviewId } = createdReview;
-
-        const reviewFromDatabase = await Review.findById(reviewId).populate(
-          "postedBy"
-        );
-
-        await User.findByIdAndUpdate(postedBy, {
-          $push: {
-            reviews: reviewId,
-          },
-        });
-        await Event.findByIdAndUpdate(eventId, {
-          $push: {
-            reviews: reviewId,
-          },
-        });
-
-        return reviewFromDatabase;
-      } else {
-        throw AuthenticationError(
+      var userId = Types.ObjectId(postedBy);
+      const { eventId } = input;
+      const { createdById } = await Event.findById(eventId);
+      if (userId.equals(createdById)) {
+        throw new AuthenticationError(
           "You can not create a review for your own event."
         );
       }
+      const createdReview = await Review.create({ ...input, postedBy });
+
+      const { _id: reviewId } = createdReview;
+
+      const reviewFromDatabase = await Review.findById(reviewId).populate(
+        "postedBy"
+      );
+
+      await User.findByIdAndUpdate(postedBy, {
+        $push: {
+          reviews: reviewId,
+        },
+      });
+      await Event.findByIdAndUpdate(eventId, {
+        $push: {
+          reviews: reviewId,
+        },
+      });
+
+      return reviewFromDatabase;
     } else {
       throw new AuthenticationError(
         "You must be logged in to create a Review."
