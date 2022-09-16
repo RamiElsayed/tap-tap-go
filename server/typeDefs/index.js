@@ -34,21 +34,8 @@ const typeDefs = gql`
     eventId: String
   }
 
-  input Location {
-    buildingNumber: String
-    streetName: String
-    cityName: String
-    county: String
-    latitude: String
-    longitude: String
-    state: String
-    postcode: String
-    eventId: String
-  }
-
   type Event {
     _id: ID!
-    #username: String
     eventName: String
     location: LocationEvent
     description: String
@@ -62,15 +49,7 @@ const typeDefs = gql`
     attendees: Int!
     maxAttendees: Int!
   }
-  input inputEvent {
-    _id: ID!
-  }
 
-  type Tag {
-    _id: ID!
-    tagName: String!
-    events: [Event]
-  }
   type Tag {
     _id: ID!
     tagName: String!
@@ -88,10 +67,6 @@ const typeDefs = gql`
   }
 
   type Image {
-    imageLink: String!
-  }
-
-  input InputImage {
     imageLink: String!
   }
 
@@ -133,6 +108,23 @@ const typeDefs = gql`
     rating: Int
     eventId: ID
   }
+
+  input Location {
+    buildingNumber: String
+    streetName: String
+    cityName: String
+    county: String
+    latitude: String
+    longitude: String
+    state: String
+    postcode: String
+    eventId: String
+  }
+
+  input InputImage {
+    imageLink: String!
+  }
+
   input CreateEventInput {
     eventName: String!
     location: Location
@@ -144,6 +136,12 @@ const typeDefs = gql`
     tags: [ID]
     maxAttendees: Int!
   }
+
+  input searchInput {
+    city: String!
+    tag: String!
+  }
+
   type Mutation {
     createUser(input: CreateUserInput!): Auth
     login(input: LoginInput!): Auth
@@ -153,6 +151,7 @@ const typeDefs = gql`
     deleteReview(reviewId: ID!): Review
     purchaseTicket(eventId: ID!): Event
     bookmarkEvent(eventId: ID!): Event
+    search(input: searchInput!): [Event]
     unBookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
