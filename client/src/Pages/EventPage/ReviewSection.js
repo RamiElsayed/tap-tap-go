@@ -26,7 +26,7 @@ function ReviewSection({ eventId, cardData }) {
               username={el.username}
               reviewText={el.reviewText}
               postedBy={el.postedBy}
-              reviewId={el._id}
+              _id={el._id}
             />
           );
         })}

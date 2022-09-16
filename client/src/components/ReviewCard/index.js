@@ -18,7 +18,7 @@ export default function ReviewCard({
   username,
   reviewText,
   postedBy,
-  reviewId,
+  _id,
 }) {
   const isOwner = postedBy == Auth.getProfile().data._id;
 
@@ -27,7 +27,7 @@ export default function ReviewCard({
   const handleDeleteReview = async () => {
     try {
       const { bookmarkData } = await deleteReview({
-        variables: { reviewId: reviewId },
+        variables: { reviewId: _id },
       });
     } catch (e) {
       console.error(e);

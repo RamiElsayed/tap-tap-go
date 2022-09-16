@@ -20,8 +20,7 @@ export default function AvatarMenu({
     <Box>
       <Tooltip title="avatar">
         <IconButton onClick={handleOpenUserMenu} sx={{ padding: "0" }}>
-          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-          <Avatar alt="avatar" src={avatar} sx={{ width: 50, height: 50 }} s />
+          <Avatar alt="avatar" src={avatar} sx={{ width: 50, height: 50 }} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -40,7 +39,7 @@ export default function AvatarMenu({
         onClose={handleCloseUserMenu}
       >
         <MenuItem>
-          <Link style={{ textDecoration: "none" }} to={`/user/${1}`}>
+          <Link sx={{ textDecoration: "none" }} to={`/user/${1}`}>
             Dashboard
           </Link>
         </MenuItem>

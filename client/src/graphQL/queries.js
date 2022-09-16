@@ -106,6 +106,8 @@ export const GET_PROFILEDATA = gql`
         }
       }
       reviews {
+        _id
+        postedBy
         username
         title
         reviewText
