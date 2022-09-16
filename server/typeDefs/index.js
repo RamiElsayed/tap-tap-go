@@ -147,6 +147,7 @@ const typeDefs = gql`
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
     purchaseTicket(eventId: ID!): Event
+    bookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
 `;
