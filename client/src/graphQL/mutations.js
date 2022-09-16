@@ -83,3 +83,11 @@ export const PURCHASE_TICKET = gql`
     }
   }
 `;
+
+export const CREATE_REVIEW = gql`
+  mutation Mutation($input: CreateReviewInput!) {
+    createReview(input: $input) {
+      username
+    }
+  }
+`;
