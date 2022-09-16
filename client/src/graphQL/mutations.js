@@ -107,3 +107,11 @@ export const UNBOOKMARK_EVENT = gql`
     }
   }
 `;
+
+export const DELETE_REVIEW = gql`
+  mutation Mutation($reviewId: ID!) {
+    deleteReview(reviewId: $reviewId) {
+      _id
+    }
+  }
+`;

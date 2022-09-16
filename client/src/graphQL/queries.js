@@ -164,6 +164,8 @@ export const QUERY_EVENTBYID = gql`
         imageLink
       }
       reviews {
+        _id
+        postedBy
         username
         title
         reviewText

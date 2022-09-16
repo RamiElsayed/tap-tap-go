@@ -83,7 +83,7 @@ const typeDefs = gql`
     title: String
     reviewText: String
     rating: Int
-    postedBy: User!
+    postedBy: ID!
     associatedEvent: Event!
   }
 

@@ -4,6 +4,7 @@ import ReviewForm from "../../components/ReviewForm";
 import Box from "@mui/material/Box";
 
 function ReviewSection({ eventId, cardData }) {
+  console.log(cardData);
   return (
     <Box mt="4rem">
       <Typography variant="h4" fontWeight="600" textAlign="center">
@@ -24,6 +25,8 @@ function ReviewSection({ eventId, cardData }) {
               rating={el.rating}
               username={el.username}
               reviewText={el.reviewText}
+              postedBy={el.postedBy}
+              reviewId={el._id}
             />
           );
         })}

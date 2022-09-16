@@ -5,15 +5,38 @@ import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import DeleteIcon from "@mui/icons-material/Delete";
 import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Auth from "../../utils/auth";
+import { DELETE_REVIEW } from "../../graphQL/mutations";
+import { useMutation } from "@apollo/client";
 
-import { CardActionArea } from "@mui/material";
+export default function ReviewCard({
+  title,
+  rating,
+  username,
+  reviewText,
+  postedBy,
+  reviewId,
+}) {
+  const isOwner = postedBy == Auth.getProfile().data._id;
 
-export default function ReviewCard({ title, rating, username, reviewText }) {
+  const [deleteReview, { error, data }] = useMutation(DELETE_REVIEW);
+
+  const handleDeleteReview = async () => {
+    try {
+      const { bookmarkData } = await deleteReview({
+        variables: { reviewId: reviewId },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <Card sx={{ maxWidth: "850px", mb: "1rem", marginX: "auto" }}>
-      <CardContent>
+      <CardContent sx={{ position: "relative" }}>
         <Box
           sx={{
             display: "flex",
@@ -55,6 +78,20 @@ export default function ReviewCard({ title, rating, username, reviewText }) {
         >
           {reviewText}
         </Typography>
+        {isOwner ? (
+          <DeleteIcon
+            color="action"
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              padding: "1rem",
+            }}
+            onClick={handleDeleteReview}
+          />
+        ) : (
+          ""
+        )}
       </CardContent>
     </Card>
   );
