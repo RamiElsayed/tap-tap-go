@@ -16,10 +16,10 @@ function ReviewSection({ eventId, cardData }) {
         What others thought:
       </Typography>
       <Box>
-        {cardData.map((el) => {
-          console.log(el.rating);
+        {cardData.map((el, index) => {
           return (
             <ReviewCard
+              key={index}
               title={el.title}
               rating={el.rating}
               username={el.username}

@@ -152,7 +152,6 @@ export const QUERY_EVENTBYID = gql`
       price
       ageGroup
       createdById {
-        _id
         username
         myEvents {
           _id
@@ -170,6 +169,21 @@ export const QUERY_EVENTBYID = gql`
         rating
       }
       attendees
+      tags {
+        tagName
+        events {
+          eventName
+          price
+          date
+          images {
+            imageLink
+          }
+          _id
+          reviews {
+            _id
+          }
+        }
+      }
     }
   }
 `;
