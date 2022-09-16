@@ -146,7 +146,7 @@ const typeDefs = gql`
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
-    goToEvent(eventID: ID!): User
+    purchaseTicket(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
 `;

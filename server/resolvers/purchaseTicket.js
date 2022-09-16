@@ -1,17 +1,20 @@
 const { ApolloError, AuthenticationError } = require("apollo-server-express");
-const { User, Event } = require("../models");
+const { User } = require("../models");
 
-const goToEvent = async (_, { eventID }, { user }) => {
+const purchaseTicket = async (_, { eventId }, { user }) => {
   try {
     if (user) {
-      const { _id: hostId } = user;
+      console.log(eventId);
 
-      const User = await User.findByIdAndUpdate(hostId, {
+      const { _id: hostId } = user;
+      await User.findByIdAndUpdate(hostId, {
         $push: {
-          events: eventID,
+          events: eventId,
         },
       });
-      return User;
+      // console.log(User);
+
+      return;
     } else {
       throw new AuthenticationError("You must be a host to create an event.");
     }
@@ -21,4 +24,4 @@ const goToEvent = async (_, { eventID }, { user }) => {
   }
 };
 
-module.exports = goToEvent;
+module.exports = purchaseTicket;

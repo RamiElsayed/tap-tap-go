@@ -40,7 +40,12 @@
   padding-bottom: 0;
   margin-bottom: 0;
   margin: auto;
+  object-fit: contain;
   height: 308px;
+}
+.carousel > .carousel > .control-arrow.control-next,
+.carousel > .carousel > .control-arrow.control-prev {
+  background-color: rgba(128, 128, 128, 0.412) !important;
 }
 
 .review-card {
