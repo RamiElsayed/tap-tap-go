@@ -68,12 +68,6 @@ const userSchema = new Schema(
         ref: "Event",
       },
     ],
-    events: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Event",
-      },
-    ],
     reviews: [
       {
         type: Schema.Types.ObjectId,
