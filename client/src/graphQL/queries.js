@@ -194,9 +194,8 @@ export const QUERY_EVENTBYID = gql`
 `;
 
 export const QUERY_TAGS = gql`
-  query Tag {
+  query Tags {
     tags {
-      _id
       tagName
     }
   }

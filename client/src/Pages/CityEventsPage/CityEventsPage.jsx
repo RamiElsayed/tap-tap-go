@@ -1,13 +1,19 @@
-import { Grid, Typography } from '@mui/material';
-import ReviewCard from '../../components/ReviewCard';
-import CityCard from './CityCard';
+import { Grid, Typography } from "@mui/material";
+import ReviewCard from "../../components/ReviewCard";
+import CityCard from "./CityCard";
+import { useParams } from "react-router-dom";
 
 const CityEventsPage = () => {
+  const { city, tag } = useParams();
+
+  const input = { city, tag };
+
+  console.log(input);
   return (
     <Grid
       container
       sx={{
-        flexGrow: '1',
+        flexGrow: "1",
       }}
       className="section__block-5"
     >
