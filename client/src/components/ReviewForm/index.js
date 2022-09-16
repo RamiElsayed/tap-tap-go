@@ -6,11 +6,19 @@ import Rating from "@mui/material/Rating";
 import React, { useState } from "react";
 import { Stack } from "@mui/system";
 
-function ReviewForm() {
+import { CREATE_REVIEW } from "../../graphQL/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
+
+function ReviewForm({ eventIdParam }) {
+  const [createReview, { error, reviewData }] = useMutation(CREATE_REVIEW);
+
   const [newReview, setReview] = useState({
+    eventId: eventIdParam,
+    postedBy: Auth.getProfile().data._id,
     rating: 0,
-    headline: "",
-    review: "",
+    title: "",
+    reviewText: "",
   });
 
   const updateReview = (event) => {
@@ -20,15 +28,23 @@ function ReviewForm() {
     }
     setReview((prev) => {
       return {
-        prev,
+        ...prev,
         [name]: value,
       };
     });
   };
 
-  const printState = (event) => {
-    event.preventdefault();
-    console.log(newReview);
+  const handleCreateReview = async (event) => {
+    event.preventDefault();
+    console.log("inside");
+    try {
+      const { purchaseData } = await createReview({
+        variables: { input: newReview },
+      });
+      console.log(purchaseData);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -41,7 +57,7 @@ function ReviewForm() {
             marginX: "auto",
           }}
         >
-          <form onChange={updateReview}>
+          <form onChange={updateReview} onSubmit={handleCreateReview}>
             <Rating
               name="rating"
               onChange={updateReview}
@@ -53,7 +69,7 @@ function ReviewForm() {
             </Typography>
             <TextField
               fullWidth
-              name="headline"
+              name="title"
               placeholder="what is most important to share?"
               id="fullWidth"
               size="medium"
@@ -64,13 +80,13 @@ function ReviewForm() {
             </Typography>
             <TextField
               fullWidth
-              name="review"
+              name="reviewText"
               placeholder="What id you enjoy and disliked from the event?"
               id="fullWidth"
               size="medium"
               sx={{ marginBottom: "1rem" }}
             />
-            <Button type="submit" variant="outlined" onSubmit={printState}>
+            <Button type="submit" variant="outlined">
               Submit
             </Button>
           </form>

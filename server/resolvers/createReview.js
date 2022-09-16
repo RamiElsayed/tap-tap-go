@@ -1,14 +1,14 @@
 const { ApolloError, AuthenticationError } = require("apollo-server");
 const { Types } = require("mongoose");
 
-const { Review, User } = require("../models");
+const { Review, User, Event } = require("../models");
 
-const createReview = async (_, { input }, { user, event }) => {
+const createReview = async (_, { input }, { user }) => {
   try {
     if (user) {
       const { _id: postedBy } = user;
-      const { createdById: userId } = event;
-      if (postedBy === userId) {
+      const { postedBy: userId, eventId } = input;
+      if (postedBy !== userId) {
         const createdReview = await Review.create({ ...input, postedBy });
 
         const { _id: reviewId } = createdReview;

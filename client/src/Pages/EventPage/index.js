@@ -65,7 +65,9 @@ export default function EventPage() {
     if (eventSection === "Description") {
       return <Description eventData={eventData} />;
     } else if (eventSection === "Reviews") {
-      return <ReviewSection cardData={eventData.reviews} />;
+      return (
+        <ReviewSection eventId={eventParam} cardData={eventData.reviews} />
+      );
     } else if (eventSection === "Suggestions") {
       return <Suggestions />;
     } else {
