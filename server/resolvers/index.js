@@ -3,6 +3,7 @@ const user = require("./user");
 const users = require("./users");
 const event = require("./event");
 const events = require("./events");
+const search = require("./search");
 const tag = require("./tag");
 const tags = require("./tags");
 const review = require("./review");
@@ -37,6 +38,7 @@ const resolvers = {
     deleteUser,
     purchaseTicket,
     bookmarkEvent,
+    search,
     // deleteEvent,
     deleteReview,
   },
