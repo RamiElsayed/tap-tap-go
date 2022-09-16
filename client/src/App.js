@@ -20,6 +20,7 @@ import EventForm from "./components/Eventform/index";
 import BookMark from "./components/bookmark";
 import { Keywords } from "./_mock/RecentSearches/index.js";
 import { SignUp } from "./components/SignForms/SignUp";
+import HowItWorks from "./Pages/HowItWorks";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -91,6 +92,7 @@ export const App = () => {
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
             <Route path="/event/:eventId" element={<EventPage />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
           </Routes>
 
           <Footer />
