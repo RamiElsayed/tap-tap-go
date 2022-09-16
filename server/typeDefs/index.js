@@ -152,6 +152,7 @@ const typeDefs = gql`
     deleteReview(reviewId: ID!): Review
     purchaseTicket(eventId: ID!): Event
     bookmarkEvent(eventId: ID!): Event
+    unBookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
 `;

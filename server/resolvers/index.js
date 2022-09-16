@@ -14,6 +14,7 @@ const login = require("./login");
 const deleteUser = require("./deleteUser");
 const purchaseTicket = require("./purchaseTicket");
 const bookmarkEvent = require("./bookmarkEvent");
+const unBookmarkEvent = require("./unBookmarkEvent");
 // const deleteEvent = require('./deleteEvent');
 const deleteReview = require("./deleteReview");
 
@@ -37,6 +38,7 @@ const resolvers = {
     deleteUser,
     purchaseTicket,
     bookmarkEvent,
+    unBookmarkEvent,
     // deleteEvent,
     deleteReview,
   },

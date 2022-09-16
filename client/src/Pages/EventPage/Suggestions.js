@@ -10,7 +10,6 @@ function Suggestions({ suggestedEvents }) {
 
   const [randomEventSuggestion, setRandomEventSuggestion] =
     React.useState(randomEventSuggester);
-  console.log(randomEventSuggester);
   return (
     <>
       <Stack width="100%">
@@ -31,11 +30,9 @@ function Suggestions({ suggestedEvents }) {
         >
           {randomEventSuggestion.map((el, i) => {
             return (
-              <>
-                <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
-                  <EventCard {...el} />
-                </Grid>
-              </>
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
+                <EventCard {...el} />
+              </Grid>
             );
           })}
         </Grid>

@@ -13,12 +13,15 @@ export default function AvatarMenu({
   handleOpenUserMenu,
   handleCloseUserMenu,
   anchorElUser,
+  avatar,
 }) {
+  console.log(avatar);
   return (
     <Box>
       <Tooltip title="avatar">
         <IconButton onClick={handleOpenUserMenu} sx={{ padding: "0" }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+          <Avatar alt="avatar" src={avatar} sx={{ width: 50, height: 50 }} s />
         </IconButton>
       </Tooltip>
       <Menu

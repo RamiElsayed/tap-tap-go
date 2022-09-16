@@ -91,3 +91,19 @@ export const CREATE_REVIEW = gql`
     }
   }
 `;
+
+export const BOOKMARK_EVENT = gql`
+  mutation Mutation($eventId: ID!) {
+    bookmarkEvent(eventId: $eventId) {
+      eventName
+    }
+  }
+`;
+
+export const UNBOOKMARK_EVENT = gql`
+  mutation UnBookmarkEvent($eventId: ID!) {
+    unBookmarkEvent(eventId: $eventId) {
+      eventName
+    }
+  }
+`;

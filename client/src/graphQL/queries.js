@@ -94,6 +94,7 @@ export const GET_PROFILEDATA = gql`
       number
       email
       bookmarks {
+        _id
         eventName
         price
         date
@@ -193,6 +194,24 @@ export const QUERY_TAGS = gql`
     tags {
       _id
       tagName
+    }
+  }
+`;
+
+export const QUERY_USER_BOOKMARKS = gql`
+  query Query($userId: ID!) {
+    user(userId: $userId) {
+      bookmarks {
+        _id
+      }
+    }
+  }
+`;
+
+export const QUERY_USER_AVATAR = gql`
+  query User($userId: ID!) {
+    user(userId: $userId) {
+      profileAvatar
     }
   }
 `;

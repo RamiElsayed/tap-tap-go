@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
@@ -13,10 +13,26 @@ import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
+import { QUERY_USER_AVATAR } from "../../graphQL/queries";
+import { useQuery } from "@apollo/client";
+
 const Navbar = ({ openModal, openBookmarks }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [logged, setLogged] = useState(Auth.loggedIn());
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [avatar, setAvatar] = useState("");
+
+  const tokenUserId = Auth.getProfile().data._id;
+  const { loading, data } = useQuery(QUERY_USER_AVATAR, {
+    variables: { userId: tokenUserId },
+  });
+
+  useEffect(() => {
+    if (data?.user?.profileAvatar) {
+      console.log(data.user.profileAvatar);
+      setAvatar(data.user.profileAvatar);
+    }
+  }, [data]);
 
   const pages = logged
     ? [
@@ -71,6 +87,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
           handleCloseUserMenu={handleCloseUserMenu}
           handleOpenUserMenu={handleOpenUserMenu}
           anchorElUser={anchorElUser}
+          avatar={avatar}
         />
       </Toolbar>
     );
