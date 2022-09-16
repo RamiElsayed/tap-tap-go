@@ -13,7 +13,7 @@ import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
-const Navbar = ({ openModal }) => {
+const Navbar = ({ openModal, openBookmarks }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [logged, setLogged] = useState(Auth.loggedIn());
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -60,7 +60,10 @@ const Navbar = ({ openModal }) => {
             </Button>
           ))}
 
-          <Button sx={{ my: 2, color: "inherit", display: "block" }}>
+          <Button
+            onClick={openBookmarks}
+            sx={{ my: 2, color: "inherit", display: "block" }}
+          >
             Bookmark
           </Button>
         </Box>

@@ -6,7 +6,20 @@ const Tag = require("../models/Tag");
 const generateEvents = async () => {
   const users = await User.find({});
   const ageGroupArr = ["Children", "Teenagers", "Adults", "Seniors"];
-
+  const citiesGroupArr = [
+    "London",
+    "Birmingham",
+    "Brighton",
+    "Surrey",
+    "Nottingham",
+    "Bristol",
+    "Liverpool",
+    "Bath",
+    "Leicester",
+    "Cardiff",
+    "Exeter",
+    "York",
+  ];
   for (let i = 0; i < users.length; i++) {
     const { username } = users[i];
     const { _id: userId } = users[i];
@@ -25,8 +38,15 @@ const generateEvents = async () => {
       const ageGroup = randomAgeGroup;
       const attendees = faker.datatype.number(100);
       const maxAttendees = faker.datatype.number(100);
+      const images = [
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+        { imageLink: faker.image.city() },
+      ];
       const location = {
-        cityName: faker.address.cityName(),
+        cityName:
+          citiesGroupArr[Math.floor(Math.random() * citiesGroupArr.length)],
         buildingNumber: faker.address.buildingNumber(),
         streetName: faker.address.street(),
         postcode: faker.address.zipCodeByState(),
@@ -44,6 +64,7 @@ const generateEvents = async () => {
         attendees,
         maxAttendees,
         location,
+        images,
       };
 
       const createdEvent = await Event.create(event);

@@ -10,13 +10,14 @@ const typeDefs = gql`
     lastName: String!
     username: String!
     address: String
-    createdAt: Date!
+    createdAt: String!
     profileAvatar: String
     aboutMe: String
     websiteUrl: String
     number: String!
     email: String!
     bookmarks: [Event]
+    myEvents: [Event]
     events: [Event]
     reviews: [Review]
   }
@@ -62,6 +63,11 @@ const typeDefs = gql`
     maxAttendees: Int!
   }
 
+  type Tag {
+    _id: ID!
+    tagName: String!
+    events: [Event]
+  }
   type Tag {
     _id: ID!
     tagName: String!
@@ -140,6 +146,7 @@ const typeDefs = gql`
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
+    goToEvent(eventID: ID!): User
     # deleteEvent(eventId: ID!): Event
   }
 `;
