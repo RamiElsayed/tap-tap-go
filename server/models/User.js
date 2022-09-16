@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { formatDate } = require("../utils");
 
 const bcrypt = require("bcrypt");
 
@@ -57,11 +56,6 @@ const userSchema = new Schema(
         ref: "Event",
       },
     ],
-    // isHost: {
-    //   type: Boolean,
-    //   default: false,
-    //   // required: true,
-    // },
     myEvents: [
       {
         type: Schema.Types.ObjectId,

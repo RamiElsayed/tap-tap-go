@@ -9,10 +9,9 @@ const createEvent = async (_, { input }, { user }) => {
         ...input,
         createdBy: hostId,
       });
-      console.log("id: " + createdEvent._id);
+
       const { _id: eventId } = createdEvent;
       input.tags.forEach(async (el) => {
-        console.log("idEl: " + el);
         await Tag.findByIdAndUpdate(el, {
           $push: {
             events: createdEvent._id,

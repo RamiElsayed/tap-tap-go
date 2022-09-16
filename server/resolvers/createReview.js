@@ -3,26 +3,37 @@ const { Types } = require("mongoose");
 
 const { Review, User } = require("../models");
 
-const createReview = async (_, { input }, { user }) => {
+const createReview = async (_, { input }, { user, event }) => {
   try {
     if (user) {
       const { _id: postedBy } = user;
+      const { _id: eventId } = event;
+      if (postedBy === eventId) {
+        const createdReview = await Review.create({ ...input, postedBy });
 
-      const createdReview = await Review.create({ ...input, postedBy });
+        const { _id: reviewId } = createdReview;
 
-      const { _id: reviewId } = createdReview;
+        const reviewFromDatabase = await Review.findById(reviewId).populate(
+          "postedBy"
+        );
 
-      const reviewFromDatabase = await Review.findById(reviewId).populate(
-        "postedBy"
-      );
+        await User.findByIdAndUpdate(postedBy, {
+          $push: {
+            reviews: reviewId,
+          },
+        });
+        await Event.findByIdAndUpdate(eventId, {
+          $push: {
+            reviews: reviewId,
+          },
+        });
 
-      await User.findByIdAndUpdate(postedBy, {
-        $push: {
-          reviews: reviewId,
-        },
-      });
-
-      return reviewFromDatabase;
+        return reviewFromDatabase;
+      } else {
+        throw AuthenticationError(
+          "You can not create a review for your own event."
+        );
+      }
     } else {
       throw new AuthenticationError(
         "You must be logged in to create a Review."
