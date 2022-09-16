@@ -16,6 +16,7 @@ function ReviewForm({ eventIdParam }) {
   const [newReview, setReview] = useState({
     eventId: eventIdParam,
     postedBy: Auth.getProfile().data._id,
+    username: Auth.getProfile().data.username,
     rating: 0,
     title: "",
     reviewText: "",

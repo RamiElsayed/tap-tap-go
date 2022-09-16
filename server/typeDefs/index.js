@@ -127,6 +127,7 @@ const typeDefs = gql`
 
   input CreateReviewInput {
     postedBy: ID
+    username: String
     title: String!
     reviewText: String!
     rating: Int
