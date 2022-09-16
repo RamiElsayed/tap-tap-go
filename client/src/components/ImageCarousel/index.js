@@ -3,18 +3,27 @@ import ReactDOM from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ images }) {
   return (
-    <Carousel className="carousel" dynamicHeight={false} showThumbs={false}>
-      <div>
-        <img src="https://www.mammal.org.uk/wp-content/uploads/2021/09/red-fox-300x300.jpg" />
-      </div>
-      <div>
-        <img src="https://www.mammal.org.uk/wp-content/uploads/2021/09/red-fox-300x300.jpg" />
-      </div>
-      <div>
-        <img src="https://www.mammal.org.uk/wp-content/uploads/2021/09/red-fox-300x300.jpg" />
-      </div>
-    </Carousel>
+    <div style={{ height: "300px" }}>
+      <Carousel
+        rende
+        className="carousel"
+        dynamicHeight={false}
+        showThumbs={false}
+      >
+        {images.map((el) => {
+          console.log(el.imageLink);
+          return (
+            <div>
+              <img
+                style={{ objectFit: "contain", height: "300px" }}
+                src={el.imageLink}
+              />
+            </div>
+          );
+        })}
+      </Carousel>
+    </div>
   );
 }

@@ -40,14 +40,12 @@
   padding-bottom: 0;
   margin-bottom: 0;
   margin: auto;
+  object-fit: contain;
   height: 308px;
 }
-
-.get-tix-btn {
-  background-color: #aa182b !important;
-  left: 35%;
-  width: 250px;
-  height: 50px;
+.carousel > .carousel > .control-arrow.control-next,
+.carousel > .carousel > .control-arrow.control-prev {
+  background-color: rgba(128, 128, 128, 0.412) !important;
 }
 
 .review-card {

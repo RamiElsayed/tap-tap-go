@@ -23,7 +23,7 @@ function PostBoard() {
           gutterBottom
           paddingX="1rem"
         >
-          FIll out your board with your exp!
+          This board is empty
         </Typography>
         <Typography
           variant="body2"
@@ -31,7 +31,7 @@ function PostBoard() {
           textAlign="center"
           paddingX="1rem"
         >
-          Add photos and info to your profile so people can find you easily and
+          Bookmark events and info to your profile so people can find you easily and
           get to know you better!
         </Typography>
       </CardContent>
