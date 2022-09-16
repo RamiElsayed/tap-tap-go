@@ -138,6 +138,42 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_EVENTBYID = gql`
+  query Query($eventId: ID!) {
+    event(eventId: $eventId) {
+      eventName
+      location {
+        streetName
+        cityName
+        postcode
+      }
+      description
+      date
+      price
+      ageGroup
+      createdById {
+        _id
+        username
+        myEvents {
+          _id
+        }
+        websiteUrl
+        profileAvatar
+      }
+      images {
+        imageLink
+      }
+      reviews {
+        username
+        title
+        reviewText
+        rating
+      }
+      attendees
+    }
+  }
+`;
+
 export const QUERY_TAGS = gql`
   query Tag {
     tags {

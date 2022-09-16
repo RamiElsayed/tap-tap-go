@@ -31,11 +31,12 @@ theme.typography.h6 = {
 };
 
 const Item = styled(Button)(({ theme }) => ({
-  boxShadow: "none",
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
   padding: theme.spacing(1),
+  marginRight:"1rem",
+  width:"150px",
   paddingRight: theme.spacing(3),
+  color:"black",
+  border:"1px solid black",
   textAlign: "center",
   fontWeight: 500,
   whiteSpace: "nowrap",
@@ -144,6 +145,7 @@ function Banner({ userInfo, bannerOptions, changePostBoard }) {
           {bannerOptions.map((el) => {
             return (
               <Item
+
                 key={el}
                 onClick={() => {
                   changePostBoard(el);

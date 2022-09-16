@@ -32,11 +32,12 @@ function ReviewForm() {
   };
 
   return (
-    <Card sx={{ maxWidth: "600px" }}>
+    <Box sx={{ width: "100%", maxWidth: "1000px" }}>
       <CardContent>
         <Box
           sx={{
-            maxWidth: "400px",
+            width: "100%",
+            maxWidth: "1000px",
             marginX: "auto",
           }}
         >
@@ -75,7 +76,7 @@ function ReviewForm() {
           </form>
         </Box>
       </CardContent>
-    </Card>
+    </Box>
   );
 }
 
