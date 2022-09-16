@@ -7,8 +7,8 @@ const createReview = async (_, { input }, { user, event }) => {
   try {
     if (user) {
       const { _id: postedBy } = user;
-      const { _id: eventId } = event;
-      if (postedBy === eventId) {
+      const { createdById: userId } = event;
+      if (postedBy === userId) {
         const createdReview = await Review.create({ ...input, postedBy });
 
         const { _id: reviewId } = createdReview;
