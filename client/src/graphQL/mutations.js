@@ -75,3 +75,19 @@ export const ADD_EVENT = gql`
     }
   }
 `;
+
+export const PURCHASE_TICKET = gql`
+  mutation Mutation($eventId: ID!) {
+    purchaseTicket(eventId: $eventId) {
+      eventName
+    }
+  }
+`;
+
+export const CREATE_REVIEW = gql`
+  mutation Mutation($input: CreateReviewInput!) {
+    createReview(input: $input) {
+      username
+    }
+  }
+`;

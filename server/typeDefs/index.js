@@ -62,6 +62,9 @@ const typeDefs = gql`
     attendees: Int!
     maxAttendees: Int!
   }
+  input inputEvent {
+    _id: ID!
+  }
 
   type Tag {
     _id: ID!
@@ -123,10 +126,11 @@ const typeDefs = gql`
   }
 
   input CreateReviewInput {
-    username: String
+    postedBy: ID
     title: String!
     reviewText: String!
     rating: Int
+    eventId: ID
   }
   input CreateEventInput {
     eventName: String!
@@ -146,7 +150,8 @@ const typeDefs = gql`
     createEvent(input: CreateEventInput!): Event
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
-    goToEvent(eventID: ID!): User
+    purchaseTicket(eventId: ID!): Event
+    bookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
 `;

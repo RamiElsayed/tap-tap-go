@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SignForms } from "./components/SignForms/index";
 import Profile from "./Pages/Profile";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import Landing from "./Pages/Landing";
 import CityEventsPage from "./Pages/CityEventsPage";
 import EventPage from "./Pages/EventPage";
@@ -90,7 +90,9 @@ export const App = () => {
             />
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
+            <Route path="/event/:eventId" element={<EventPage />} />
           </Routes>
+
           <Footer />
         </Container>
       </Router>

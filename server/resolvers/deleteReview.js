@@ -7,14 +7,12 @@ const { Review, Event, User } = require("../models");
 const deleteReview = async (_, { reviewId }, { user }) => {
   try {
     if (user) {
-      const { _id: userId } = user;
+      const { _id } = user;
 
       const { eventId, postedBy } = await Review.findById(reviewId).lean();
-      var newUser = mongoose.Types.ObjectId(userId).toString();
+      var userId = mongoose.Types.ObjectId(_id).toString();
 
-      console.log(eventId, postedBy);
-
-      if (newUser === postedBy.toString()) {
+      if (userId === postedBy.toString()) {
         await Review.findByIdAndDelete(reviewId);
 
         await User.findOneAndUpdate(

@@ -12,7 +12,7 @@ import { CardActionArea } from "@mui/material";
 
 export default function ReviewCard({ title, rating, username, reviewText }) {
   return (
-    <Card sx={{ maxWidth: "850px", mb: "1rem" }}>
+    <Card sx={{ maxWidth: "850px", mb: "1rem", marginX: "auto" }}>
       <CardContent>
         <Box
           sx={{

@@ -1,13 +1,20 @@
 const { ApolloError, AuthenticationError } = require("apollo-server");
 const { Types } = require("mongoose");
 
-const { Review, User } = require("../models");
+const { Review, User, Event } = require("../models");
 
 const createReview = async (_, { input }, { user }) => {
   try {
     if (user) {
       const { _id: postedBy } = user;
-
+      var userId = Types.ObjectId(postedBy);
+      const { eventId } = input;
+      const { createdById } = await Event.findById(eventId);
+      if (userId.equals(createdById)) {
+        throw new AuthenticationError(
+          "You can not create a review for your own event."
+        );
+      }
       const createdReview = await Review.create({ ...input, postedBy });
 
       const { _id: reviewId } = createdReview;
@@ -17,6 +24,11 @@ const createReview = async (_, { input }, { user }) => {
       );
 
       await User.findByIdAndUpdate(postedBy, {
+        $push: {
+          reviews: reviewId,
+        },
+      });
+      await Event.findByIdAndUpdate(eventId, {
         $push: {
           reviews: reviewId,
         },
