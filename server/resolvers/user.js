@@ -15,7 +15,6 @@ const user = async (_, { userId }) => {
           { path: "reviews" },
         ],
       });
-
     return userFromDatabase;
   } catch (err) {
     console.log(`[ERROR]: Failed to get user | ${err.message}`);

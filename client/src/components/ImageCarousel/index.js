@@ -12,10 +12,9 @@ export default function ImageCarousel({ images }) {
         dynamicHeight={false}
         showThumbs={false}
       >
-        {images.map((el) => {
-          console.log(el.imageLink);
+        {images.map((el, index) => {
           return (
-            <div>
+            <div key={index}>
               <img
                 style={{ objectFit: "contain", height: "300px" }}
                 src={el.imageLink}

@@ -27,5 +27,8 @@
   "devDependencies": {
     "concurrently": "^7.4.0",
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "react-google-autocomplete": "^2.7.0"
   }
 }

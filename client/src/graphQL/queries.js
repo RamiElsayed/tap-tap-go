@@ -94,6 +94,7 @@ export const GET_PROFILEDATA = gql`
       number
       email
       bookmarks {
+        _id
         eventName
         price
         date
@@ -105,6 +106,8 @@ export const GET_PROFILEDATA = gql`
         }
       }
       reviews {
+        _id
+        postedBy
         username
         title
         reviewText
@@ -152,7 +155,6 @@ export const QUERY_EVENTBYID = gql`
       price
       ageGroup
       createdById {
-        _id
         username
         myEvents {
           _id
@@ -164,21 +166,55 @@ export const QUERY_EVENTBYID = gql`
         imageLink
       }
       reviews {
+        _id
+        postedBy
         username
         title
         reviewText
         rating
       }
       attendees
+      tags {
+        tagName
+        events {
+          eventName
+          price
+          date
+          images {
+            imageLink
+          }
+          _id
+          reviews {
+            _id
+          }
+        }
+      }
     }
   }
 `;
 
 export const QUERY_TAGS = gql`
-  query Tag {
+  query Tags {
     tags {
-      _id
       tagName
+    }
+  }
+`;
+
+export const QUERY_USER_BOOKMARKS = gql`
+  query Query($userId: ID!) {
+    user(userId: $userId) {
+      bookmarks {
+        _id
+      }
+    }
+  }
+`;
+
+export const QUERY_USER_AVATAR = gql`
+  query User($userId: ID!) {
+    user(userId: $userId) {
+      profileAvatar
     }
   }
 `;

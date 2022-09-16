@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import EventDetailsA from "../../components/EventDetails/EventDetailsA";
 import EventDetailsB from "../../components/EventDetails/EventDetailsB";
 import ImageCarousel from "../../components/ImageCarousel";
-import ReviewCard from "../../components/ReviewCard/index";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -21,7 +20,6 @@ import { useParams } from "react-router-dom";
 import { QUERY_EVENTBYID } from "../../graphQL/queries";
 import { PURCHASE_TICKET } from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
-import { func } from "prop-types";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -69,14 +67,14 @@ export default function EventPage() {
         <ReviewSection eventId={eventParam} cardData={eventData.reviews} />
       );
     } else if (eventSection === "Suggestions") {
-      return <Suggestions />;
+      return <Suggestions suggestedEvents={eventData.tags} />;
     } else {
       return <Description eventData={eventData} />;
     }
   }
   return isLoading ? (
     <Typography variant="h3" marginTop="6rem">
-      Lodaing
+      loading
     </Typography>
   ) : (
     <Grid container spacing={3} sx={{ mt: "1rem", mb: "10rem" }}>

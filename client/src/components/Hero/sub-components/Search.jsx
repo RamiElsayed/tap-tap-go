@@ -2,14 +2,12 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function Search({ category, inputLabel, position }) {
+export default function Search({ category, inputLabel, updateTag }) {
   const [open, setOpen] = React.useState(false);
-
   let searchSuggestionLimit = 5;
-
   return (
     <Autocomplete
-      sx={{ width: { xs: "100%", md: "60%" }, margin: position }}
+      sx={{ width: { xs: "100%" } }}
       open={open}
       limitTags={4}
       options={category.filter((option, i) => {
@@ -17,7 +15,10 @@ export default function Search({ category, inputLabel, position }) {
           return option;
         }
       })}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => {
+        updateTag(option.title);
+        return option.title;
+      }}
       renderInput={(params) => (
         <TextField
           {...params}

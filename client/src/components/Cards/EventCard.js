@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,16 +8,61 @@ import Rating from "@mui/material/Rating";
 import ToggleFavorite from "./ToggleFavorite";
 import IconButton from "@mui/material/IconButton";
 import { CardActionArea } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link } from "react-router-dom";
+
+import { BOOKMARK_EVENT, UNBOOKMARK_EVENT } from "../../graphQL/mutations";
+import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
 
 export default function EventCard({
   eventName,
   price,
   reviews,
   images,
+  _id,
   rating,
 }) {
-  const [hearted, setHearted] = useState(false);
-  const toggleHeart = () => setHearted(!hearted);
+  const tokenUserId = Auth.getProfile().data._id;
+  const { loading, data } = useQuery(QUERY_USER_BOOKMARKS, {
+    variables: { userId: tokenUserId },
+  });
+
+  const [bookmarkEvent, { error, bookmarkData }] = useMutation(BOOKMARK_EVENT);
+  const [unbookmarkEvent, { errorUnbookmark, unbookmarkData }] =
+    useMutation(UNBOOKMARK_EVENT);
+
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    if (data?.user?.bookmarks?.length) {
+      data.user.bookmarks.forEach((el) => {
+        if (el._id === _id) {
+          setIsBookmarked(true);
+        }
+      });
+    }
+  }, [data]);
+
+  const toggleHeart = async () => {
+    try {
+      if (!isBookmarked) {
+        const { bookmarkData } = await bookmarkEvent({
+          variables: { eventId: _id },
+        });
+      } else {
+        const { unbookmarkData } = await unbookmarkEvent({
+          variables: { eventId: _id },
+        });
+      }
+      setIsBookmarked((prev) => !prev);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   const averageRating = () => {
     return (
       reviews
@@ -30,17 +75,17 @@ export default function EventCard({
     return images[Math.floor(Math.random() * images.length)].imageLink;
   };
 
-  console.log("reviews", reviews);
-
   return (
     <Card sx={{ maxWidth: "100%" }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="170"
-          image={randomImageSelector()}
-          alt={eventName}
-        />
+        <Link to={`/event/${_id}`}>
+          <CardMedia
+            component="img"
+            height="170"
+            image={randomImageSelector()}
+            alt={eventName}
+          />
+        </Link>
         <CardContent>
           <Typography
             gutterBottom
@@ -80,20 +125,35 @@ export default function EventCard({
               color="text.secondary"
               textAlign="left"
               mt={2}
+              sx={{ display: "flex" }}
             >
-              {price}
+              £ {price} /
+              <PersonIcon sx={{ fontSize: "1.2rem" }} />
             </Typography>
-            <IconButton
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                padding: "2rem",
-              }}
-              onClick={toggleHeart}
-            >
-              <ToggleFavorite hearted={hearted} />
-            </IconButton>
+
+            {isBookmarked ? (
+              <FavoriteIcon
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  padding: "1rem",
+                }}
+                onClick={toggleHeart}
+                className="heart"
+              />
+            ) : (
+              <FavoriteBorderIcon
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  padding: "1rem",
+                }}
+                onClick={toggleHeart}
+                className="heart"
+              />
+            )}
           </Box>
         </CardContent>
       </CardActionArea>
