@@ -4,6 +4,7 @@ import ReviewForm from "../../components/ReviewForm";
 import Box from "@mui/material/Box";
 
 function ReviewSection({ eventId, cardData }) {
+  console.log(cardData);
   return (
     <Box mt="4rem">
       <Typography variant="h4" fontWeight="600" textAlign="center">
@@ -16,14 +17,16 @@ function ReviewSection({ eventId, cardData }) {
         What others thought:
       </Typography>
       <Box>
-        {cardData.map((el) => {
-          console.log(el.rating);
+        {cardData.map((el, index) => {
           return (
             <ReviewCard
+              key={index}
               title={el.title}
               rating={el.rating}
               username={el.username}
               reviewText={el.reviewText}
+              postedBy={el.postedBy}
+              _id={el._id}
             />
           );
         })}

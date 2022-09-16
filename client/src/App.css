@@ -22,14 +22,13 @@
 
 .heart {
   color: #aa182b;
-  transform: scale(1.2);
   position: absolute;
 }
 
 @media only screen and (max-width: 900px) {
   .heart {
     /* left: 20rem; */
-    transform: scale(1.8);
+    transform: scale(1.5);
   }
   .img--Column {
     position: relative;

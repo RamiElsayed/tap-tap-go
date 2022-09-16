@@ -62,7 +62,7 @@ const typeDefs = gql`
     title: String
     reviewText: String
     rating: Int
-    postedBy: User!
+    postedBy: ID!
     associatedEvent: Event!
   }
 
@@ -102,6 +102,7 @@ const typeDefs = gql`
 
   input CreateReviewInput {
     postedBy: ID
+    username: String
     title: String!
     reviewText: String!
     rating: Int
@@ -151,6 +152,7 @@ const typeDefs = gql`
     purchaseTicket(eventId: ID!): Event
     bookmarkEvent(eventId: ID!): Event
     search(input: searchInput!): [Event]
+    unBookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
 `;

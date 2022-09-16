@@ -1,10 +1,18 @@
 import { Stack } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import EventCard from "../../components/Cards/EventCard";
+import React from "react";
 
-function Suggestions() {
+function Suggestions({ suggestedEvents }) {
+  const randomTagData =
+    suggestedEvents[Math.floor(Math.random() * suggestedEvents.length)];
+  const randomEventSuggester = randomTagData.events;
+
+  const [randomEventSuggestion, setRandomEventSuggestion] =
+    React.useState(randomEventSuggester);
   return (
     <>
-      <Stack>
+      <Stack width="100%">
         <Typography
           variant="h3"
           fontWeight="600"
@@ -12,52 +20,22 @@ function Suggestions() {
         >
           Similar Events
         </Typography>
-        <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
-          <li>
-            <a href="#">
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              ></div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              ></div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              ></div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "black",
-                }}
-              ></div>
-            </a>
-          </li>
-        </ul>
+        <Grid
+          container
+          mt="1rem"
+          spacing={3}
+          width="100%"
+          justifyContent="center"
+          className="section__block-4"
+        >
+          {randomEventSuggestion.map((el, i) => {
+            return (
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
+                <EventCard {...el} />
+              </Grid>
+            );
+          })}
+        </Grid>
       </Stack>
     </>
   );

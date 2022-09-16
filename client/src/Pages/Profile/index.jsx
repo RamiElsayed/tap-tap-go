@@ -15,17 +15,12 @@ import EventCard from "../../components/Cards/EventCard";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
-let options = [ "Bookmarks", "Your Events", "Reviews", "Manage"];
+let options = ["Bookmarks", "Your Events", "Reviews", "Manage"];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
   // const userParam = "6321b33222ddc6d1be9f22dc";
   const userParam = Auth.getProfile().data._id;
-
-  useEffect(() => {
-    let userIDFromToken = Auth.getProfile().data._id;
-    console.log(userIDFromToken);
-  }, []);
 
   const { loading, data } = useQuery(GET_PROFILEDATA, {
     variables: { userId: userParam },
@@ -43,7 +38,7 @@ const Profile = () => {
   }
 
   function renderPostBoard() {
- if (postBoardOption == "Bookmarks") {
+    if (postBoardOption == "Bookmarks") {
       return (
         <Grid container spacing={2}>
           {userDetails.bookmarks.map((review, i) => {
