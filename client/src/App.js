@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SignForms } from "./components/SignForms/index";
 import Profile from "./Pages/Profile";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Landing from "./Pages/Landing";
 import CityEventsPage from "./Pages/CityEventsPage";
 import EventPage from "./Pages/EventPage";
@@ -20,6 +20,7 @@ import EventForm from "./components/Eventform/index";
 import BookMark from "./components/bookmark";
 import { Keywords } from "./_mock/RecentSearches/index.js";
 import { SignUp } from "./components/SignForms/SignUp";
+import HowItWorks from "./Pages/HowItWorks";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -91,6 +92,7 @@ export const App = () => {
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
             <Route path="/event/:eventId" element={<EventPage />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
           </Routes>
 
           <Footer />
