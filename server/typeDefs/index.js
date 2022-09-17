@@ -142,6 +142,9 @@ const typeDefs = gql`
     tag: String!
   }
 
+  input searchByCityInput {
+    city: String!
+  }
   type Mutation {
     createUser(input: CreateUserInput!): Auth
     login(input: LoginInput!): Auth
@@ -152,6 +155,7 @@ const typeDefs = gql`
     purchaseTicket(eventId: ID!): Event
     bookmarkEvent(eventId: ID!): Event
     search(input: searchInput!): [Event]
+    searchByCity(input: searchByCityInput!): [Event]
     unBookmarkEvent(eventId: ID!): Event
     # deleteEvent(eventId: ID!): Event
   }
