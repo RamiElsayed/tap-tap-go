@@ -1,23 +1,22 @@
-import { Card, CardContent, Typography, Grid, Box } from '@mui/material';
-import React, { useState } from 'react';
-import EventCard from '../../components/Cards/EventCard.js';
+import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
+import React, { useState } from "react";
+import EventCard from "../../components/Cards/EventCard.js";
 
 const cardData = {
-  title: 'Salsa with Fabian Sarango',
-  price: 'From £15 per person',
+  title: "Salsa with Fabian Sarango",
+  price: "From £15 per person",
   value: 4,
   nRatings: 254,
 };
 
 function Bookmarks({ bookmarkData }) {
-  console.log('bookmarkData', bookmarkData);
   return (
-    <Card sx={{ width: { xs: '100%', md: '100%' } }}>
+    <Card sx={{ width: { xs: "100%", md: "100%" } }}>
       <CardContent
         sx={{
-          width: { xs: '99%', md: '100%' },
-          marginX: 'auto',
-          paddingY: '2rem',
+          width: { xs: "99%", md: "100%" },
+          marginX: "auto",
+          paddingY: "2rem",
         }}
       >
         <Grid
@@ -30,7 +29,7 @@ function Bookmarks({ bookmarkData }) {
           {bookmarkData.map((el, i) => {
             return (
               <Grid item xs={11} sm={10} md={4} lg={3}>
-                <EventCard {...el} key={i} />
+                <EventCard key={el._id} {...el} />
               </Grid>
             );
           })}

@@ -9,7 +9,6 @@ export default function Landing({ recentSearches }) {
       <Hero />
       <RecentlySeen recentSearches={recentSearches} />
       <TopSellers />
-      <Cards />
     </div>
   );
 }

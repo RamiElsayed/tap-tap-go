@@ -22,14 +22,21 @@ const Navbar = ({ openModal, openBookmarks }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [avatar, setAvatar] = useState("");
 
-  const tokenUserId = Auth.getProfile().data._id;
-  const { loading, data } = useQuery(QUERY_USER_AVATAR, {
-    variables: { userId: tokenUserId },
-  });
+  let tokenUserId = "";
+  if (logged) {
+    tokenUserId = Auth.getProfile()?.data._id;
+  }
+
+  const { loading, data } = useQuery(
+    QUERY_USER_AVATAR,
+    {
+      variables: { userId: tokenUserId },
+    },
+    { enabled: Auth.loggedIn() }
+  );
 
   useEffect(() => {
     if (data?.user?.profileAvatar) {
-      console.log(data.user.profileAvatar);
       setAvatar(data.user.profileAvatar);
     }
   }, [data]);

@@ -1,58 +1,63 @@
 import { Grid, Typography } from "@mui/material";
-import ReviewCard from "../../components/ReviewCard";
+import EventCard from "../../components/Cards/EventCard";
 import CityCard from "./CityCard";
 import { useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { SEARCH_EVENTS_TAG_CITY } from "../../graphQL/mutations";
+import { useEffect, useState } from "react";
+import { func } from "prop-types";
+import { Box } from "@mui/system";
 
 const CityEventsPage = () => {
   const { city, tag } = useParams();
+  // const input = { city, tag };
 
-  const input = { city, tag };
+  const [searchEvents, { error, mutationData }] = useMutation(
+    SEARCH_EVENTS_TAG_CITY
+  );
+  const [events, setEvents] = useState([]);
 
-  console.log(input);
+  const getEvents = async () => {
+    try {
+      const { data } = await searchEvents({
+        variables: { input: { city, tag } },
+      });
+      console.log(data);
+      if (data) {
+        setEvents(data.search);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
+  useEffect(() => {
+    console.log(events);
+  }, [events]);
+
   return (
-    <Grid
-      container
-      sx={{
-        flexGrow: "1",
-      }}
-      className="section__block-5"
-    >
-      <Grid item xs={12}>
-        <Typography variant="h2" textAlign="left" my={4}>
-          City Name
-        </Typography>
-        {/* TODO: will map later with data. all of these card to make sure layout is correct and responsiveness */}
-        <Grid container rowSpacing={2} columnSpacing={2}>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <CityCard />
-          </Grid>
-        </Grid>
+    <Box className="section__block-14">
+      <Typography variant="h2" textAlign="center" my={4}>
+        Events in <span style={{ fontWeight: "500" }}> {city}</span>
+      </Typography>
+      <Grid
+        container
+        mt="1rem"
+        spacing={3}
+        width="100%"
+        className="section__block-4"
+      >
+        {events.map((el, i) => {
+          return (
+            <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
+              <EventCard {...el} />
+            </Grid>
+          );
+        })}
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 

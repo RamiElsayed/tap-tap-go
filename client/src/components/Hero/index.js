@@ -37,6 +37,7 @@ const Hero = () => {
       let tagsArr = data.tags.map((tagObj) => {
         return { title: tagObj.tagName };
       });
+      console.log(tagsArr);
       setTags(tagsArr);
     }
   }, [data]);

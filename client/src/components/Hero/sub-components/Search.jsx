@@ -4,7 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 export default function Search({ category, inputLabel, updateTag }) {
   const [open, setOpen] = React.useState(false);
-  let searchSuggestionLimit = 5;
+  let searchSuggestionLimit = 11;
   return (
     <Autocomplete
       sx={{ width: { xs: "100%" } }}

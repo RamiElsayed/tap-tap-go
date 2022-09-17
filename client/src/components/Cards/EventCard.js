@@ -26,10 +26,17 @@ export default function EventCard({
   _id,
   rating,
 }) {
-  const tokenUserId = Auth.getProfile().data._id;
-  const { loading, data } = useQuery(QUERY_USER_BOOKMARKS, {
-    variables: { userId: tokenUserId },
-  });
+  let tokenUserId;
+  if (Auth.loggedIn()) {
+    const tokenUserId = Auth.getProfile().data._id;
+  }
+  const { loading, data } = useQuery(
+    QUERY_USER_BOOKMARKS,
+    {
+      variables: { userId: tokenUserId },
+    },
+    { enabled: Auth.loggedIn() }
+  );
 
   const [bookmarkEvent, { error, bookmarkData }] = useMutation(BOOKMARK_EVENT);
   const [unbookmarkEvent, { errorUnbookmark, unbookmarkData }] =
@@ -74,6 +81,31 @@ export default function EventCard({
   const randomImageSelector = () => {
     return images[Math.floor(Math.random() * images.length)].imageLink;
   };
+  const renderBookmarkIcon = () => {
+    return isBookmarked ? (
+      <FavoriteIcon
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          padding: "1rem",
+        }}
+        onClick={toggleHeart}
+        className="heart"
+      />
+    ) : (
+      <FavoriteBorderIcon
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          padding: "1rem",
+        }}
+        onClick={toggleHeart}
+        className="heart"
+      />
+    );
+  };
 
   return (
     <Card sx={{ maxWidth: "100%" }}>
@@ -107,7 +139,7 @@ export default function EventCard({
               size="small"
               name="read-only"
               // value={props.cardData.value}
-              value={rating}
+              value={averageRating()}
               precision={0.5}
               readOnly
             />
@@ -131,29 +163,7 @@ export default function EventCard({
               <PersonIcon sx={{ fontSize: "1.2rem" }} />
             </Typography>
 
-            {isBookmarked ? (
-              <FavoriteIcon
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  padding: "1rem",
-                }}
-                onClick={toggleHeart}
-                className="heart"
-              />
-            ) : (
-              <FavoriteBorderIcon
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  padding: "1rem",
-                }}
-                onClick={toggleHeart}
-                className="heart"
-              />
-            )}
+            {Auth.loggedIn() ? renderBookmarkIcon() : ""}
           </Box>
         </CardContent>
       </CardActionArea>

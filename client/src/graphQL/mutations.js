@@ -115,3 +115,20 @@ export const DELETE_REVIEW = gql`
     }
   }
 `;
+
+export const SEARCH_EVENTS_TAG_CITY = gql`
+  mutation Mutation($input: searchInput!) {
+    search(input: $input) {
+      _id
+      eventName
+      price
+      reviews {
+        _id
+        rating
+      }
+      images {
+        imageLink
+      }
+    }
+  }
+`;

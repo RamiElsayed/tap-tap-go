@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
-import Bookmarks from "./Bookmarks";
 import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
@@ -43,7 +42,7 @@ const Profile = () => {
         <Grid container spacing={2}>
           {userDetails.bookmarks.map((review, i) => {
             return (
-              <Grid item xs={11} sm={10} md={4} lg={3}>
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
                 <EventCard {...review} key={i} />
               </Grid>
             );

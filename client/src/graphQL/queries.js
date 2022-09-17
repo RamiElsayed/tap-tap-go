@@ -93,6 +93,19 @@ export const GET_PROFILEDATA = gql`
       websiteUrl
       number
       email
+      myEvents {
+        _id
+        eventName
+        price
+        date
+        images {
+          imageLink
+        }
+        reviews {
+          title
+          rating
+        }
+      }
       bookmarks {
         _id
         eventName
@@ -103,6 +116,7 @@ export const GET_PROFILEDATA = gql`
         }
         reviews {
           title
+          rating
         }
       }
       reviews {

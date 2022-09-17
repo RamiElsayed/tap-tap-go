@@ -4,7 +4,7 @@ const search = async (_, { input }) => {
   try {
     const { city, tag } = input;
 
-    const events = await Event.find({}).populate("tags");
+    const events = await Event.find({}).populate("tags").populate("reviews");
     let arr = [];
     events.forEach((x) => {
       x.tags.forEach((y) => {

@@ -5,9 +5,19 @@ const user = async (_, { userId }) => {
     const userFromDatabase = await User.findById(userId)
       .populate("bookmarks")
       .populate("reviews")
+      .populate("myEvents")
       .populate("events")
       .populate({
         path: "bookmarks",
+        populate: [
+          { path: "location" },
+          { path: "images" },
+          { path: "tags" },
+          { path: "reviews" },
+        ],
+      })
+      .populate({
+        path: "myEvents",
         populate: [
           { path: "location" },
           { path: "images" },
