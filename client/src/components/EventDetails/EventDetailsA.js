@@ -50,7 +50,7 @@ export default function EventDetailsA(props) {
           variant="contained"
           color="error"
         >
-          Get Tickets
+          Going
         </Button>
       </CardContent>
     </Card>

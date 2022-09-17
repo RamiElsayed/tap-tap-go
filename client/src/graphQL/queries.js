@@ -128,12 +128,17 @@ export const GET_PROFILEDATA = gql`
         rating
       }
       events {
+        _id
         eventName
-        location {
-          streetName
-        }
         price
         date
+        images {
+          imageLink
+        }
+        reviews {
+          title
+          rating
+        }
       }
     }
   }
