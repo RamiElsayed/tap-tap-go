@@ -220,6 +220,16 @@ export const QUERY_USER_BOOKMARKS = gql`
     user(userId: $userId) {
       bookmarks {
         _id
+        eventName
+        price
+        images {
+          imageLink
+        }
+        location {
+          streetName
+          cityName
+          postcode
+        }
       }
     }
   }

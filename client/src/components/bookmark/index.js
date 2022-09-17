@@ -1,10 +1,12 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
-import { Stack } from "@mui/system";
+import { Box, Card, CardContent } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { Link } from "react-router-dom";
+import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
+import { useQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
+import { useEffect, useState } from "react";
 
 const style = {
   width: "100%",
@@ -13,6 +15,26 @@ const style = {
 };
 
 function BookMark({ closeBookmarks }) {
+  const [bookmarksData, setBookmarksData] = useState([]);
+
+  let tokenUserId;
+  if (Auth.loggedIn()) {
+    tokenUserId = Auth.getProfile().data._id;
+  }
+  const { loading, data } = useQuery(
+    QUERY_USER_BOOKMARKS,
+    {
+      variables: { userId: tokenUserId },
+    },
+    { enabled: Auth.loggedIn() }
+  );
+
+  useEffect(() => {
+    if (data?.user?.bookmarks?.length) {
+      console.log(data.user.bookmarks);
+      setBookmarksData(data.user.bookmarks);
+    }
+  }, [data]);
   return (
     <Box
       onClick={closeBookmarks}
@@ -34,12 +56,26 @@ function BookMark({ closeBookmarks }) {
           <List sx={style} component="nav" aria-label="mailbox folders">
             {/* <Link to="/"> */}
             <ListItem button>
-              <ListItemText primary="EventName" />
-              <ListItemText primary="Cost" />
-              <ListItemText primary="location" />
+              <ListItemText sx={{ width: "33%" }} primary="EventName" />
+              <ListItemText sx={{ width: "33%" }} primary="Cost" />
+              <ListItemText sx={{ width: "33%" }} primary="location" />
             </ListItem>
             {/* </Link> */}
             <Divider />
+
+            {bookmarksData.map((el) => {
+              return (
+                <ListItem sx={{ width: "100%" }} button>
+                  <ListItemText sx={{ width: "33%" }} primary={el.eventName} />
+                  <ListItemText sx={{ width: "33%" }} primary={el.price} />
+                  <ListItemText
+                    sx={{ width: "20%" }}
+                    primary={el.location.cityName}
+                  />
+                  <ListItemText sx={{ width: "13%" }} primary="Delete" />
+                </ListItem>
+              );
+            })}
           </List>
         </CardContent>
       </Card>

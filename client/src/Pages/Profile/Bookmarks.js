@@ -1,5 +1,5 @@
-import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
-import React, { useState } from "react";
+import { Card, CardContent, Grid } from "@mui/material";
+import React from "react";
 import EventCard from "../../components/Cards/EventCard.js";
 
 const cardData = {

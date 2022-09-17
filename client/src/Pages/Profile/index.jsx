@@ -1,13 +1,12 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
 import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
-import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
+import { GET_PROFILEDATA } from "../../graphQL/queries";
 import ReviewCard from "../../components/ReviewCard";
 import Auth from "../../utils/auth";
 import EventCard from "../../components/Cards/EventCard";
