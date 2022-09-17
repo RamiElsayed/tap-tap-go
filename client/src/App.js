@@ -87,7 +87,7 @@ export const App = () => {
             <Route path="/user/:usedId" element={<Profile />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/search-by-city/:city" element={<EventsByCity />} />
-            {/* <Route path="/search/:city/:tag" element={<CityEventsPage />} /> */}
+            <Route path="/search/:city/:tag" element={<CityEventsPage />} />
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
             <Route path="/event/:eventId" element={<EventPage />} />

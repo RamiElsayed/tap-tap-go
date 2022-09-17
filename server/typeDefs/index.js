@@ -42,7 +42,7 @@ const typeDefs = gql`
     date: String
     price: Int
     ageGroup: String!
-    createdById: User!
+    createdById: User
     images: [Image]
     tags: [Tag]
     reviews: [Review]

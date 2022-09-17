@@ -13,7 +13,7 @@ import EventCard from "../../components/Cards/EventCard";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
-let options = ["Bookmarks", "Your Events", "Reviews", "Manage"];
+let options = ["Bookmarks", "Your Events", "Reviews"];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
@@ -49,7 +49,17 @@ const Profile = () => {
         </Grid>
       );
     } else if (postBoardOption == "Your Events") {
-      return <PostBoard />;
+      return (
+        <Grid container spacing={2}>
+          {userDetails.myEvents.map((myEvent, i) => {
+            return (
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
+                <EventCard {...myEvent} key={i} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      );
     } else if (postBoardOption == "Reviews") {
       return userDetails.reviews.map((review, i) => (
         <ReviewCard {...review} key={i} />

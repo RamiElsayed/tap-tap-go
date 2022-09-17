@@ -210,6 +210,7 @@ export const QUERY_EVENTBYID = gql`
 export const QUERY_TAGS = gql`
   query Tags {
     tags {
+      _id
       tagName
     }
   }
