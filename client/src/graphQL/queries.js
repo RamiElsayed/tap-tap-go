@@ -93,6 +93,19 @@ export const GET_PROFILEDATA = gql`
       websiteUrl
       number
       email
+      myEvents {
+        _id
+        eventName
+        price
+        date
+        images {
+          imageLink
+        }
+        reviews {
+          title
+          rating
+        }
+      }
       bookmarks {
         _id
         eventName
@@ -103,6 +116,7 @@ export const GET_PROFILEDATA = gql`
         }
         reviews {
           title
+          rating
         }
       }
       reviews {
@@ -196,6 +210,7 @@ export const QUERY_EVENTBYID = gql`
 export const QUERY_TAGS = gql`
   query Tags {
     tags {
+      _id
       tagName
     }
   }
@@ -206,6 +221,16 @@ export const QUERY_USER_BOOKMARKS = gql`
     user(userId: $userId) {
       bookmarks {
         _id
+        eventName
+        price
+        images {
+          imageLink
+        }
+        location {
+          streetName
+          cityName
+          postcode
+        }
       }
     }
   }

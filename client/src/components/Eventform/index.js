@@ -112,6 +112,7 @@ export default function EventForm() {
       images: [imageOne, imageTwo, imageThree, imageFour],
       location: eventAddress,
     };
+    console.log(completeEventInformation);
   }, [newEvent, eventAddress]);
 
   const [createEvent, { error, mutationData }] = useMutation(ADD_EVENT);

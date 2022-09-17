@@ -7,9 +7,8 @@ export default function Landing({ recentSearches }) {
   return (
     <div style={{ flexGrow: "1" }}>
       <Hero />
-      <RecentlySeen recentSearches={recentSearches} />
-      <TopSellers />
-      <Cards />
+      {/* <RecentlySeen recentSearches={recentSearches} /> */}
+      {/* <TopSellers /> */}
     </div>
   );
 }

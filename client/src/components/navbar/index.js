@@ -22,14 +22,21 @@ const Navbar = ({ openModal, openBookmarks }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [avatar, setAvatar] = useState("");
 
-  const tokenUserId = Auth.getProfile().data._id;
-  const { loading, data } = useQuery(QUERY_USER_AVATAR, {
-    variables: { userId: tokenUserId },
-  });
+  let tokenUserId = "";
+  if (logged) {
+    tokenUserId = Auth.getProfile()?.data._id;
+  }
+
+  const { loading, data } = useQuery(
+    QUERY_USER_AVATAR,
+    {
+      variables: { userId: tokenUserId },
+    },
+    { enabled: Auth.loggedIn() }
+  );
 
   useEffect(() => {
     if (data?.user?.profileAvatar) {
-      console.log(data.user.profileAvatar);
       setAvatar(data.user.profileAvatar);
     }
   }, [data]);
@@ -39,7 +46,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
         { title: "How it works?", directory: "How-it-works" },
         { title: "Add event", directory: "new-event" },
       ]
-    : [{ title: "Bookmark", directory: "Bookmark" }];
+    : [{ title: "How it works?", directory: "How-it-works" }];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -107,7 +114,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: "inherit", display: "block" }}
           >
-            How it works
+            <Link to={`/How-it-works`}> How it works</Link>
           </Button>
         </Box>
         <Button

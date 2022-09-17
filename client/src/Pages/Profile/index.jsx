@@ -1,21 +1,19 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
 import PostBoard from "./PostBoard";
-import Bookmarks from "./Bookmarks";
 import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
-import { GET_PROFILEDATA, QUERY_ME } from "../../graphQL/queries";
+import { GET_PROFILEDATA } from "../../graphQL/queries";
 import ReviewCard from "../../components/ReviewCard";
 import Auth from "../../utils/auth";
 import EventCard from "../../components/Cards/EventCard";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
-let options = ["Bookmarks", "Your Events", "Reviews", "Manage"];
+let options = ["Bookmarks", "Your Events", "Reviews"];
 
 const Profile = () => {
   //const { userId: userParam } = useParams();
@@ -43,7 +41,7 @@ const Profile = () => {
         <Grid container spacing={2}>
           {userDetails.bookmarks.map((review, i) => {
             return (
-              <Grid item xs={11} sm={10} md={4} lg={3}>
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
                 <EventCard {...review} key={i} />
               </Grid>
             );
@@ -51,7 +49,17 @@ const Profile = () => {
         </Grid>
       );
     } else if (postBoardOption == "Your Events") {
-      return <PostBoard />;
+      return (
+        <Grid container spacing={2}>
+          {userDetails.myEvents.map((myEvent, i) => {
+            return (
+              <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
+                <EventCard {...myEvent} key={i} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      );
     } else if (postBoardOption == "Reviews") {
       return userDetails.reviews.map((review, i) => (
         <ReviewCard {...review} key={i} />

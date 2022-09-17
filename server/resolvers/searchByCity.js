@@ -4,7 +4,7 @@ const { Event } = require("../models");
 const searchByCity = async (_, { input }) => {
   try {
     const { city } = input;
-    const events = await Event.find({});
+    const events = await Event.find({}).populate("tags").populate("reviews");
     const eventsArr = [];
     events.forEach((x) => {
       if (x.location.cityName === city) {

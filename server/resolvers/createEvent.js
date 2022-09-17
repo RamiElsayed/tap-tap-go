@@ -7,7 +7,7 @@ const createEvent = async (_, { input }, { user }) => {
       const { _id: hostId } = user;
       const createdEvent = await Event.create({
         ...input,
-        createdBy: hostId,
+        createdById: hostId,
       });
 
       const { _id: eventId } = createdEvent;

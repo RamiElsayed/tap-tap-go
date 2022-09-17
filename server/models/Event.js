@@ -44,6 +44,7 @@ const eventSchema = new Schema({
   ],
   attendees: {
     type: Number,
+    default: 0,
   },
   maxAttendees: {
     type: Number,
