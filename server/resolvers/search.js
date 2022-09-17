@@ -1,3 +1,4 @@
+const { ApolloError } = require("apollo-server-express");
 const { Event } = require("../models");
 
 const search = async (_, { input }) => {
