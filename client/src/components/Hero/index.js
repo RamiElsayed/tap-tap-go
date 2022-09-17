@@ -30,6 +30,7 @@ const Hero = () => {
   const { loading, data } = useQuery(QUERY_TAGS);
   const [tags, setTags] = React.useState([]);
   const [city, setCity] = React.useState("");
+  const [urlSearch, setUrlSearch] = React.useState("");
   const [searchTag, setSearchTag] = React.useState("");
 
   React.useEffect(() => {
@@ -37,13 +38,17 @@ const Hero = () => {
       let tagsArr = data.tags.map((tagObj) => {
         return { title: tagObj.tagName };
       });
-      console.log(tagsArr);
       setTags(tagsArr);
     }
   }, [data]);
   React.useEffect(() => {
-    console.log(city);
-  }, [city]);
+    if (searchTag === "") {
+      setUrlSearch(`/search-by-city/${city}`);
+      return;
+    } else {
+      setUrlSearch(`/search/${city}/${searchTag}`);
+    }
+  }, [city, searchTag]);
 
   function handleTagChage(event) {
     setSearchTag(event);
@@ -94,7 +99,7 @@ const Hero = () => {
               md={12}
               sx={{ display: "center", justifyContent: "center" }}
             >
-              <Link to={`/search/${city}/${searchTag}`}>
+              <Link to={`${urlSearch}`}>
                 <Button size="large" variant="outlined">
                   Search
                 </Button>

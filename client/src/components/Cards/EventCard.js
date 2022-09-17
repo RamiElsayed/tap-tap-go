@@ -28,7 +28,7 @@ export default function EventCard({
 }) {
   let tokenUserId;
   if (Auth.loggedIn()) {
-    const tokenUserId = Auth.getProfile().data._id;
+    tokenUserId = Auth.getProfile().data._id;
   }
   const { loading, data } = useQuery(
     QUERY_USER_BOOKMARKS,

@@ -11,7 +11,8 @@ import { SignForms } from "./components/SignForms/index";
 import Profile from "./Pages/Profile";
 import Navbar from "./components/navbar";
 import Landing from "./Pages/Landing";
-import CityEventsPage from "./Pages/CityEventsPage";
+import CityEventsPage from "./Pages/CityEventsPage/CityEventsPage";
+import EventsByCity from "./Pages/CityEventsPage/EventsByCity";
 import EventPage from "./Pages/EventPage";
 import { Container } from "@mui/system";
 import Footer from "./components/Footer";
@@ -85,7 +86,8 @@ export const App = () => {
             />
             <Route path="/user/:usedId" element={<Profile />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/search/:city/:tag" element={<CityEventsPage />} />
+            <Route path="/search-by-city/:city" element={<EventsByCity />} />
+            {/* <Route path="/search/:city/:tag" element={<CityEventsPage />} /> */}
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
             <Route path="/event/:eventId" element={<EventPage />} />

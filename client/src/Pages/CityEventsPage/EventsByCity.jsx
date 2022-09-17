@@ -3,22 +3,12 @@ import EventCard from "../../components/Cards/EventCard";
 import CityCard from "./CityCard";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import {
-  SEARCH_EVENTS_TAG_CITY,
-  SEARCH_EVENTS_CITY,
-} from "../../graphQL/mutations";
+import { SEARCH_EVENTS_CITY } from "../../graphQL/mutations";
 import { useEffect, useState } from "react";
-import { func } from "prop-types";
 import { Box } from "@mui/system";
 
 const CityEventsPage = () => {
-  const { city, tag } = useParams();
-  const url = useParams();
-  // const input = { city, tag };
-
-  const [searchEvents, { error, mutationData }] = useMutation(
-    SEARCH_EVENTS_TAG_CITY
-  );
+  const { city } = useParams();
 
   const [searchEventsByCity, { errorCity, mutationDataCity }] =
     useMutation(SEARCH_EVENTS_CITY);
@@ -26,30 +16,16 @@ const CityEventsPage = () => {
   const [events, setEvents] = useState([]);
 
   const getEvents = async () => {
-    if (url.tag) {
-      try {
-        const { data } = await searchEvents({
-          variables: { input: { city, tag } },
-        });
+    try {
+      const { data } = await searchEventsByCity({
+        variables: { input: { city } },
+      });
 
-        if (data) {
-          setEvents(data.search);
-        }
-      } catch (error) {
-        console.error(error);
+      if (data) {
+        setEvents(data.searchByCity);
       }
-    } else {
-      try {
-        const { data } = await searchEventsByCity({
-          variables: { input: { city } },
-        });
-
-        if (data) {
-          setEvents(data.search);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+    } catch (error) {
+      console.error(error);
     }
   };
   useEffect(() => {

@@ -132,3 +132,19 @@ export const SEARCH_EVENTS_TAG_CITY = gql`
     }
   }
 `;
+export const SEARCH_EVENTS_CITY = gql`
+  mutation Mutation($input: searchByCityInput!) {
+    searchByCity(input: $input) {
+      _id
+      eventName
+      price
+      reviews {
+        _id
+        rating
+      }
+      images {
+        imageLink
+      }
+    }
+  }
+`;
