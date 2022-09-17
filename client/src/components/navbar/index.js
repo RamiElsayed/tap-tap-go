@@ -46,7 +46,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
         { title: "How it works?", directory: "How-it-works" },
         { title: "Add event", directory: "new-event" },
       ]
-    : [{ title: "Bookmark", directory: "Bookmark" }];
+    : [{ title: "How it works?", directory: "How-it-works" }];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -114,7 +114,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: "inherit", display: "block" }}
           >
-            How it works
+            <Link to={`/How-it-works`}> How it works</Link>
           </Button>
         </Box>
         <Button
