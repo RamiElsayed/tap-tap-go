@@ -1,11 +1,15 @@
 
-# TAP TAP GO
+# TAP TAP GO  
+
+Link to deployed app: https://hidden-citadel-37214.herokuapp.com/
+
+![Screenshot](taptapgoscreenshot.jpg)
 
   ## Table of Contents
   * [Description](#description)
   * [Installation](#installation)
   * [Usage](#usage)
-  * [License](#license)
+  * [Technologies](#technologies)
   * [Contributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
@@ -23,6 +27,15 @@
   ```
   Run "npm run start" in the Terminal for both Client and Server folders to start the server and display the UI
   ```
+  
+  ## Technologies
+  The following technologies were used in this app:  
+  - React  
+  - MaterialUI  
+  - MongoDB  
+  - GraphQL  
+  - Apollo Server  
+  - Express  
 
   ## Tests
   ```
