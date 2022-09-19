@@ -2,7 +2,8 @@ const { AuthenticationError } = require("apollo-server");
 const jwt = require("jsonwebtoken");
 
 // set token secret and expiration date
-const secret = process.env.MONGODB_SECRET;
+// const secret = process.env.MONGODB_SECRET;s
+const secret = "mysecretsshhhhh";
 const expiration = "72h";
 
 function authMiddleware({ req }) {
