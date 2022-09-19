@@ -35,7 +35,7 @@ export default function EventCard({
     {
       variables: { userId: tokenUserId },
     },
-    { enabled: Auth.loggedIn() }
+    { enabled: false }
   );
 
   const [bookmarkEvent, { error, bookmarkData }] = useMutation(BOOKMARK_EVENT);
