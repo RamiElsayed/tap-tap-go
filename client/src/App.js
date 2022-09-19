@@ -24,11 +24,10 @@ import { SignUp } from "./components/SignForms/SignUp";
 import HowItWorks from "./Pages/HowItWorks";
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_CONTENT,
+  uri: `${window.location.origin}/graphql`,
 });
 
-console.log(process.env.REACT_APP_CONTENT);
-console.log(process.env.NODE_ENV);
+console.log(window.location.origin);
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem("id_token");
