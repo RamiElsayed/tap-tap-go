@@ -24,7 +24,7 @@ import { SignUp } from "./components/SignForms/SignUp";
 import HowItWorks from "./Pages/HowItWorks";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: `${window.location.origin}/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {
