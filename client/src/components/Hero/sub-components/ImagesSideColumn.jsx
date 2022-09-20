@@ -29,6 +29,7 @@ export default function ImagesSideColumn() {
       {itemData.map((item) => (
         <ImageListItem
           key={item.img}
+          sx={{ overflow: "hidden" }}
           cols={item.cols || 1}
           rows={item.rows || 1}
         >
@@ -41,12 +42,12 @@ export default function ImagesSideColumn() {
             />
           </Link>
           <Typography
-            variant="h6"
+            variant="body1"
             sx={{
               position: "absolute",
               fontWeight: 600,
               top: 0,
-              margin: "0.6rem",
+              margin: "0.2rem",
               zIndex: "99",
               color: "white",
             }}

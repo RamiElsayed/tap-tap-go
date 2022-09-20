@@ -31,12 +31,11 @@
     transform: scale(1.5);
   }
   .img--Column {
-    position: relative;
     transition: all 400ms;
   }
 
   .img--Column:hover {
-    filter: blur(1px) brightness(90%);
+    filter: blur(4px) brightness(90%);
   }
 }
 
