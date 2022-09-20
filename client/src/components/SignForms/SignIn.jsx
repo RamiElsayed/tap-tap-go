@@ -84,7 +84,6 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
               value={email}
               type="email"
               onChange={(e) => setEmail(e.target.value)}
-              id="email"
               label="Email Address"
               name="email"
               autoComplete="email"

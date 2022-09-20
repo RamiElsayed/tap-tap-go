@@ -5,8 +5,10 @@ const { signToken } = require("../context/auth");
 const createUser = async (_, { input }) => {
   try {
     const user = await User.create(input);
+    const token = signToken(user);
+
     return {
-      token: signToken(user),
+      token,
       user,
     };
   } catch (err) {
