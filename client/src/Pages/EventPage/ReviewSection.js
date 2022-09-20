@@ -9,13 +9,22 @@ function ReviewSection({ eventId, cardData }) {
 
   return (
     <Box mt="4rem">
-      {logged && (
+      {logged ? (
         <>
           <Typography variant="h4" fontWeight="600" textAlign="center">
             Leave your review:
           </Typography>
           <ReviewForm eventIdParam={eventId} />
         </>
+      ) : (
+        <Typography
+          variant="h4"
+          fontWeight="600"
+          textAlign="center"
+          gutterBottom
+        >
+          Sign In to Write a review
+        </Typography>
       )}
 
       <Typography variant="h4" fontWeight="600" textAlign="center" gutterBottom>

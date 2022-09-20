@@ -40,7 +40,7 @@ export default function LocationCard(props) {
         variant="contained"
         color="primary"
       >
-        Log In
+        Log In to Buy
       </Button>
     );
   }

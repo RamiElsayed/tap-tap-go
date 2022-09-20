@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
@@ -19,6 +20,7 @@ import { ADD_EVENT } from "../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
 
 export default function EventForm() {
+  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_TAGS);
 
   let completeEventInformation;
@@ -112,9 +114,14 @@ export default function EventForm() {
     event.preventDefault();
 
     try {
-      const { eventData } = await createEvent({
+      const { data: eventData } = await createEvent({
         variables: { input: { ...completeEventInformation } },
       });
+      const eventID = eventData.createEvent._id;
+      if (eventID) {
+        console.log(eventID);
+        navigate(`/event/${eventID}`, { replace: true });
+      }
     } catch (e) {
       console.error(e);
     }

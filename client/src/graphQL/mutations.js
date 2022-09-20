@@ -26,6 +26,7 @@ export const ADD_USER = gql`
 export const ADD_EVENT = gql`
   mutation Mutation($input: CreateEventInput!) {
     createEvent(input: $input) {
+      _id
       eventName
       location {
         streetName
