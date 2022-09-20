@@ -6,8 +6,44 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import Auth from "../../utils/auth";
 
-export default function EventDetailsA(props) {
+export default function LocationCard(props) {
+  let logged = Auth.loggedIn();
+
+  function renderActionButton() {
+    return logged ? (
+      <Button
+        onClick={props.handlePurchase}
+        sx={{
+          display: { xs: "none", md: "block" },
+          marginTop: "3rem",
+          marginX: "auto",
+          width: "250px",
+          height: "50px",
+        }}
+        variant="contained"
+        color="warning"
+      >
+        Going
+      </Button>
+    ) : (
+      <Button
+        sx={{
+          display: { xs: "none", md: "block" },
+          marginTop: "3rem",
+          marginX: "auto",
+          width: "250px",
+          height: "50px",
+        }}
+        variant="contained"
+        color="primary"
+      >
+        Log In
+      </Button>
+    );
+  }
+
   return (
     <Card sx={{ mt: "1rem", mb: "2rem" }}>
       <CardContent>
@@ -18,7 +54,7 @@ export default function EventDetailsA(props) {
           {props.eventData.date}
         </Typography>
         <Grid container spacing={2}>
-          <Grid item sx={6}>
+          <Grid item xs={6}>
             <Typography variant="h6" component="h2" textAlign="right">
               £ {props.eventData.price} / person
             </Typography>
@@ -37,20 +73,7 @@ export default function EventDetailsA(props) {
         <Typography variant="h6" component="h2">
           {props.eventData.location.postcode}
         </Typography>
-        <Button
-          onClick={props.handlePurchase}
-          sx={{
-            display: { xs: "none", md: "block" },
-            marginTop: "3rem",
-            marginX: "auto",
-            width: "250px",
-            height: "50px",
-          }}
-          variant="contained"
-          color="error"
-        >
-          Going
-        </Button>
+        {renderActionButton()}
       </CardContent>
     </Card>
   );

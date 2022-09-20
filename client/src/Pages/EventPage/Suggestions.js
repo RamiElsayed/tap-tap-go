@@ -4,12 +4,17 @@ import EventCard from "../../components/Cards/EventCard";
 import React from "react";
 
 function Suggestions({ suggestedEvents }) {
-  const randomTagData =
-    suggestedEvents[Math.floor(Math.random() * suggestedEvents.length)];
-  const randomEventSuggester = randomTagData.events;
+  const [randomEventSuggestion, setRandomEventSuggestion] = React.useState([]);
 
-  const [randomEventSuggestion, setRandomEventSuggestion] =
-    React.useState(randomEventSuggester);
+  if (suggestedEvents.length !== 0) {
+    const randomTagData =
+      suggestedEvents[Math.floor(Math.random() * suggestedEvents.length)]
+        .events;
+    if (randomTagData.length !== 0) {
+      setRandomEventSuggestion(randomTagData);
+    }
+  }
+
   return (
     <>
       <Stack width="100%">
@@ -29,6 +34,7 @@ function Suggestions({ suggestedEvents }) {
           className="section__block-4"
         >
           {randomEventSuggestion.map((el, i) => {
+            console.log(el);
             return (
               <Grid key={i} item xs={11} sm={10} md={4} lg={3}>
                 <EventCard {...el} />

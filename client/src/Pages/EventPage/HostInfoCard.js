@@ -6,7 +6,7 @@ const style = {
   bgcolor: "background.paper",
 };
 
-export default function EventDetailsB(props) {
+export default function HostInfoCard(props) {
   return (
     <Card>
       <CardContent>
@@ -48,17 +48,6 @@ export default function EventDetailsB(props) {
           <Grid item xs={6}>
             <Typography variant="h6">
               {props.eventData.createdById.myEvents.length}
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={6}>
-            <Typography variant="h6">Hosted by</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6">
-              {" "}
-              {props.eventData.createdById.userName}
             </Typography>
           </Grid>
         </Grid>

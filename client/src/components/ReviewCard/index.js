@@ -18,7 +18,10 @@ export default function ReviewCard({
   postedBy,
   _id,
 }) {
-  const isOwner = postedBy === Auth.getProfile().data._id;
+  let isOwner = false;
+  if (Auth.loggedIn()) {
+    isOwner = postedBy === Auth.getProfile().data._id;
+  }
 
   const [deleteReview, { error, data }] = useMutation(DELETE_REVIEW);
 

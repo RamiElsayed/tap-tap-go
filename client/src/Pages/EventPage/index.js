@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import EventDetailsA from "../../components/EventDetails/EventDetailsA";
-import EventDetailsB from "../../components/EventDetails/EventDetailsB";
+import LocationCard from "./LocationCard";
+import HostInfoCard from "./HostInfoCard";
 import ImageCarousel from "../../components/ImageCarousel";
 import * as React from "react";
 import Box from "@mui/material/Box";
@@ -67,30 +67,13 @@ export default function EventPage() {
     </Typography>
   ) : (
     <Grid container spacing={3} sx={{ mt: "1rem", mb: "10rem" }}>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={6}
-        lg={3}
-        sx={{ order: { xs: "2", md: "1" } }}
-      >
+      <Grid item xs={12} sm={6} lg={3} sx={{ order: { xs: "2", md: "1" } }}>
         <Stack>
-          <EventDetailsA
-            handlePurchase={handlePurchase}
-            eventData={eventData}
-          />
-          <EventDetailsB eventData={eventData} />
+          <LocationCard handlePurchase={handlePurchase} eventData={eventData} />
+          <HostInfoCard eventData={eventData} />
         </Stack>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={6}
-        lg={9}
-        sx={{ order: { xs: "1", md: "2" } }}
-      >
+      <Grid item xs={12} sm={6} lg={9} sx={{ order: { xs: "1", md: "2" } }}>
         <Box
           sx={{
             width: "100%",
@@ -144,10 +127,6 @@ export default function EventPage() {
             </Grid>
           </Grid>
           {renderSection()}
-          {/* <Description eventData={eventData} eventText={eventText} />
-
-          <ReviewSection cardData={cardData} />
-          <Suggestions /> */}
         </Box>
       </Grid>
     </Grid>
