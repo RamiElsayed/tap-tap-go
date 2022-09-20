@@ -4,13 +4,10 @@ import EventDetailsA from "../../components/EventDetails/EventDetailsA";
 import EventDetailsB from "../../components/EventDetails/EventDetailsB";
 import ImageCarousel from "../../components/ImageCarousel";
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/system";
-import ReviewForm from "../../components/ReviewForm";
 import Description from "./description";
 import ReviewSection from "./ReviewSection";
 import Suggestions from "./Suggestions";
@@ -20,14 +17,6 @@ import { useParams } from "react-router-dom";
 import { QUERY_EVENTBYID } from "../../graphQL/queries";
 import { PURCHASE_TICKET } from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 export default function EventPage() {
   const { eventId: eventParam } = useParams();

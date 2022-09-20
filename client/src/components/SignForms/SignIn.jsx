@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,7 +18,7 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -32,11 +32,10 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
         // TODO: need to figure out how to setLoggedIn state to true. need to consider context/redux.
       }
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
     setEmail("");
     setPassword("");
-    // clear form values
   };
 
   return (
@@ -51,7 +50,6 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
         position: "fixed",
         top: 0,
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -84,6 +82,7 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
               required
               fullWidth
               value={email}
+              type="email"
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               label="Email Address"
@@ -111,14 +110,30 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
             >
               Sign In
             </Button>
+            {error ? (
+              <Typography variant="body1" color="red">
+                Wrong user fields
+              </Typography>
+            ) : null}
             <Grid container>
               <Grid item xs={12} md={6}>
-                <Link href="#" variant="body2">
+                <Typography
+                  href="#"
+                  variant="body2"
+                  component="a"
+                  sx={{ textDecoration: "none" }}
+                >
                   Forgot password?
-                </Link>
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Typography onClick={switchToSignUp} variant="body2">
+                <Typography
+                  onClick={switchToSignUp}
+                  href="#"
+                  variant="body2"
+                  component="a"
+                  sx={{ textDecoration: "none" }}
+                >
                   Don't have an account? Sign Up
                 </Typography>
               </Grid>

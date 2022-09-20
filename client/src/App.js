@@ -49,9 +49,9 @@ export const App = () => {
   const [modalState, setModalState] = useState(false);
   const [BookmarksModalState, setBookmarksModalState] = useState(false);
 
-  function openModal(type) {
-    type((prev) => !prev);
-  }
+  // function openModal(type) {
+  //   type((prev) => !prev);
+  // }
 
   function closeModal(event) {
     const isCloseBox = event.target.getAttribute("value");

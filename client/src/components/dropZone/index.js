@@ -51,7 +51,7 @@ export default function DropZone(props) {
         <img
           src={file.preview}
           style={img}
-          // Revoke data uri after image is loaded
+          alt="Thumbnail of uploaded image"
           onLoad={() => {
             URL.revokeObjectURL(file.preview);
           }}

@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
 
@@ -37,6 +37,7 @@ function TopSellers() {
       </Grid>
       <Grid item xs={12} md={5} sx={{ height: { xs: "50%", md: "100%" } }}>
         <img
+          alt="Image of a busy street"
           style={{ objectFit: "cover", height: "100%", width: "100%" }}
           src="https://images.alphacoders.com/461/461042.jpg"
         />

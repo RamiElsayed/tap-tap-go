@@ -11,15 +11,10 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { useTheme } from "@mui/material/styles";
-import DropZone from "../dropZone/index";
-import { Stack } from "@mui/system";
 import { QUERY_TAGS } from "../../graphQL/queries";
 import { useQuery } from "@apollo/client";
-import Auth from "../../utils/auth";
 import { ADD_EVENT } from "../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
 
@@ -85,11 +80,7 @@ export default function EventForm() {
     const { value } = event.target;
     // console.log(keywords);
     let id = value.map((key) => {
-      let answer = keywords.find((el) => {
-        if (el.tagName === key) {
-          return el;
-        }
-      });
+      let answer = keywords.find((el) => el.tagName === key);
       return answer._id;
     });
     setTags((prev) => {
@@ -130,7 +121,7 @@ export default function EventForm() {
   };
 
   function renderForm() {
-    if (formNumber == true) {
+    if (formNumber === true) {
       return (
         <>
           <Button onClick={() => setFormNumber((prev) => !prev)}>Click</Button>
@@ -167,7 +158,7 @@ export default function EventForm() {
           </Grid>
         </>
       );
-    } else if (formNumber == false) {
+    } else if (formNumber === false) {
       return (
         <>
           <Button onClick={() => setFormNumber((prev) => !prev)}>Click</Button>
