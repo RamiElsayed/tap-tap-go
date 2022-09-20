@@ -9,11 +9,14 @@ function ReviewSection({ eventId, cardData }) {
 
   return (
     <Box mt="4rem">
-      <Typography variant="h4" fontWeight="600" textAlign="center">
-        Leave your review:
-      </Typography>
-
-      {logged && <ReviewForm eventIdParam={eventId} />}
+      {logged && (
+        <>
+          <Typography variant="h4" fontWeight="600" textAlign="center">
+            Leave your review:
+          </Typography>
+          <ReviewForm eventIdParam={eventId} />
+        </>
+      )}
 
       <Typography variant="h4" fontWeight="600" textAlign="center" gutterBottom>
         What others thought:

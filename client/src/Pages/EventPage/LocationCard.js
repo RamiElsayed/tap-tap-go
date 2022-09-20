@@ -29,6 +29,7 @@ export default function LocationCard(props) {
       </Button>
     ) : (
       <Button
+        onClick={props.openModal}
         sx={{
           display: { xs: "none", md: "block" },
           marginTop: "3rem",

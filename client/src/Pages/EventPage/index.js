@@ -18,7 +18,7 @@ import { QUERY_EVENTBYID } from "../../graphQL/queries";
 import { PURCHASE_TICKET } from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
 
-export default function EventPage() {
+export default function EventPage({ openModal }) {
   const { eventId: eventParam } = useParams();
   const { loading, data } = useQuery(QUERY_EVENTBYID, {
     variables: { eventId: eventParam },
@@ -69,7 +69,11 @@ export default function EventPage() {
     <Grid container spacing={3} sx={{ mt: "1rem", mb: "10rem" }}>
       <Grid item xs={12} sm={6} lg={3} sx={{ order: { xs: "2", md: "1" } }}>
         <Stack>
-          <LocationCard handlePurchase={handlePurchase} eventData={eventData} />
+          <LocationCard
+            handlePurchase={handlePurchase}
+            eventData={eventData}
+            openModal={openModal}
+          />
           <HostInfoCard eventData={eventData} />
         </Stack>
       </Grid>

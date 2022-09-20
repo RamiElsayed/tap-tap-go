@@ -90,7 +90,15 @@ export const App = () => {
             <Route path="/search/:city/:tag" element={<CityEventsPage />} />
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
-            <Route path="/event/:eventId" element={<EventPage />} />
+            <Route
+              path="/event/:eventId"
+              element={
+                <EventPage
+                  openBookmarks={setBookmarksModalState}
+                  openModal={setModalState}
+                />
+              }
+            />
             <Route path="/how-it-works" element={<HowItWorks />} />
           </Routes>
 
