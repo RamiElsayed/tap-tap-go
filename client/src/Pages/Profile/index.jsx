@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import { useState } from "react";
 import Banner from "./Banner";
 import AboutUser from "./AboutUser";
-import PostBoard from "./PostBoard";
 import ActionOptions from "./ActionOptions";
 import ReviewForm from "../../components/ReviewForm/index";
 import { useQuery } from "@apollo/client";
@@ -36,7 +35,7 @@ const Profile = () => {
   }
 
   function renderPostBoard() {
-    if (postBoardOption == "Bookmarks") {
+    if (postBoardOption === "Bookmarks") {
       return (
         <Grid container spacing={2}>
           {userDetails.bookmarks.map((review, i) => {
@@ -48,7 +47,7 @@ const Profile = () => {
           })}
         </Grid>
       );
-    } else if (postBoardOption == "Your Events") {
+    } else if (postBoardOption === "Your Events") {
       return (
         <Grid container spacing={2}>
           {userDetails.myEvents.map((myEvent, i) => {
@@ -60,13 +59,13 @@ const Profile = () => {
           })}
         </Grid>
       );
-    } else if (postBoardOption == "Reviews") {
+    } else if (postBoardOption === "Reviews") {
       return userDetails.reviews.map((review, i) => (
         <ReviewCard {...review} key={i} />
       ));
-    } else if (postBoardOption == "NewEvent") {
+    } else if (postBoardOption === "NewEvent") {
       return <ReviewForm />;
-    } else if (postBoardOption == "Events") {
+    } else if (postBoardOption === "Events") {
       return (
         <Grid container spacing={2}>
           {userDetails.events.map((myEvent, i) => {

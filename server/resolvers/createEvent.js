@@ -24,6 +24,7 @@ const createEvent = async (_, { input }, { user }) => {
           myEvents: eventId,
         },
       });
+      console.log(createdEvent);
       return createdEvent;
     } else {
       throw new AuthenticationError("You must be a host to create an event.");

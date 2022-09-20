@@ -5,8 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
-import ToggleFavorite from "./ToggleFavorite";
-import IconButton from "@mui/material/IconButton";
 import { CardActionArea } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,14 +16,7 @@ import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-export default function EventCard({
-  eventName,
-  price,
-  reviews,
-  images,
-  _id,
-  rating,
-}) {
+export default function EventCard({ eventName, price, reviews, images, _id }) {
   let tokenUserId;
   if (Auth.loggedIn()) {
     tokenUserId = Auth.getProfile().data._id;

@@ -1,10 +1,8 @@
-import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, CardContent, Toolbar, Typography } from "@mui/material";
+import { Button, CardContent, Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import React, { useState } from "react";
-import { Stack } from "@mui/system";
 
 import { CREATE_REVIEW } from "../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
@@ -24,7 +22,7 @@ function ReviewForm({ eventIdParam }) {
 
   const updateReview = (event) => {
     let { name, value } = event.target;
-    if (name == "rating") {
+    if (name === "rating") {
       value = parseInt(value);
     }
     setReview((prev) => {

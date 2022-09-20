@@ -50,9 +50,9 @@ export const App = () => {
   const [modalState, setModalState] = useState(false);
   const [BookmarksModalState, setBookmarksModalState] = useState(false);
 
-  function openModal(type) {
-    type((prev) => !prev);
-  }
+  // function openModal(type) {
+  //   type((prev) => !prev);
+  // }
 
   function closeModal(event) {
     const isCloseBox = event.target.getAttribute("value");
@@ -91,7 +91,15 @@ export const App = () => {
             <Route path="/search/:city/:tag" element={<CityEventsPage />} />
             <Route path="/new-event" element={<EventForm />} />
             <Route path="/test" element={<BookMark />} />
-            <Route path="/event/:eventId" element={<EventPage />} />
+            <Route
+              path="/event/:eventId"
+              element={
+                <EventPage
+                  openBookmarks={setBookmarksModalState}
+                  openModal={setModalState}
+                />
+              }
+            />
             <Route path="/how-it-works" element={<HowItWorks />} />
           </Routes>
 

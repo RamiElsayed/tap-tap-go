@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 
-import EventDetailsA from "../../components/EventDetails/EventDetailsA";
-import EventDetailsB from "../../components/EventDetails/EventDetailsB";
+import LocationCard from "./LocationCard";
+import HostInfoCard from "./HostInfoCard";
 import ImageCarousel from "../../components/ImageCarousel";
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/system";
-import ReviewForm from "../../components/ReviewForm";
 import Description from "./description";
 import ReviewSection from "./ReviewSection";
 import Suggestions from "./Suggestions";
@@ -21,15 +18,7 @@ import { QUERY_EVENTBYID } from "../../graphQL/queries";
 import { PURCHASE_TICKET } from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-export default function EventPage() {
+export default function EventPage({ openModal }) {
   const { eventId: eventParam } = useParams();
   const { loading, data } = useQuery(QUERY_EVENTBYID, {
     variables: { eventId: eventParam },
@@ -78,30 +67,17 @@ export default function EventPage() {
     </Typography>
   ) : (
     <Grid container spacing={3} sx={{ mt: "1rem", mb: "10rem" }}>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={6}
-        lg={3}
-        sx={{ order: { xs: "2", md: "1" } }}
-      >
+      <Grid item xs={12} sm={6} lg={3} sx={{ order: { xs: "2", md: "1" } }}>
         <Stack>
-          <EventDetailsA
+          <LocationCard
             handlePurchase={handlePurchase}
             eventData={eventData}
+            openModal={openModal}
           />
-          <EventDetailsB eventData={eventData} />
+          <HostInfoCard eventData={eventData} />
         </Stack>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={6}
-        lg={9}
-        sx={{ order: { xs: "1", md: "2" } }}
-      >
+      <Grid item xs={12} sm={6} lg={9} sx={{ order: { xs: "1", md: "2" } }}>
         <Box
           sx={{
             width: "100%",
@@ -155,10 +131,6 @@ export default function EventPage() {
             </Grid>
           </Grid>
           {renderSection()}
-          {/* <Description eventData={eventData} eventText={eventText} />
-
-          <ReviewSection cardData={cardData} />
-          <Suggestions /> */}
         </Box>
       </Grid>
     </Grid>

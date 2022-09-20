@@ -1,8 +1,4 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 
 const style = {
   width: "100%",
@@ -10,7 +6,7 @@ const style = {
   bgcolor: "background.paper",
 };
 
-export default function EventDetailsB(props) {
+export default function HostInfoCard(props) {
   return (
     <Card>
       <CardContent>
@@ -52,17 +48,6 @@ export default function EventDetailsB(props) {
           <Grid item xs={6}>
             <Typography variant="h6">
               {props.eventData.createdById.myEvents.length}
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={6}>
-            <Typography variant="h6">Hosted by</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6">
-              {" "}
-              {props.eventData.createdById.userName}
             </Typography>
           </Grid>
         </Grid>

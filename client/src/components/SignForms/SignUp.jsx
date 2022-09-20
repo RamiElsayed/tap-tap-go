@@ -1,13 +1,13 @@
 import { useState } from "react";
-
+// Utilities
+import Auth from "../../utils/auth";
 import { ADD_USER } from "../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
-import Auth from "../../utils/auth";
+// Material UI
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -16,11 +16,12 @@ import { Card, CardContent } from "@mui/material";
 import Copyright from "./CopyRight";
 
 export const SignUp = ({ closeSignUp, switchToSignIn }) => {
+  const [verifyPassword, setVerifyPassword] = useState("");
+  const [verification, setVerification] = useState(true);
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
     username: "",
-    // location: "",
     number: "",
     email: "",
     password: "",
@@ -28,27 +29,36 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormState({
       ...formState,
       [name]: value,
     });
   };
 
-  // New line
+  const updateVerifyPassword = (event) => {
+    const { value } = event.target;
+    setVerifyPassword(value);
+  };
 
   const [createUser, { error }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("formState", formState);
-
     try {
+      if (formState.password !== verifyPassword) {
+        setVerification(false);
+        setVerifyPassword("");
+        setFormState((prev) => {
+          return { ...prev, password: "" };
+        });
+        throw new Error("Password do not match");
+      }
       const { data } = await createUser({
         variables: { input: { ...formState } },
       });
-      console.log("sigupform", data);
       Auth.login(data.createUser.token);
+      setFormState({});
     } catch (e) {
       console.error(e);
     }
@@ -125,16 +135,6 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
               label="username"
               type="text"
             />
-            {/* <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="location"
-              value={formState.location}
-              onChange={handleChange}
-              label="Address"
-              type="text"
-            /> */}
             <TextField
               margin="normal"
               required
@@ -167,26 +167,59 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
               type="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
+            {(error || !verification) && (
+              <Typography variant="body2" color="red">
+                Passwords do not match
+              </Typography>
+            )}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              type="password"
+              value={verifyPassword}
+              onChange={updateVerifyPassword}
+              label="Re-enter password"
+              autoComplete="current-password"
+            />
+            {!verification && (
+              <Typography variant="body2" color="red">
+                Passwords do not match
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
+            {error && (
+              <Typography variant="body2" color="red">
+                Fields incorrect, try again{" "}
+              </Typography>
+            )}
             <Grid container>
               <Grid item xs={12} md={6}>
-                <Link href="#" variant="body2">
+                <Typography
+                  href="#"
+                  variant="body2"
+                  component="a"
+                  sx={{ textDecoration: "none" }}
+                >
                   Forgot password?
-                </Link>
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Typography onClick={switchToSignIn} variant="body2">
+                <Typography
+                  onClick={switchToSignIn}
+                  href="#"
+                  component="a"
+                  variant="body2"
+                  sx={{ textDecoration: "none" }}
+                >
                   Don't have an account? Sign Up
                 </Typography>
               </Grid>

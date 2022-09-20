@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
@@ -10,23 +11,19 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import AddressInput from "./AddressInput";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { useTheme } from "@mui/material/styles";
-import DropZone from "../dropZone/index";
-import { Stack } from "@mui/system";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_TAGS } from "../../graphQL/queries";
-import { useQuery } from "@apollo/client";
-import Auth from "../../utils/auth";
 import { ADD_EVENT } from "../../graphQL/mutations";
-import { useMutation } from "@apollo/client";
 
 export default function EventForm() {
+  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_TAGS);
 
-  let completeEventInformation;
+  const completeEventInformation = React.useRef();
 
   const [keywords, setKeywords] = React.useState([]);
 
@@ -75,66 +72,61 @@ export default function EventForm() {
       return { ...prev, [name]: valueX };
     });
   };
-  const updateImage = (event, setter) => {
-    const { value, name } = event.target;
 
+  const updateImage = (event, setter) => {
+    const { value } = event.target;
     setter({ imageLink: value });
   };
 
   const handleKeywords = (event) => {
     const { value } = event.target;
-    // console.log(keywords);
-    let id = value.map((key) => {
-      let answer = keywords.find((el) => {
-        if (el.tagName === key) {
-          return el;
-        }
-      });
+    let tagId = value.map((key) => {
+      let answer = keywords.find((el) => el.tagName === key);
       return answer._id;
     });
     setTags((prev) => {
-      return { ...prev, keywords: value, tags: id };
+      return { ...prev, keywords: value, tags: tagId };
     });
   };
 
   function updateDate(input, key) {
     let date = new Date(input);
-    let dateTypeString = String(date);
     setNewEvent((prev) => {
       return { ...prev, [key]: date };
     });
   }
 
   React.useEffect(() => {
-    completeEventInformation = {
+    completeEventInformation.current = {
       ...newEvent,
       tags: tags.tags,
       images: [imageOne, imageTwo, imageThree, imageFour],
       location: eventAddress,
     };
-    console.log(completeEventInformation);
-  }, [newEvent, eventAddress]);
+  }, [newEvent, eventAddress, tags]);
 
-  const [createEvent, { error, mutationData }] = useMutation(ADD_EVENT);
+  const [createEvent] = useMutation(ADD_EVENT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { eventData } = await createEvent({
-        variables: { input: { ...completeEventInformation } },
+      const { data: eventData } = await createEvent({
+        variables: { input: { ...completeEventInformation.current } },
       });
+      if (eventData?.createEvent?._id) {
+        const eventID = eventData.createEvent._id;
+        navigate(`/event/${eventID}`, { replace: true });
+      }
     } catch (e) {
       console.error(e);
     }
   };
 
   function renderForm() {
-    if (formNumber == true) {
+    if (formNumber === true) {
       return (
         <>
-          <Button onClick={() => setFormNumber((prev) => !prev)}>Click</Button>
-
           <Grid
             container
             rowSpacing={2}
@@ -145,32 +137,35 @@ export default function EventForm() {
             <Grid item xs={12}>
               <TextField
                 onChange={(value) => updateState(value, setNewEvent)}
-                value={newEvent.eve}
+                value={newEvent.description}
                 fullWidth
                 multiline
                 rows={12}
                 name="description"
                 label="Description"
-                defaultValue="test"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Button
-                style={{ background: "red" }}
-                type="submit"
-                fullWidth
+                color="secondary"
                 variant="contained"
+                fullWidth
+                onClick={() => setFormNumber((prev) => !prev)}
               >
+                Previous
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button color="info" type="submit" fullWidth variant="contained">
                 Submit
               </Button>
             </Grid>
           </Grid>
         </>
       );
-    } else if (formNumber == false) {
+    } else if (formNumber === false) {
       return (
         <>
-          <Button onClick={() => setFormNumber((prev) => !prev)}>Click</Button>
           <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -181,42 +176,12 @@ export default function EventForm() {
                 label="Event Name"
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                onChange={(value) => updateState(value, setAddress)}
-                value={eventAddress.buildingNumber}
-                fullWidth
-                name="buildingNumber"
-                label="Building Number"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                onChange={(value) => updateState(value, setAddress)}
-                value={eventAddress.streetName}
-                fullWidth
-                name="streetName"
-                label="Street Name"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                onChange={(value) => updateState(value, setAddress)}
-                value={eventAddress.cityName}
-                fullWidth
-                name="cityName"
-                label="City"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                onChange={(value) => updateState(value, setAddress)}
-                value={eventAddress.postcode}
-                fullWidth
-                name="postcode"
-                label="Postcode"
-              />
-            </Grid>
+
+            <AddressInput
+              updateState={updateState}
+              setAddress={setAddress}
+              eventAddress={eventAddress}
+            />
             <Grid item xs={12} md={6}>
               <TextField
                 onChange={(value) => updateState(value, setNewEvent)}
@@ -228,15 +193,11 @@ export default function EventForm() {
                 label="Max attendees"
               />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
+            <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   label="Start date"
+                  disablePast
                   value={newEvent.date}
                   onChange={(newValue) => updateDate(newValue, "date")}
                   renderInput={(params) => <TextField fullWidth {...params} />}
@@ -284,14 +245,6 @@ export default function EventForm() {
                   value={tags.keywords}
                   onChange={handleKeywords}
                   input={<OutlinedInput id="tags" label="tags" />}
-                  // renderValue={(selected) => {
-                  //   console.log(selected);
-                  //   return (
-                  //     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                  //       <Chip label={selected} />
-                  //     </Box>
-                  //   );
-                  // }}
                   renderValue={(selected, index) => {
                     return (
                       <Box
@@ -315,7 +268,6 @@ export default function EventForm() {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="image"
                 fullWidth
                 label="Image 1"
                 autoFocus
@@ -325,7 +277,6 @@ export default function EventForm() {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="image"
                 fullWidth
                 label="Image 2"
                 autoFocus
@@ -335,7 +286,6 @@ export default function EventForm() {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="image"
                 fullWidth
                 label="Image 3"
                 autoFocus
@@ -345,7 +295,6 @@ export default function EventForm() {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="image"
                 fullWidth
                 label="Image 4"
                 autoFocus
@@ -355,7 +304,7 @@ export default function EventForm() {
             </Grid>
             <Grid item xs={12}>
               <Button
-                style={{ background: "red" }}
+                color="primary"
                 onClick={() => setFormNumber((prev) => !prev)}
                 fullWidth
                 variant="contained"

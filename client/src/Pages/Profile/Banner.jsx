@@ -10,7 +10,6 @@ import {
 
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
-import avatarImg from "../../_mock/avatarImg.jpg";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
@@ -32,11 +31,11 @@ theme.typography.h6 = {
 
 const Item = styled(Button)(({ theme }) => ({
   padding: theme.spacing(1),
-  marginRight:"1rem",
-  width:"150px",
+  marginRight: "1rem",
+  width: "150px",
   paddingRight: theme.spacing(3),
-  color:"black",
-  border:"1px solid black",
+  color: "black",
+  border: "1px solid black",
   textAlign: "center",
   fontWeight: 500,
   whiteSpace: "nowrap",
@@ -68,8 +67,6 @@ function headerPointers(attended, upcoming, yours) {
 }
 
 function Banner({ userInfo, bannerOptions, changePostBoard }) {
-  const [open, setOpen] = useState(false);
-
   const handleClick = () => {
     console.info("You clicked the Chip.");
   };
@@ -145,7 +142,6 @@ function Banner({ userInfo, bannerOptions, changePostBoard }) {
           {bannerOptions.map((el) => {
             return (
               <Item
-
                 key={el}
                 onClick={() => {
                   changePostBoard(el);

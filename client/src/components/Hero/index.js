@@ -6,12 +6,10 @@ import Search from "./sub-components/Search";
 import BasicDatePicker from "./sub-components/DatePicker";
 import { Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { top100Films } from "./sub-components/fakeData";
 import { QUERY_TAGS } from "../../graphQL/queries";
 import { useQuery } from "@apollo/client";
 import SearchLocation from "./sub-components/SearchLocation";
 import { Link } from "react-router-dom";
-import { func } from "prop-types";
 
 let theme = createTheme({});
 
@@ -111,7 +109,7 @@ const Hero = () => {
           </Grid>
         </Grid>
         <Grid item xs={0} md={5} lg={4}>
-          <ImagesSideColumn></ImagesSideColumn>
+          <ImagesSideColumn />
         </Grid>
       </Grid>
     </ThemeProvider>
