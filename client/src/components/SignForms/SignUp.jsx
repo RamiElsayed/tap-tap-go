@@ -14,8 +14,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import Copyright from "./CopyRight";
+import { useModalsContext } from "../../utils/ModalContext";
 
-export const SignUp = ({ closeSignUp, switchToSignIn }) => {
+export const SignUp = ({ switchToSignIn }) => {
+  const { closeModal } = useModalsContext();
   const [verifyPassword, setVerifyPassword] = useState("");
   const [verification, setVerification] = useState(true);
   const [formState, setFormState] = useState({
@@ -66,7 +68,7 @@ export const SignUp = ({ closeSignUp, switchToSignIn }) => {
 
   return (
     <Box
-      onClick={closeSignUp}
+      onClick={closeModal}
       value="CloseBox"
       sx={{
         height: "100vh",

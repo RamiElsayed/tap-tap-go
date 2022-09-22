@@ -7,6 +7,7 @@ import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
 import { useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { useEffect, useState } from "react";
+import { useModalsContext } from "../../utils/ModalContext";
 
 const style = {
   width: "100%",
@@ -14,7 +15,8 @@ const style = {
   bgcolor: "background.paper",
 };
 
-function BookMark({ closeBookmarks }) {
+function BookMark() {
+  const { closeBookmarkModal } = useModalsContext();
   const [bookmarksData, setBookmarksData] = useState([]);
 
   let tokenUserId;
@@ -37,7 +39,8 @@ function BookMark({ closeBookmarks }) {
   }, [data]);
   return (
     <Box
-      onClick={closeBookmarks}
+      onClick={closeBookmarkModal}
+      value="CloseBox"
       sx={{
         height: "100vh",
         width: "100vw",

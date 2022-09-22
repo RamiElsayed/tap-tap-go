@@ -12,8 +12,10 @@ import Copyright from "./CopyRight";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../graphQL/mutations";
 import Auth from "../../utils/auth";
+import { useModalsContext } from "../../utils/ModalContext";
 
-export const SignIn = ({ closeSignIn, switchToSignUp }) => {
+export const SignIn = ({ switchToSignUp }) => {
+  const { closeModal } = useModalsContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -39,7 +41,7 @@ export const SignIn = ({ closeSignIn, switchToSignUp }) => {
 
   return (
     <Box
-      onClick={closeSignIn}
+      onClick={closeModal}
       value="CloseBox"
       sx={{
         height: "100vh",

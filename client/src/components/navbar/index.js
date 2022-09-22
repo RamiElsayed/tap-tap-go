@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import Stack from "@mui/material/Stack";
 
+import { useModalsContext } from "../../utils/ModalContext";
 import RenderMobileMenu from "./sub-components/RenderMobileMenu";
 import RenderLogo from "./sub-components/RenderLogo";
 import AvatarMenu from "./sub-components/AvatarMenu";
@@ -16,7 +17,11 @@ import Auth from "../../utils/auth";
 import { QUERY_USER_AVATAR } from "../../graphQL/queries";
 import { useQuery } from "@apollo/client";
 
-const Navbar = ({ openModal, openBookmarks }) => {
+const Navbar = () => {
+  // const openBookmarks = () => {
+  //   console.log("hi");
+  // };
+  const { openModal, openBookmarkModal } = useModalsContext();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [logged, setLogged] = useState(Auth.loggedIn());
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -84,7 +89,7 @@ const Navbar = ({ openModal, openBookmarks }) => {
           ))}
 
           <Button
-            onClick={openBookmarks}
+            onClick={openBookmarkModal}
             sx={{ my: 2, color: "inherit", display: "block" }}
           >
             Bookmark

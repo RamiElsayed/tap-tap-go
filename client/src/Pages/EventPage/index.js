@@ -17,8 +17,10 @@ import { useParams } from "react-router-dom";
 import { QUERY_EVENTBYID } from "../../graphQL/queries";
 import { PURCHASE_TICKET } from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
+import { useModalsContext } from "../../utils/ModalContext";
 
-export default function EventPage({ openModal }) {
+export default function EventPage() {
+  const { openModal } = useModalsContext();
   const { eventId: eventParam } = useParams();
   const { loading, data } = useQuery(QUERY_EVENTBYID, {
     variables: { eventId: eventParam },
