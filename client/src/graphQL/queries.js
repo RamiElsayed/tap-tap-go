@@ -172,6 +172,7 @@ export const QUERY_TAGS = gql`
 export const QUERY_USER_BOOKMARKS = gql`
   query Query($userId: ID!) {
     user(userId: $userId) {
+      _id
       bookmarks {
         _id
         eventName
@@ -192,6 +193,7 @@ export const QUERY_USER_BOOKMARKS = gql`
 export const QUERY_USER_AVATAR = gql`
   query User($userId: ID!) {
     user(userId: $userId) {
+      _id
       profileAvatar
     }
   }

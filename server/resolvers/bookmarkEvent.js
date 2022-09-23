@@ -1,5 +1,5 @@
 const { ApolloError, AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Event } = require("../models");
 
 const bookmarkEvent = async (_, { eventId }, { user }) => {
   try {
@@ -12,8 +12,9 @@ const bookmarkEvent = async (_, { eventId }, { user }) => {
           bookmarks: eventId,
         },
       });
+      let bookmarkedEvent = await Event.findById(eventId);
 
-      return;
+      return bookmarkedEvent;
     } else {
       throw new AuthenticationError("You must be a host to create an event.");
     }
@@ -24,4 +25,3 @@ const bookmarkEvent = async (_, { eventId }, { user }) => {
 };
 
 module.exports = bookmarkEvent;
-

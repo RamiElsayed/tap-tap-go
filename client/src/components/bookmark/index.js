@@ -33,8 +33,8 @@ function BookMark() {
 
   useEffect(() => {
     if (data?.user?.bookmarks?.length) {
-      console.log(data.user.bookmarks);
-      setBookmarksData(data.user.bookmarks);
+      let bookmarks = data.user.bookmarks;
+      setBookmarksData(bookmarks);
     }
   }, [data]);
   return (

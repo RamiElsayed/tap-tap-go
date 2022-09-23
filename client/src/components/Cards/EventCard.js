@@ -29,9 +29,72 @@ export default function EventCard({ eventName, price, reviews, images, _id }) {
     { enabled: false }
   );
 
-  const [bookmarkEvent, { error, bookmarkData }] = useMutation(BOOKMARK_EVENT);
-  const [unbookmarkEvent, { errorUnbookmark, unbookmarkData }] =
-    useMutation(UNBOOKMARK_EVENT);
+  const [bookmarkEvent, { error }] = useMutation(BOOKMARK_EVENT, {
+    update(cache, { data: { bookmarkEvent } }) {
+      try {
+        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
+        // Could potentially not exist yet, so wrap in a try/catch
+        const userData = cache.readQuery({
+          query: QUERY_USER_BOOKMARKS,
+          variables: { userId: tokenUserId },
+          enabled: Auth.loggedIn(),
+        });
+
+        // let newObj = {
+        //   ...userData.user,
+        //   bookmarks: [...userData.user.bookmarks, bookmarkEvent],
+        // };
+
+        console.log(userData.user);
+        console.log(bookmarkEvent);
+
+        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
+        cache.writeQuery({
+          query: QUERY_USER_BOOKMARKS,
+          // If we want new data to show up before or after existing data, adjust the order of this array
+          data: {
+            user: {
+              ...userData.user,
+              bookmarks: [...userData.user.bookmarks, bookmarkEvent],
+            },
+          },
+        });
+      } catch (e) {
+        console.error(e);
+        console.log("hei");
+      }
+    },
+  });
+  const [unbookmarkEvent, { errorUnbookmark }] = useMutation(UNBOOKMARK_EVENT, {
+    update(cache, { data: { unbookmarkEvent } }) {
+      try {
+        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
+        // Could potentially not exist yet, so wrap in a try/catch
+        const userData = cache.readQuery({
+          query: QUERY_USER_BOOKMARKS,
+          variables: { userId: tokenUserId },
+          enabled: Auth.loggedIn(),
+        });
+
+        let filteredBookmarks = userData.user.bookmarks.filter(
+          (el) => el._id !== _id
+        );
+        let newObj = { ...userData.user, bookmarks: [...filteredBookmarks] };
+
+        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
+        cache.writeQuery({
+          query: QUERY_USER_BOOKMARKS,
+          // If we want new data to show up before or after existing data, adjust the order of this array
+          data: {
+            user: { ...newObj },
+          },
+        });
+      } catch (e) {
+        console.error(e);
+        console.log("hay");
+      }
+    },
+  });
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 

@@ -59,7 +59,18 @@ export const CREATE_REVIEW = gql`
 export const BOOKMARK_EVENT = gql`
   mutation Mutation($eventId: ID!) {
     bookmarkEvent(eventId: $eventId) {
+      _id
       eventName
+      price
+      date
+      images {
+        imageLink
+      }
+      location {
+        streetName
+        cityName
+        postcode
+      }
     }
   }
 `;
@@ -67,7 +78,7 @@ export const BOOKMARK_EVENT = gql`
 export const UNBOOKMARK_EVENT = gql`
   mutation UnBookmarkEvent($eventId: ID!) {
     unBookmarkEvent(eventId: $eventId) {
-      eventName
+      _id
     }
   }
 `;
