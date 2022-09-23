@@ -1,7 +1,7 @@
 import { useState } from "react";
 // Utilities
-import Auth from "../../utils/auth";
-import { ADD_USER } from "../../graphQL/mutations";
+import Auth from "../../../utils/auth";
+import { ADD_USER } from "../../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
 // Material UI
 import Avatar from "@mui/material/Avatar";
@@ -13,8 +13,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
-import Copyright from "./CopyRight";
-import { useModalsContext } from "../../utils/ModalContext";
+import Copyright from "../CopyRight";
+import { useModalsContext } from "../../../utils/ModalContext";
 
 export const SignUp = ({ switchToSignIn }) => {
   const { closeModal } = useModalsContext();

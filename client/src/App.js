@@ -18,7 +18,6 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 import EventForm from "./components/Eventform/index";
 import { Keywords } from "./_mock/RecentSearches/index.js";
-import { SignUp } from "./components/SignForms/SignUp";
 import HowItWorks from "./Pages/HowItWorks";
 import { ModalProvider } from "./utils/ModalContext";
 import Modals from "./components/Modals/index";
@@ -69,7 +68,6 @@ export const App = () => {
                 element={<Landing recentSearches={recentSearches} />}
               />
               <Route path="/user/:usedId" element={<Profile />} />
-              <Route path="/signup" element={<SignUp />} />
               <Route path="/search-by-city/:city" element={<EventsByCity />} />
               <Route path="/search/:city/:tag" element={<CityEventsPage />} />
               <Route path="/new-event" element={<EventForm />} />

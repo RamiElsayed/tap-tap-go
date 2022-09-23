@@ -8,11 +8,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
-import Copyright from "./CopyRight";
+import Copyright from "../CopyRight";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../graphQL/mutations";
-import Auth from "../../utils/auth";
-import { useModalsContext } from "../../utils/ModalContext";
+import { LOGIN_USER } from "../../../graphQL/mutations";
+import Auth from "../../../utils/auth";
+import { useModalsContext } from "../../../utils/ModalContext";
 
 export const SignIn = ({ switchToSignUp }) => {
   const { closeModal } = useModalsContext();

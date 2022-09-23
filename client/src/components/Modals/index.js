@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { SignForms } from "../SignForms";
+import { UserForms } from "../UserForms";
 import BookMark from "../bookmark";
 import { useModalsContext } from "../../utils/ModalContext";
 
@@ -8,7 +7,7 @@ function Modals() {
 
   return (
     <>
-      {modalState && <SignForms />}
+      {modalState && <UserForms />}
       {BookmarksModalState && <BookMark />}
     </>
   );
