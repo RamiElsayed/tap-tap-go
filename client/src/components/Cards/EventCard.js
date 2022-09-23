@@ -16,11 +16,23 @@ import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-export default function EventCard({ eventName, price, reviews, images, _id }) {
+export default function EventCard({
+  eventName,
+  price,
+  reviews,
+  images,
+  _id,
+  createdById,
+}) {
   let tokenUserId;
+  let canBookmark = false;
   if (Auth.loggedIn()) {
     tokenUserId = Auth.getProfile().data._id;
+    let isOwner = createdById._id === tokenUserId;
+    console.log(isOwner);
+    canBookmark = Auth.loggedIn() && !isOwner;
   }
+
   const { loading, data } = useQuery(
     QUERY_USER_BOOKMARKS,
     {
@@ -32,19 +44,11 @@ export default function EventCard({ eventName, price, reviews, images, _id }) {
   const [bookmarkEvent, { error }] = useMutation(BOOKMARK_EVENT, {
     update(cache, { data: { bookmarkEvent } }) {
       try {
-        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
-        // Could potentially not exist yet, so wrap in a try/catch
         const userData = cache.readQuery({
           query: QUERY_USER_BOOKMARKS,
           variables: { userId: tokenUserId },
           enabled: Auth.loggedIn(),
         });
-
-        // let newObj = {
-        //   ...userData.user,
-        //   bookmarks: [...userData.user.bookmarks, bookmarkEvent],
-        // };
-
         console.log(userData.user);
         console.log(bookmarkEvent);
 
@@ -68,8 +72,6 @@ export default function EventCard({ eventName, price, reviews, images, _id }) {
   const [unbookmarkEvent, { errorUnbookmark }] = useMutation(UNBOOKMARK_EVENT, {
     update(cache, { data: { unbookmarkEvent } }) {
       try {
-        // First we retrieve existing profile data that is stored in the cache under the `QUERY_PROFILES` query
-        // Could potentially not exist yet, so wrap in a try/catch
         const userData = cache.readQuery({
           query: QUERY_USER_BOOKMARKS,
           variables: { userId: tokenUserId },
@@ -80,11 +82,8 @@ export default function EventCard({ eventName, price, reviews, images, _id }) {
           (el) => el._id !== _id
         );
         let newObj = { ...userData.user, bookmarks: [...filteredBookmarks] };
-
-        // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
         cache.writeQuery({
           query: QUERY_USER_BOOKMARKS,
-          // If we want new data to show up before or after existing data, adjust the order of this array
           data: {
             user: { ...newObj },
           },
@@ -217,7 +216,7 @@ export default function EventCard({ eventName, price, reviews, images, _id }) {
               <PersonIcon sx={{ fontSize: "1.2rem" }} />
             </Typography>
 
-            {Auth.loggedIn() ? renderBookmarkIcon() : ""}
+            {canBookmark ? renderBookmarkIcon() : ""}
           </Box>
         </CardContent>
       </CardActionArea>

@@ -43,6 +43,9 @@ export const GET_PROFILEDATA = gql`
       email
       myEvents {
         _id
+        createdById {
+          _id
+        }
         eventName
         price
         date
@@ -56,6 +59,9 @@ export const GET_PROFILEDATA = gql`
       }
       bookmarks {
         _id
+        createdById {
+          _id
+        }
         eventName
         price
         date
@@ -77,6 +83,9 @@ export const GET_PROFILEDATA = gql`
       }
       events {
         _id
+        createdById {
+          _id
+        }
         eventName
         price
         date
