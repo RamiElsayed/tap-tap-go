@@ -96,6 +96,9 @@ export const SEARCH_EVENTS_TAG_CITY = gql`
     search(input: $input) {
       _id
       eventName
+      createdById {
+        _id
+      }
       price
       reviews {
         _id
@@ -113,6 +116,9 @@ export const SEARCH_EVENTS_CITY = gql`
       _id
       eventName
       price
+      createdById {
+        _id
+      }
       reviews {
         _id
         rating

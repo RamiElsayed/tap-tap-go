@@ -29,7 +29,6 @@ export default function EventCard({
   if (Auth.loggedIn()) {
     tokenUserId = Auth.getProfile().data._id;
     let isOwner = createdById._id === tokenUserId;
-    console.log(isOwner);
     canBookmark = Auth.loggedIn() && !isOwner;
   }
 
