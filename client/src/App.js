@@ -23,8 +23,8 @@ import { ModalProvider } from "./utils/ModalContext";
 import Modals from "./components/Modals/index";
 
 const httpLink = createHttpLink({
-  // uri: `${window.location.origin}/graphql`,
-  uri: `http://localhost:3001/graphql`,
+  uri: `${window.location.origin}/graphql`,
+  // uri: `http://localhost:3001/graphql`,
 });
 
 console.log(window.location.origin);
