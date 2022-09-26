@@ -5,10 +5,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import Auth from "../../utils/auth";
 import { DELETE_REVIEW } from "../../graphQL/mutations";
 import { useMutation } from "@apollo/client";
+import { CardActionArea } from "@mui/material";
 
 export default function ReviewCard({
   title,
@@ -37,63 +39,68 @@ export default function ReviewCard({
 
   return (
     <Card sx={{ maxWidth: "850px", mb: "1rem", marginX: "auto" }}>
-      <CardContent sx={{ position: "relative" }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+      <CardActionArea>
+        <CardContent sx={{ position: "relative" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography
+              gutterBottom
+              variant="body1"
+              component="div"
+              textAlign="left"
+              fontWeight="600"
+            >
+              {title}
+            </Typography>
+            <Rating
+              size="medium"
+              name="read-only"
+              value={rating}
+              icon={<CircleRoundedIcon fontSize="inherit" />}
+              emptyIcon={<CircleRoundedIcon fontSize="inherit" />}
+              readOnly
+            />
+          </Box>
           <Typography
             gutterBottom
-            variant="body1"
+            variant="body2"
             component="div"
             textAlign="left"
-            fontWeight="600"
           >
-            {title}
+            {username}
           </Typography>
-          <Rating
-            size="medium"
-            name="read-only"
-            value={rating}
-            icon={<CircleRoundedIcon fontSize="inherit" />}
-            emptyIcon={<CircleRoundedIcon fontSize="inherit" />}
-            readOnly
-          />
-        </Box>
-        <Typography
-          gutterBottom
-          variant="body2"
-          component="div"
-          textAlign="left"
-        >
-          {username}
-        </Typography>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          textAlign="left"
-          mt={2}
-        >
-          {reviewText}
-        </Typography>
-        {isOwner ? (
-          <DeleteIcon
-            color="action"
-            sx={{
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-              padding: "1rem",
-            }}
-            onClick={handleDeleteReview}
-          />
-        ) : (
-          ""
-        )}
-      </CardContent>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            textAlign="left"
+            mt={2}
+          >
+            {reviewText}
+          </Typography>
+          {isOwner ? (
+            <DeleteOutlineIcon
+              color="action"
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                padding: "1rem",
+                "&:active": {
+                  transform: "scale(1.1)",
+                },
+              }}
+              onClick={handleDeleteReview}
+            />
+          ) : (
+            ""
+          )}
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 }
