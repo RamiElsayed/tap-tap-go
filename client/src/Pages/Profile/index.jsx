@@ -9,14 +9,16 @@ import { GET_PROFILEDATA } from "../../graphQL/queries";
 import ReviewCard from "../../components/ReviewCard";
 import Auth from "../../utils/auth";
 import EventCard from "../../components/Cards/EventCard";
+import { useModalsContext } from "../../utils/ModalContext";
+import { UpdateProfile } from "./UpdateProfile";
 
 // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
 
 let options = ["Bookmarks", "Your Events", "Your Reviews", "Going"];
 
 const Profile = () => {
-  //const { userId: userParam } = useParams();
-  // const userParam = "6321b33222ddc6d1be9f22dc";
+  const { updateProfile } = useModalsContext();
+
   const userParam = Auth.getProfile().data._id;
 
   const { loading, data } = useQuery(GET_PROFILEDATA, {
@@ -24,7 +26,6 @@ const Profile = () => {
   });
 
   let userDetails = data?.user || [];
-  console.log(userDetails);
 
   // const [userDetails, setUserDetails] = useState("");
 

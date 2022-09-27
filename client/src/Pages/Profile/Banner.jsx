@@ -13,6 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
+import { useModalsContext } from "../../utils/ModalContext";
 
 const theme = createTheme();
 
@@ -67,16 +68,14 @@ function headerPointers(attended, upcoming, yours) {
 }
 
 function Banner({ userInfo, bannerOptions, changePostBoard }) {
-  const handleClick = () => {
-    console.info("You clicked the Chip.");
-  };
+  const { openUpdateProfileModal } = useModalsContext();
 
   return (
     <ThemeProvider theme={theme}>
       <Card sx={{ position: "relative" }}>
         <Chip
           label="Update Details"
-          onClick={handleClick}
+          onClick={openUpdateProfileModal}
           sx={{
             position: { md: "absolute", xs: "static" },
             right: 0,

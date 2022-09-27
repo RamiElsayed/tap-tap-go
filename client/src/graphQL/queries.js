@@ -207,3 +207,11 @@ export const QUERY_USER_AVATAR = gql`
     }
   }
 `;
+
+export const CHECK_USERNAME = gql`
+  query Query($username: String) {
+    user(username: $username) {
+      username
+    }
+  }
+`;
