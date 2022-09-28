@@ -88,6 +88,7 @@ export const SignIn = ({ switchToSignUp }) => {
               label="Email Address"
               name="email"
               autoComplete="email"
+              placeholder="Aaron99@hotmail.com"
               autoFocus
             />
             <TextField
@@ -100,6 +101,7 @@ export const SignIn = ({ switchToSignUp }) => {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
+              placeholder="password is : password"
               autoComplete="current-password"
             />
             <Button
