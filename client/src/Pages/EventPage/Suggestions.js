@@ -1,19 +1,21 @@
 import { Stack } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
 import EventCard from "../../components/Cards/EventCard";
-import React from "react";
+import React, { useEffect } from "react";
 
 function Suggestions({ suggestedEvents }) {
   const [randomEventSuggestion, setRandomEventSuggestion] = React.useState([]);
 
-  if (suggestedEvents.length !== 0) {
-    const randomTagData =
-      suggestedEvents[Math.floor(Math.random() * suggestedEvents.length)]
-        .events;
-    if (randomTagData.length !== 0) {
-      setRandomEventSuggestion(randomTagData);
+  useEffect(() => {
+    if (suggestedEvents.length !== 0) {
+      const randomTagData =
+        suggestedEvents[Math.floor(Math.random() * suggestedEvents.length)]
+          .events;
+      if (randomTagData.length !== 0) {
+        setRandomEventSuggestion(randomTagData);
+      }
     }
-  }
+  }, []);
 
   return (
     <>

@@ -154,6 +154,9 @@ export const QUERY_EVENTBYID = gql`
         tagName
         events {
           eventName
+          createdById {
+            _id
+          }
           price
           date
           images {
