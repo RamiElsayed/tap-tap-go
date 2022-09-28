@@ -47,51 +47,43 @@ function ReviewForm({ eventIdParam }) {
   };
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "1000px" }}>
-      <CardContent>
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: "1000px",
-            marginX: "auto",
-          }}
-        >
-          <form onChange={updateReview} onSubmit={handleCreateReview}>
-            <Rating
-              name="rating"
-              onChange={updateReview}
-              value={newReview.rating}
-              size="large"
-            />
-            <Typography variant="h6" fontWeight="600">
-              Add a headline
-            </Typography>
-            <TextField
-              fullWidth
-              name="title"
-              placeholder="what is most important to share?"
-              id="fullWidth"
-              size="medium"
-              margin="dense"
-            />
-            <Typography variant="h6" fontWeight="600">
-              Write your review
-            </Typography>
-            <TextField
-              fullWidth
-              name="reviewText"
-              placeholder="What id you enjoy and disliked from the event?"
-              id="fullWidth"
-              size="medium"
-              sx={{ marginBottom: "1rem" }}
-            />
-            <Button type="submit" variant="outlined">
-              Submit
-            </Button>
-          </form>
-        </Box>
-      </CardContent>
-    </Box>
+    <form
+      style={{ width: "100%" }}
+      onChange={updateReview}
+      onSubmit={handleCreateReview}
+    >
+      <Rating
+        name="rating"
+        onChange={updateReview}
+        value={newReview.rating}
+        size="large"
+      />
+      <Typography variant="h6" fontWeight="600">
+        Add a headline
+      </Typography>
+      <TextField
+        fullWidth
+        name="title"
+        placeholder="what is most important to share?"
+        id="fullWidth"
+        size="medium"
+        margin="dense"
+      />
+      <Typography variant="h6" fontWeight="600">
+        Write your review
+      </Typography>
+      <TextField
+        fullWidth
+        name="reviewText"
+        placeholder="What id you enjoy and disliked from the event?"
+        id="fullWidth"
+        size="medium"
+        sx={{ marginBottom: "1rem" }}
+      />
+      <Button type="submit" variant="outlined">
+        Submit
+      </Button>
+    </form>
   );
 }
 
