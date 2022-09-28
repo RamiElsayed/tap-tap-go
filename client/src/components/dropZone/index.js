@@ -17,20 +17,22 @@ const img = {
   borderRadius: 2,
 };
 
-export default function DropZone(props) {
-  const [files, setFiles] = useState([]);
+export default function DropZone({ updateImage, files }) {
+  // const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 4,
     accept: {
-      "image/*": [],
+      "image/*": [".jpeg", ".png"],
     },
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
+      updateImage(
+        acceptedFiles.map((file) => {
+          return {
+            imageLink: Object.assign(file, {
+              preview: URL.createObjectURL(file),
+            }),
+          };
+        })
       );
     },
   });
@@ -45,11 +47,11 @@ export default function DropZone(props) {
         padding: 0.5,
         boxSizing: "border-box",
       }}
-      key={file.name}
+      key={file.imageLink.name}
     >
       <Box sx={{ minWidth: 0, overflow: "hidden" }}>
         <img
-          src={file.preview}
+          src={file.imageLink.preview}
           style={img}
           alt="Thumbnail of uploaded image"
           onLoad={() => {
@@ -59,6 +61,10 @@ export default function DropZone(props) {
       </Box>
     </Stack>
   ));
+
+  useEffect(() => {
+    console.log(files);
+  }, [files]);
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount

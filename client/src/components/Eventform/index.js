@@ -12,12 +12,17 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import AddressInput from "./AddressInput";
+import DropZone from "../dropZone/index";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_TAGS } from "../../graphQL/queries";
 import { ADD_EVENT } from "../../graphQL/mutations";
+import { storage } from "../../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
+import { async } from "@firebase/util";
 
 export default function EventForm() {
   const navigate = useNavigate();
@@ -56,10 +61,8 @@ export default function EventForm() {
     cityName: "",
     postcode: "",
   });
-  const [imageOne, setImageOne] = React.useState({ imageLink: "" });
-  const [imageTwo, setImageTwo] = React.useState({ imageLink: "" });
-  const [imageThree, setImageThree] = React.useState({ imageLink: "" });
-  const [imageFour, setImageFour] = React.useState({ imageLink: "" });
+  const [imageUpload, setImageUpload] = React.useState([]);
+
   const [formNumber, setFormNumber] = React.useState(false);
 
   const updateState = (event, setter) => {
@@ -73,9 +76,8 @@ export default function EventForm() {
     });
   };
 
-  const updateImage = (event, setter) => {
-    const { value } = event.target;
-    setter({ imageLink: value });
+  const updateImage = (arrayImgs) => {
+    setImageUpload(arrayImgs);
   };
 
   const handleKeywords = (event) => {
@@ -96,28 +98,54 @@ export default function EventForm() {
     });
   }
 
-  React.useEffect(() => {
-    completeEventInformation.current = {
-      ...newEvent,
-      tags: tags.tags,
-      images: [imageOne, imageTwo, imageThree, imageFour],
-      location: eventAddress,
-    };
-  }, [newEvent, eventAddress, tags]);
+  // React.useEffect(() => {
+  //   completeEventInformation.current = {
+  //     ...newEvent,
+  //     tags: tags.tags,
+  //     // images: [...imageUpload],
+  //     location: eventAddress,
+  //   };
+  // }, [newEvent, eventAddress, tags, imageUpload]);
 
   const [createEvent] = useMutation(ADD_EVENT);
+
+  const uploadImage = async (image) => {
+    if (image == null) return;
+    const imageRef = ref(storage, `events/images/${image.name + v4()}`);
+    let snapshot = await uploadBytes(imageRef, image);
+    let URL = await getDownloadURL(snapshot.ref);
+    return await URL;
+  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data: eventData } = await createEvent({
-        variables: { input: { ...completeEventInformation.current } },
-      });
-      if (eventData?.createEvent?._id) {
-        const eventID = eventData.createEvent._id;
-        navigate(`/event/${eventID}`, { replace: true });
-      }
+      Promise.all(
+        imageUpload.map(async (item) => {
+          let imageURL = await uploadImage(item.imageLink);
+          return { imageLink: imageURL };
+        })
+      )
+        .then((images) => {
+          console.log(images);
+          completeEventInformation.current = {
+            ...newEvent,
+            tags: tags.tags,
+            images: images,
+            location: eventAddress,
+          };
+        })
+        .then(async () => {
+          console.log(completeEventInformation);
+          const { data: eventData } = await createEvent({
+            variables: { input: { ...completeEventInformation.current } },
+          });
+          if (eventData?.createEvent?._id) {
+            const eventID = eventData.createEvent._id;
+            navigate(`/event/${eventID}`, { replace: true });
+          }
+        });
     } catch (e) {
       console.error(e);
     }
@@ -266,13 +294,16 @@ export default function EventForm() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
+              <DropZone updateImage={updateImage} files={imageUpload} />
+            </Grid>
+            {/* <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 label="Image 1"
                 autoFocus
-                value={imageOne.imageLink}
-                onChange={(value) => updateImage(value, setImageOne)}
+                value={imageUpload[0].imageLink}
+                onChange={(value) => updateImage(value, setImageUpload, 0)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -280,8 +311,8 @@ export default function EventForm() {
                 fullWidth
                 label="Image 2"
                 autoFocus
-                value={imageTwo.imageLink}
-                onChange={(value) => updateImage(value, setImageTwo)}
+                value={imageUpload[1].imageLink}
+                onChange={(value) => updateImage(value, setImageUpload, 1)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -289,8 +320,8 @@ export default function EventForm() {
                 fullWidth
                 label="Image 3"
                 autoFocus
-                value={imageThree.imageLink}
-                onChange={(value) => updateImage(value, setImageThree)}
+                value={imageUpload[2].imageLink}
+                onChange={(value) => updateImage(value, setImageUpload, 2)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -298,10 +329,10 @@ export default function EventForm() {
                 fullWidth
                 label="Image 4"
                 autoFocus
-                value={imageFour.imageLink}
-                onChange={(value) => updateImage(value, setImageFour)}
+                value={imageUpload[3].imageLink}
+                onChange={(value) => updateImage(value, setImageUpload, 3)}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <Button
                 color="primary"
