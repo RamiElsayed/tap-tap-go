@@ -10,7 +10,7 @@ const unPurchaseTicket = async (_, { eventId }, { user }) => {
           events: eventId,
         },
       });
-
+      console.log(usedId);
       return;
     } else {
       throw new AuthenticationError("You must be a host to create an event.");
