@@ -15,7 +15,11 @@ import Suggestions from "./Suggestions";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_EVENTBYID } from "../../graphQL/queries";
-import { PURCHASE_TICKET } from "../../graphQL/mutations";
+import {
+  PURCHASE_TICKET,
+  UN_PURCHASE_TICKET,
+  ATTENDING_TO_EVENT,
+} from "../../graphQL/mutations";
 import { Typography } from "@mui/material";
 import { useModalsContext } from "../../utils/ModalContext";
 
@@ -27,10 +31,23 @@ export default function EventPage() {
   });
   const [createPurchase, { error, mutationData }] =
     useMutation(PURCHASE_TICKET);
+  const [deletePurchase] = useMutation(UN_PURCHASE_TICKET);
 
+  const [isAttending] = useMutation(ATTENDING_TO_EVENT);
+
+  const [isAttendingState, setIsAttendingState] = useState(false);
   const [eventData, setEventData] = useState();
   const [eventSection, setEventSection] = useState("Description");
   const [isLoading, setIsLoading] = useState([loading]);
+
+  useEffect(() => {
+    isAttending({
+      variables: { eventId: eventParam },
+    }).then((result) => {
+      console.log(result);
+      setIsAttendingState(result.data.checkAttendance.attending);
+    });
+  }, []);
 
   useEffect(() => {
     if (data?.event) {
@@ -41,8 +58,22 @@ export default function EventPage() {
   }, [data]);
 
   const handlePurchase = async () => {
+    setIsAttendingState(true);
+
     try {
       const { purchaseData } = await createPurchase({
+        variables: { eventId: eventParam },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const updateAttendance = async () => {
+    setIsAttendingState(false);
+
+    try {
+      await deletePurchase({
         variables: { eventId: eventParam },
       });
     } catch (e) {
@@ -75,6 +106,8 @@ export default function EventPage() {
             handlePurchase={handlePurchase}
             eventData={eventData}
             openModal={openModal}
+            isAttending={isAttendingState}
+            updateAttendance={updateAttendance}
           />
           <HostInfoCard eventData={eventData} />
         </Stack>
