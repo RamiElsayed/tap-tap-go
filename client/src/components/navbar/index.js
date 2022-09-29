@@ -18,9 +18,6 @@ import { QUERY_USER_AVATAR } from "../../graphQL/queries";
 import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
-  // const openBookmarks = () => {
-  //   console.log("hi");
-  // };
   const { openModal, openBookmarkModal } = useModalsContext();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [logged, setLogged] = useState(Auth.loggedIn());
@@ -82,9 +79,18 @@ const Navbar = () => {
             <Button
               onClick={handleCloseNavMenu}
               key={page.title}
-              sx={{ my: 2, color: "inherit", display: "block" }}
+              sx={{
+                my: 2,
+                color: "inherit",
+                display: "block",
+              }}
             >
-              <Link to={`/${page.directory}`}>{page.title}</Link>
+              <Link
+                style={{ textDecoration: "none", color: "inherit" }}
+                to={`/${page.directory}`}
+              >
+                {page.title}
+              </Link>
             </Button>
           ))}
 
@@ -117,7 +123,12 @@ const Navbar = () => {
         >
           <Button
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: "inherit", display: "block" }}
+            sx={{
+              my: 2,
+              color: "inherit",
+              display: "block",
+              textDecoration: "none",
+            }}
           >
             <Link to={`/How-it-works`}> How it works</Link>
           </Button>
