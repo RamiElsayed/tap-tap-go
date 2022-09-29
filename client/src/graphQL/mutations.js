@@ -48,6 +48,14 @@ export const PURCHASE_TICKET = gql`
   }
 `;
 
+export const UN_PURCHASE_TICKET = gql`
+  mutation Mutation($eventId: ID!) {
+    unPurchaseTicket(eventId: $eventId) {
+      eventName
+    }
+  }
+`;
+
 export const CREATE_REVIEW = gql`
   mutation Mutation($input: CreateReviewInput!) {
     createReview(input: $input) {
@@ -126,6 +134,14 @@ export const SEARCH_EVENTS_CITY = gql`
       images {
         imageLink
       }
+    }
+  }
+`;
+
+export const ATTENDING_TO_EVENT = gql`
+  mutation Mutation($eventId: ID!) {
+    checkAttendance(eventId: $eventId) {
+      attending
     }
   }
 `;

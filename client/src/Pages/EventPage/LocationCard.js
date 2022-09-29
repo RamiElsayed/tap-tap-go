@@ -12,7 +12,23 @@ export default function LocationCard(props) {
   let logged = Auth.loggedIn();
 
   function renderActionButton() {
-    return logged ? (
+    console.log(props.isAttending);
+    const isAttendingRender = props.isAttending ? (
+      <Button
+        onClick={props.updateAttendance}
+        sx={{
+          display: { xs: "none", md: "block" },
+          marginTop: "3rem",
+          marginX: "auto",
+          width: "250px",
+          height: "50px",
+        }}
+        variant="contained"
+        color="warning"
+      >
+        Cancel Attendance
+      </Button>
+    ) : (
       <Button
         onClick={props.handlePurchase}
         sx={{
@@ -27,6 +43,10 @@ export default function LocationCard(props) {
       >
         Going
       </Button>
+    );
+
+    return logged ? (
+      isAttendingRender
     ) : (
       <Button
         onClick={props.openModal}

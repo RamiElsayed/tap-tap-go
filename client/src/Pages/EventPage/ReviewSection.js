@@ -8,7 +8,7 @@ function ReviewSection({ eventId, cardData }) {
   let logged = Auth.loggedIn();
 
   return (
-    <Box mt="4rem">
+    <Box mt="4rem" width="90%">
       {logged ? (
         <>
           <Typography variant="h4" fontWeight="600" textAlign="center">

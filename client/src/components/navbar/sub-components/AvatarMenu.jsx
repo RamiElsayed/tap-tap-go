@@ -15,7 +15,6 @@ export default function AvatarMenu({
   anchorElUser,
   avatar,
 }) {
-  console.log(avatar);
   return (
     <Box>
       <Tooltip title="avatar">

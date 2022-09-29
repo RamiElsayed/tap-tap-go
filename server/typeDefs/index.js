@@ -75,6 +75,10 @@ const typeDefs = gql`
     user: User
   }
 
+  type Attendance {
+    attending: Boolean
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -145,6 +149,7 @@ const typeDefs = gql`
   input searchByCityInput {
     city: String!
   }
+
   type Mutation {
     createUser(input: CreateUserInput!): Auth
     login(input: LoginInput!): Auth
@@ -153,10 +158,12 @@ const typeDefs = gql`
     deleteUser(userId: ID!): User
     deleteReview(reviewId: ID!): Review
     purchaseTicket(eventId: ID!): Event
+    unPurchaseTicket(eventId: ID!): Event
     bookmarkEvent(eventId: ID!): Event
     unBookmarkEvent(eventId: ID!): Event
     search(input: searchInput!): [Event]
     searchByCity(input: searchByCityInput!): [Event]
+    checkAttendance(eventId: ID!): Attendance
     # deleteEvent(eventId: ID!): Event
   }
 `;
