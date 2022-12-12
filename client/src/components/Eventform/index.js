@@ -297,42 +297,7 @@ export default function EventForm() {
             <Grid item xs={12}>
               <DropZone updateImage={updateImage} files={imageUpload} />
             </Grid>
-            {/* <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Image 1"
-                autoFocus
-                value={imageUpload[0].imageLink}
-                onChange={(value) => updateImage(value, setImageUpload, 0)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Image 2"
-                autoFocus
-                value={imageUpload[1].imageLink}
-                onChange={(value) => updateImage(value, setImageUpload, 1)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Image 3"
-                autoFocus
-                value={imageUpload[2].imageLink}
-                onChange={(value) => updateImage(value, setImageUpload, 2)}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Image 4"
-                autoFocus
-                value={imageUpload[3].imageLink}
-                onChange={(value) => updateImage(value, setImageUpload, 3)}
-              />
-            </Grid> */}
+
             <Grid item xs={12}>
               <Button
                 color="primary"
