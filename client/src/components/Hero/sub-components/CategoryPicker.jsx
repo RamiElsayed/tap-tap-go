@@ -1,9 +1,8 @@
+// Not in use
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import { top100Films } from "./fakeData";
-
 export default function CategoryPicker() {
   const [open, setOpen] = React.useState(false);
 
@@ -20,11 +19,6 @@ export default function CategoryPicker() {
         // freeSolo
         open={open}
         limitTags={4}
-        options={top100Films.filter((option, i) => {
-          if (i < searchSuggestionLimit) {
-            return option;
-          }
-        })}
         getOptionLabel={(option) => option.title}
         renderInput={(params) => (
           <TextField

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,30 +9,18 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import { CardActionArea } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Link } from "react-router-dom";
+import { RenderBookmarkIcon } from "./ToggleHeart/Index";
+import { averageRatingFromDB, selectRandomImage } from "../../utils";
 
 import { BOOKMARK_EVENT, UNBOOKMARK_EVENT } from "../../graphQL/mutations";
 import { QUERY_USER_BOOKMARKS } from "../../graphQL/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-export default function EventCard({
-  eventName,
-  price,
-  reviews,
-  images,
-  _id,
-  createdById,
-}) {
-  let tokenUserId;
-  let canBookmark = false;
-  if (Auth.loggedIn()) {
-    tokenUserId = Auth.getProfile().data._id;
-    let isOwner = createdById._id === tokenUserId;
-    canBookmark = Auth.loggedIn() && !isOwner;
-  }
+export default function EventCard(props) {
+  let { eventName, price, reviews, images, _id, createdById } = props;
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  let { tokenUserId, isOwner, logged } = Auth.isOwner(createdById);
 
   const { loading, data } = useQuery(
     QUERY_USER_BOOKMARKS,
@@ -48,8 +38,6 @@ export default function EventCard({
           variables: { userId: tokenUserId },
           enabled: Auth.loggedIn(),
         });
-        console.log(userData.user);
-        console.log(bookmarkEvent);
 
         // Then we update the cache by combining existing profile data with the newly created data returned from the mutation
         cache.writeQuery({
@@ -64,7 +52,6 @@ export default function EventCard({
         });
       } catch (e) {
         console.error(e);
-        console.log("hei");
       }
     },
   });
@@ -80,6 +67,7 @@ export default function EventCard({
         let filteredBookmarks = userData.user.bookmarks.filter(
           (el) => el._id !== _id
         );
+
         let newObj = { ...userData.user, bookmarks: [...filteredBookmarks] };
         cache.writeQuery({
           query: QUERY_USER_BOOKMARKS,
@@ -89,12 +77,9 @@ export default function EventCard({
         });
       } catch (e) {
         console.error(e);
-        console.log("hay");
       }
     },
   });
-
-  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     if (data?.user?.bookmarks?.length) {
@@ -109,54 +94,19 @@ export default function EventCard({
   const toggleHeart = async () => {
     try {
       if (!isBookmarked) {
-        const { bookmarkData } = await bookmarkEvent({
+        await bookmarkEvent({
           variables: { eventId: _id },
         });
       } else {
-        const { unbookmarkData } = await unbookmarkEvent({
+        await unbookmarkEvent({
           variables: { eventId: _id },
         });
       }
+
       setIsBookmarked((prev) => !prev);
     } catch (e) {
       console.error(e);
     }
-  };
-  const averageRating = () => {
-    return (
-      reviews
-        .map((review) => review.rating)
-        .reduce((acc, curr) => acc + curr, 0) / reviews.length
-    );
-  };
-
-  const randomImageSelector = () => {
-    return images[Math.floor(Math.random() * images.length)].imageLink;
-  };
-  const renderBookmarkIcon = () => {
-    return isBookmarked ? (
-      <FavoriteIcon
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          padding: "1rem",
-        }}
-        onClick={toggleHeart}
-        className="heart"
-      />
-    ) : (
-      <FavoriteBorderIcon
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          padding: "1rem",
-        }}
-        onClick={toggleHeart}
-        className="heart"
-      />
-    );
   };
 
   return (
@@ -166,7 +116,7 @@ export default function EventCard({
           <CardMedia
             component="img"
             height="170"
-            image={randomImageSelector()}
+            image={selectRandomImage(images)}
             alt={eventName}
           />
         </Link>
@@ -190,8 +140,7 @@ export default function EventCard({
             <Rating
               size="small"
               name="read-only"
-              // value={props.cardData.value}
-              value={averageRating()}
+              value={averageRatingFromDB(reviews)}
               precision={0.5}
               readOnly
             />
@@ -215,7 +164,12 @@ export default function EventCard({
               <PersonIcon sx={{ fontSize: "1.2rem" }} />
             </Typography>
 
-            {canBookmark ? renderBookmarkIcon() : ""}
+            {isOwner || (
+              <RenderBookmarkIcon
+                isBookmarked={isBookmarked}
+                toggleHeart={toggleHeart}
+              />
+            )}
           </Box>
         </CardContent>
       </CardActionArea>

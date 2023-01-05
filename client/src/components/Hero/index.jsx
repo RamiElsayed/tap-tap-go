@@ -3,7 +3,6 @@ import React from "react";
 import ImagesSideColumn from "./sub-components/ImagesSideColumn";
 import Search from "./sub-components/Search";
 
-import BasicDatePicker from "./sub-components/DatePicker";
 import { Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { QUERY_TAGS } from "../../graphQL/queries";
@@ -24,7 +23,7 @@ theme = createTheme(theme, {
   },
 });
 
-const Hero = () => {
+export default function Hero() {
   const { loading, data } = useQuery(QUERY_TAGS);
   const [tags, setTags] = React.useState([]);
   const [city, setCity] = React.useState("");
@@ -39,6 +38,7 @@ const Hero = () => {
       setTags(tagsArr);
     }
   }, [data]);
+
   React.useEffect(() => {
     if (searchTag === "") {
       setUrlSearch(`/search-by-city/${city}`);
@@ -48,12 +48,11 @@ const Hero = () => {
     }
   }, [city, searchTag]);
 
-  function handleTagChage(event) {
+  function handleTagChange(event) {
     setSearchTag(event);
   }
   function handleAddress(city) {
     setCity(city);
-    // console.log(event);
   }
 
   return (
@@ -85,7 +84,7 @@ const Hero = () => {
             </Grid>
             <Grid item xs={10} md={4}>
               <Search
-                updateTag={handleTagChage}
+                updateTag={handleTagChange}
                 category={tags}
                 inputLabel="Select a category"
                 sx={{ width: "100%" }}
@@ -94,7 +93,6 @@ const Hero = () => {
             <Grid
               item
               xs={12}
-              md={12}
               sx={{ display: "center", justifyContent: "center" }}
             >
               <Link to={`${urlSearch}`}>
@@ -114,5 +112,4 @@ const Hero = () => {
       </Grid>
     </ThemeProvider>
   );
-};
-export default Hero;
+}

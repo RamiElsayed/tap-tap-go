@@ -32,6 +32,15 @@ class AuthService {
     localStorage.removeItem("id_token");
     window.location.assign("/");
   }
+
+  isOwner(userObject) {
+    if (this.loggedIn()) {
+      let tokenUserId = this.getProfile().data._id;
+      let isOwner = userObject._id === tokenUserId;
+      return { tokenUserId: tokenUserId, isOwner: !isOwner, logged: true };
+    }
+    return { tokenUserId: null, isOwner: false };
+  }
 }
 
 export default new AuthService();

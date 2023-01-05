@@ -1,4 +1,4 @@
-import Hero from "../../components/Hero/index.js";
+import Hero from "../../components/Hero/index.jsx";
 // import RecentlySeen from "../../components/RecentlySeen/index.js";
 // import Cards from "../../components/Cards/index";
 // import TopSellers from "../../components/TopSellers/index.js";
