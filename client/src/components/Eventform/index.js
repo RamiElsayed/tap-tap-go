@@ -98,15 +98,6 @@ export default function EventForm() {
     });
   }
 
-  // React.useEffect(() => {
-  //   completeEventInformation.current = {
-  //     ...newEvent,
-  //     tags: tags.tags,
-  //     // images: [...imageUpload],
-  //     location: eventAddress,
-  //   };
-  // }, [newEvent, eventAddress, tags, imageUpload]);
-
   const [createEvent] = useMutation(ADD_EVENT);
 
   const uploadImage = async (image) => {

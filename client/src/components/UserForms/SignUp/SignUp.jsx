@@ -46,7 +46,7 @@ export const SignUp = ({ switchToSignIn }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("formState", formState);
+
     try {
       if (formState.password !== verifyPassword) {
         setVerification(false);
@@ -107,67 +107,64 @@ export const SignUp = ({ switchToSignIn }) => {
           </Typography>
           <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
-              required
               fullWidth
               label="First Name"
+              margin="normal"
               name="firstName"
+              onChange={handleChange}
+              required
+              type="text"
               value={formState.firstName}
-              onChange={handleChange}
-              type="text"
-              autoFocus
             />
             <TextField
-              margin="normal"
-              required
               fullWidth
-              name="lastName"
-              value={formState.lastName}
-              onChange={handleChange}
               label="Last Name"
+              margin="normal"
+              name="lastName"
+              onChange={handleChange}
+              required
               type="text"
+              value={formState.lastName}
             />
             <TextField
-              margin="normal"
-              required
               fullWidth
-              name="username"
-              value={formState.username}
-              onChange={handleChange}
               label="username"
+              margin="normal"
+              name="username"
+              onChange={handleChange}
+              required
               type="text"
+              value={formState.username}
             />
             <TextField
-              margin="normal"
-              required
               fullWidth
-              name="number"
-              value={formState.number}
-              onChange={handleChange}
               label="Phone number"
+              margin="normal"
+              name="number"
+              onChange={handleChange}
+              required
               type="number"
+              value={formState.number}
             />
             <TextField
-              margin="normal"
-              required
               fullWidth
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
               label="Email"
+              margin="normal"
+              name="email"
+              onChange={handleChange}
+              required
               type="email"
-              autoComplete="current-password"
+              value={formState.email}
             />
             <TextField
-              margin="normal"
-              required
               fullWidth
-              name="password"
-              value={formState.password}
-              onChange={handleChange}
               label="Password"
+              margin="normal"
+              name="password"
+              onChange={handleChange}
+              required
               type="password"
-              autoComplete="current-password"
+              value={formState.password}
             />
             {(error || !verification) && (
               <Typography variant="body2" color="red">
